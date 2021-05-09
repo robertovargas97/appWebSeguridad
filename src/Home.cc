@@ -24,10 +24,10 @@ int main(int argc, char const *argv[])
 {
 
     Utils file_reader = Utils();
-    char *header = "/Templates/header.html";
-    char *navbar = "/Templates/navbar.html";
-    char *home = "/Templates/home.html";
-    char *footer = "/Templates/footer.html";
+    char *header = "/templates/header.html";
+    char *navbar = "/templates/navbar.html";
+    char *home = "/templates/home.html";
+    char *footer = "/templates/footer.html";
     char *header_content = file_reader.read_file(header, header_content);
     char *navbar_content = file_reader.read_file(navbar, navbar_content);
     char *home_content = file_reader.read_file(home, home_content);
