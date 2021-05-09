@@ -1,2 +1,12 @@
 # appWebSeguridad
 Esta es la tarea del curso de seguridad de sistemas computacionales I semestre 2021
+
+### Ejemplos de comandos para compilar
+
+```js
+g++ src\Login.cc Utils\Utils.cc -o login.cgi -w
+```
+
+```js
+g++ src\Home.cc Utils\Utils.cc -o home.cgi -w 
+```
