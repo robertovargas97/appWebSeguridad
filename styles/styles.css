@@ -1,0 +1,175 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+
+nav {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.wallpaper {
+    width: 100%;
+    height: 60vh;
+    background-image: url("../img/home-wallpaper.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.nav-link {
+    border: 3px solid transparent;
+    transition: all ease-in-out 0.25s;
+}
+
+.nav-link:hover {
+    border-bottom: 3px solid  #5bc0de ;
+}
+
+.btn-login {
+    padding-left: 1.5rem!important;
+    padding-right: 1.5rem!important;
+}
+
+.h5-login {
+    color: #ffffff;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.login-header {
+    padding-top: 1rem;
+    width: 100%;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+}
+
+.login-label {
+    color: #667275;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 1rem;
+    background: #fff;
+    border-top: 1px solid #e1e1e1;
+}
+
+.view-height {
+    min-height: 85vh;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+.h1-home {
+    padding-top: 3.5rem;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.home-icon {
+    background:   #3e4142  ;
+    padding: 3rem 3rem;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    color: #fff;
+    transition: all ease-in-out 0.3s;
+}
+
+.home-icon:hover {
+    transform: scale(1.1);
+}
+
+.info-line {
+    padding: 2rem 0 6rem 0;
+}
+
+.h3-home, .p-home {
+    color: rgb(0, 0, 0);
+}
+
+.bg-white-transparent {
+    background: transparent;
+    border: 1px solid #174b66d5 !important;
+    border-radius: 0.5rem!important;
+}
+
+
+
+/* ############# Media queries ############# */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 375px) {
+    .wallpaper {
+        height: 40vh;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    .wallpaper {
+        height: 40vh;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .wallpaper {
+        height: 30vh;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1024px) {
+    .wallpaper {
+        height: 50vh;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1280px) {
+    .wallpaper {
+        height: 60vh;
+    }
+}
