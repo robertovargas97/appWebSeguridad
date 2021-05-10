@@ -12,10 +12,15 @@ g++ src\Home.cc Utils\Utils.cc -o home.cgi -w
 ```
 
 ### Para instalar mysql connector
+
 - https://aaronxu17.github.io/blog/install-mysql-connector/
 
-### Comando para compilar el archivo con mysql
-- utils/db_connection.cc `mysql_config --cflags --libs`
 
+### Comando para compilar el archivo con mysql
+```js
+g++ utils/db_connection.cc `mysql_config --cflags --libs` -w
+```
 ### Ejemplos de cosas con mysql connector
-- https://github.com/hholzgra/connector-c-examples
+```js
+https://github.com/hholzgra/connector-c-examples
+```
