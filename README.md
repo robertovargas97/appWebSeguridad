@@ -4,11 +4,11 @@ Esta es la tarea del curso de seguridad de sistemas computacionales I semestre 2
 ### Ejemplos de comandos para compilar
 
 ```js
-g++ src\Login.cc Utils\Utils.cc -o login.cgi -w
+g++ src/login.cc utils/utils.cc -o login.cgi -w
 ```
 
 ```js
-g++ src\Home.cc Utils\Utils.cc -o home.cgi -w 
+g++ src/home.cc utils/utils.cc -o home.cgi -w 
 ```
 
 ### Para instalar mysql connector
