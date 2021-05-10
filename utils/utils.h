@@ -4,7 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <dir.h>
+#include <unistd.h>
+#include <cstring>
+
+#define PATH_MAX 4096
 
 using namespace std;
 

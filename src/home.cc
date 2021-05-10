@@ -1,4 +1,4 @@
-#include "..\Utils\Utils.h"
+#include "../utils/utils.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>

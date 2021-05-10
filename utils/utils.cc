@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -7,7 +7,7 @@ Utils::~Utils(){};
 
 char *Utils::read_file(char *file_name, char *file_content)
 {
-    char complete_path[_MAX_PATH];
+    char complete_path[PATH_MAX];
     getcwd(complete_path, sizeof(complete_path));
     strcat(complete_path, file_name);
     FILE *file = fopen(complete_path, "rt");
@@ -26,7 +26,8 @@ char *Utils::read_file(char *file_name, char *file_content)
 
 // int main(int argc, char const *argv[])
 // {
-//     char *content = read_file("Login.html", content);
+//     Utils u = Utils();
+//     char *content = u.read_file("/templates/login.html", content);
 //     printf(content);
 //     free(content);
 
