@@ -1,9 +1,8 @@
 
 #include "db_connection.h"
-
 using namespace std;
 
-DBConnection::DBConnection(string host, string user, string password, string databaseName)
+DBConnection::DBConnection()
 {
     mysql = mysql_init(mysql);
 
@@ -14,7 +13,7 @@ DBConnection::DBConnection(string host, string user, string password, string dat
     else
     {
         mysql_options(mysql, MYSQL_READ_DEFAULT_FILE, (void *)"./my.cnf");
-        if (!mysql_real_connect(mysql, host.c_str(), user.c_str(), password.c_str(), databaseName.c_str(), 0, NULL, CLIENT_FOUND_ROWS))
+        if (!mysql_real_connect(mysql, HOST, USERNAME, PASSWORD, DATABASE, 0, NULL, CLIENT_FOUND_ROWS))
         {
             printf("Connection with the database Failed\n");
         }
@@ -66,8 +65,7 @@ vector<string> DBConnection::get_user_info(string email)
 
 int main()
 {
-
-    DBConnection conn = DBConnection("localhost", "user", "user123", "testdb");
+    DBConnection conn = DBConnection();
     vector<string> user_info = conn.get_user_info("hellen@gmail.com");
     int user_info_size = user_info.size();
     for (size_t i = 0; i < user_info_size; i++)

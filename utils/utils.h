@@ -6,6 +6,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstring>
+#include <vector>
 
 #define PATH_MAX 4096
 
@@ -17,6 +18,7 @@ public:
     Utils();
     ~Utils();
     char *read_file(char *file_name, char *file_content);
+    vector<string> split(string text, string delimiter);
 };
 
 #endif

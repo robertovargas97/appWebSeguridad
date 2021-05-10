@@ -18,7 +18,7 @@ g++ src\Home.cc Utils\Utils.cc -o home.cgi -w
 
 ### Comando para compilar el archivo con mysql
 ```js
-g++ utils/db_connection.cc `mysql_config --cflags --libs` -w
+g++ utils/db_connection.cc utils/utils.cc  `mysql_config --cflags --libs` -w
 ```
 ### Ejemplos de cosas con mysql connector
 ```js

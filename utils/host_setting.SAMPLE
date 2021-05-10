@@ -1,0 +1,7 @@
+// Change the name of this file for host_settings.h and add your database settings to be able to connect to mysql
+// Add each value as string
+
+#define HOST "your_host"
+#define USERNAME "your_user"
+#define PASSWORD "your_password"
+#define DATABASE "your_database"

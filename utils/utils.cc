@@ -24,6 +24,22 @@ char *Utils::read_file(char *file_name, char *file_content)
     return file_content;
 };
 
+vector<string> Utils::split(string text, string delimiter)
+{
+    vector<string> words;
+    int start = 0;
+    int end = text.find(delimiter);
+    while (end != -1)
+    {
+        words.push_back(text.substr(start, end - start));
+        start = end + delimiter.size();
+        end = text.find(delimiter, start);
+    }
+    words.push_back(text.substr(start, end - start));
+
+    return words;
+}
+
 // int main(int argc, char const *argv[])
 // {
 //     Utils u = Utils();

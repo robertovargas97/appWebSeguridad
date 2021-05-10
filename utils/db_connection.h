@@ -1,7 +1,9 @@
 #ifndef DBConnection_H
 #define DBConnection_H
 
+#include "utils.h"
 #include "config.h"
+#include "host_settings.h"
 #include </usr/include/mysql/mysql.h>
 
 #include <stdlib.h>
@@ -18,7 +20,7 @@ using namespace std;
 class DBConnection
 {
 public:
-    DBConnection(string host, string user, string password, string database);
+    DBConnection();
     ~DBConnection();
 
     vector<string> get_user_info(string email);
