@@ -35,7 +35,7 @@ CONSTRAINT FK_CodigoProducto_PCarrito FOREIGN KEY (codigoProductoFK) REFERENCES 
 CREATE TABLE Tabla(
 
 correoFK VARCHAR(50) NOT NULL,
-contraseña VARCHAR(8) NOT NULL,
+contrasena VARCHAR(8) NOT NULL,
 CONSTRAINT Correo_Tabla_PK PRIMARY KEY(correoFK),
 CONSTRAINT FK_Correo_Tabla FOREIGN KEY (correoFK) REFERENCES Persona(correo) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -56,8 +56,8 @@ CONSTRAINT FK_Correo FOREIGN KEY (correoFK) REFERENCES Persona(correo) ON UPDATE
 INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('hellen@gmail.com', 'Hellen', 'Fernandez', 88888888, 'Alajuela, San Ramon, San Isidro');
 INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('tefi@gmail.com', 'Stephanie', 'Leiton', 88988888, 'Alajuela, San Ramon, San Ramon');
 
-INSERT INTO Tabla(correoFK,contraseña) VALUES('hellen@gmail.com', 'password');
-INSERT INTO Tabla(correoFK,contraseña) VALUES('tefi@gmail.com', '1234');
+INSERT INTO Tabla(correoFK,contrasena) VALUES('hellen@gmail.com', 'password');
+INSERT INTO Tabla(correoFK,contrasena) VALUES('tefi@gmail.com', '1234');
 
 INSERT INTO Producto(nombre,precio, descripcion) VALUES('Tennis Adidas', 45660,'Tennis nuevas de mujer talla 37');
 INSERT INTO Producto(nombre,precio, descripcion) VALUES('Jarra Iron Man', 8500,'Jarra de Iron man, bonito detalle para regalar');
