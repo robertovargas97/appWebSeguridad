@@ -16,3 +16,6 @@ g++ src\Home.cc Utils\Utils.cc -o home.cgi -w
 
 ### Comando para compilar el archivo con mysql
 - utils/db_connection.cc `mysql_config --cflags --libs`
+
+### Ejemplos de cosas con mysql connector
+- https://github.com/hholzgra/connector-c-examples
