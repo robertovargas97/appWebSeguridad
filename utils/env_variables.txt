@@ -1,6 +1,0 @@
-# PARA ESTA PARTE PONGAN SU INFORMACION DE BASE DE DATOS
-
-export DB_HOST="localhost"   
-export DB_USERNAME="user"
-export DB_PASSWORD="user123"
-export DB_NAME="testdb"

@@ -1,0 +1,6 @@
+# Change the name of this file and add your DB settings
+
+#define DB_HOST="localhost"   
+#define DB_USERNAME="user"
+#define DB_PASSWORD="user123"
+#define DB_NAME="testdb"

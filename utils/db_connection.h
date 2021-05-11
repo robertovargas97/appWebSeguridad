@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "config.h"
 #include <mysql/mysql.h>
-
+#include "host_settings.h"
 #include <stdlib.h>
 #include <iostream>
 #include <string>
