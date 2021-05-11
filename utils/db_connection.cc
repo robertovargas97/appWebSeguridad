@@ -13,7 +13,7 @@ DBConnection::DBConnection()
     else
     {
         mysql_options(mysql, MYSQL_READ_DEFAULT_FILE, (void *)"./my.cnf");
-        if (!mysql_real_connect(mysql, HOST, USERNAME, PASSWORD, DATABASE, 0, NULL, CLIENT_FOUND_ROWS))
+        if (!mysql_real_connect(mysql, getenv("DB_HOST"), getenv("DB_USERNAME"), getenv("DB_PASSWORD"), getenv("DB_NAME"), 0, NULL, CLIENT_FOUND_ROWS))
         {
             printf("Connection with the database Failed\n");
         }
