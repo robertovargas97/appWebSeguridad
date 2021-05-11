@@ -1,6 +1,7 @@
-# Change the name of this file and add your DB settings
+//Create a copy of this file and change the extension to .h
+//That file is stored locally and is not pushed in GitHub. Please remain this as part of the repository.
 
-#define DB_HOST="localhost"   
-#define DB_USERNAME="user"
-#define DB_PASSWORD="user123"
-#define DB_NAME="testdb"
+#define DB_HOST "localhost"   
+#define DB_USERNAME "seguridad"
+#define DB_PASSWORD "!S3cur3."
+#define DB_NAME "MarketPlaceDB"
