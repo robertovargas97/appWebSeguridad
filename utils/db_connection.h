@@ -3,8 +3,7 @@
 
 #include "utils.h"
 #include "config.h"
-#include "host_settings.h"
-#include </usr/include/mysql/mysql.h>
+#include <mysql/mysql.h>
 
 #include <stdlib.h>
 #include <iostream>
