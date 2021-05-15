@@ -1,5 +1,5 @@
-
 #include "db_connection.h"
+
 using namespace std;
 
 DBConnection::DBConnection()
@@ -63,24 +63,42 @@ vector<string> DBConnection::get_user_info(string email)
     return info;
 }
 
-int main()
+bool DBConnection::add_comment(string name, string last_name, string email, string comment_type, string comment)
 {
-    DBConnection conn = DBConnection();
-    vector<string> user_info = conn.get_user_info("hellen@gmail.com");
-    int user_info_size = user_info.size();
-    for (size_t i = 0; i < user_info_size; i++)
+    bool response = false;
+    string u_name = name;
+    string u_last_name = "Viquez";
+    string full_name = u_name + " " + u_last_name;
+    string query = "call add_comment('" + full_name + "'," + "'" + email + "'," + "'" + comment_type + "'," + "'" + comment + "'" + ");";
+    cout << query << endl;
+    if (mysql_query(mysql, query.c_str()) == 0)
     {
-        if (i == (user_info_size - 1))
-        {
-            cout << user_info[i] << "\n";
-        }
-        else
-        {
-            cout << user_info[i] << ", ";
-        }
+        response = true;
     }
-
-    //string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
-    //mysql_query(c.mysql, query.c_str());
-    return 1;
+    return response;
 }
+
+// int main()
+// {
+// DBConnection conn = DBConnection();
+// bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
+
+// cout << result;
+// vector<string> user_info = conn.get_user_info("hellen@gmail.com");
+// int user_info_size = user_info.size();
+// for (size_t i = 0; i < user_info_size; i++)
+// {
+//     if (i == (user_info_size - 1))
+//     {
+//         cout << user_info[i] << "\n";
+//     }
+//     else
+//     {
+//         cout << user_info[i] << ", ";
+//     }
+// }
+
+//string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
+//mysql_query(c.mysql, query.c_str());
+// return 1;
+// }

@@ -22,16 +22,15 @@ const string ENV[26] = {
 
 int main(int argc, char const *argv[])
 {
-
-    Utils file_reader = Utils();
+    Utils utils = Utils();
     char *header = "/templates/header.html";
     char *navbar = "/templates/navbar.html";
     char *home = "/templates/home.html";
     char *footer = "/templates/footer.html";
-    char *header_content = file_reader.read_file(header, header_content);
-    char *navbar_content = file_reader.read_file(navbar, navbar_content);
-    char *home_content = file_reader.read_file(home, home_content);
-    char *footer_content = file_reader.read_file(footer, footer_content);
+    char *header_content = utils.read_file(header, header_content);
+    char *navbar_content = utils.read_file(navbar, navbar_content);
+    char *home_content = utils.read_file(home, home_content);
+    char *footer_content = utils.read_file(footer, footer_content);
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
