@@ -10,11 +10,11 @@
     <div class="row">
       <div class="form-group col-sm-3">
         <label for="name">Nombre</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Escribe tu nombre">
+        <input type="text" class="form-control" id="name" name="name" required placeholder="Escribe tu nombre">
       </div>
       <div class="form-group col-sm-3">
         <label for="last_name">Apelido</label>
-        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Escribe tu apellido">
+        <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Escribe tu apellido">
       </div>
       <div class="form-group col-sm-6">
         <label for="email">Correo</label>
@@ -25,7 +25,7 @@
 
     <div class="form-group">
       <label for="comment_type">Eije una opción</label>
-      <select class="form-control" id="comment_type" name="comment_type">
+      <select class="form-control" id="comment_type" name="comment_type" required>
         <option value="Comentario">Comentario</option>
         <option value="Consulta">Consulta</option>
         <option value="Reclamo">Reclamo</option>
@@ -33,7 +33,7 @@
     </div>
     <div class="form-group">
       <label for="comment">Escribe aquí</label>
-      <textarea class="form-control" id="comment" name="comment" rows="5"></textarea>
+      <textarea class="form-control" id="comment" name="comment" required rows="5"></textarea>
     </div>
     <button type="submit" class="btn btn-info">Enviar</button></form>
 </div>

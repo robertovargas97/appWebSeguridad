@@ -1,14 +1,9 @@
 --  CHANGE testdb for your db name
 
-
 ALTER TABLE `testdb`.`Comentarios` 
 DROP FOREIGN KEY `FK_Correo`;
-ADD PRIMARY KEY (`correoFK`);
-ADD CONSTRAINT `FK_Correo`
-  FOREIGN KEY ()
-  REFERENCES `testdb`.`Persona` ()
-  ON DELETE CASCADE
-  ON UPDATE CASCADE;
+;
+
 
 USE `testdb`;
 DROP procedure IF EXISTS `add_comment`;

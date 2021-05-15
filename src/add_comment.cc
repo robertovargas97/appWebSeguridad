@@ -24,35 +24,42 @@ const string ENV[26] = {
 int main(int argc, const char *argv[], const char *env[])
 {
 
-    // DBConnection conn = DBConnection();
     Utils utils = Utils();
-
     char *header = "/templates/header.html";
     char *navbar = "/templates/navbar.html";
     char *footer = "/templates/footer.html";
     char *header_content = utils.read_file(header, header_content);
     char *navbar_content = utils.read_file(navbar, navbar_content);
     char *footer_content = utils.read_file(footer, footer_content);
-
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
     printf(navbar_content);
 
+    DBConnection conn = DBConnection();
     map<string, string> form_data = utils.get_post_data();
-    cout << "<h1>" << form_data["name"] << "</h1>" << endl;
-    cout << "<h1>" << form_data["last_name"] << "</h1>" << endl;
-    cout << "<h1>" << form_data["email"] << "</h1>" << endl;
-    cout << "<h1>" << form_data["comment_type"] << "</h1>" << endl;
-    cout << "<h1>" << form_data["comment"] << "</h1>" << endl;
+    bool new_comment_result = conn.add_comment(form_data["name"], form_data["last_name"], form_data["email"], form_data["comment_type"], form_data["comment"]);
 
-    // bool new_comment_result = conn.add_comment(form_data["name"], form_data["last_name"], form_data["email"], form_data["comment_type"], form_data["comment"]);
+    if (new_comment_result)
+    {
+        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        cout << "<div class=\"container\">";
+        cout << "<h1 class=\"display-4\">Tu comentario fue enviado correctamente <i class=\"fas fa-check-square text-success\"></i></h1>";
+        cout << "</div>";
+        cout << "</div>";
+    }
+    else
+    {
+        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        cout << "<div class=\"container\">";
+        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
+        cout << "</div>";
+        cout << "</div>";
+    }
 
-    // cout << "<h1>" << new_comment_result << "</h1>";
     printf(footer_content);
-
     free(header_content);
     free(navbar_content);
     free(footer_content);
 
-    return 0;
+    return new_comment_result;
 }

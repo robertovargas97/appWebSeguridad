@@ -8,18 +8,14 @@ DBConnection::DBConnection()
 
     if (!mysql)
     {
-        printf("Something went wrong while connection to the database\n");
+        cout << "<h3 class\"ml-4\">" << "Something went wrong while connection to the database" << "</h3>";
     }
     else
     {
         mysql_options(mysql, MYSQL_READ_DEFAULT_FILE, (void *)"./my.cnf");
         if (!mysql_real_connect(mysql, DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, 0, NULL, CLIENT_FOUND_ROWS))
         {
-            printf("Connection with the database Failed\n");
-        }
-        else
-        {
-            printf("Connection stablished\n");
+            cout << "<h3 class\"ml-4\">" << "Connection with the database Failed" << "</h3>";
         }
     }
 };
@@ -67,10 +63,9 @@ bool DBConnection::add_comment(string name, string last_name, string email, stri
 {
     bool response = false;
     string u_name = name;
-    string u_last_name = "Viquez";
+    string u_last_name = last_name;
     string full_name = u_name + " " + u_last_name;
     string query = "call add_comment('" + full_name + "'," + "'" + email + "'," + "'" + comment_type + "'," + "'" + comment + "'" + ");";
-    cout << query << endl;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
