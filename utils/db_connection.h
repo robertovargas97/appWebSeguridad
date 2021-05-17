@@ -23,6 +23,7 @@ public:
     ~DBConnection();
 
     vector<string> get_user_info(string email);
+    bool add_comment(string name, string last_name, string email, string comment_type, string comment);
 
 private:
     MYSQL *mysql = NULL;

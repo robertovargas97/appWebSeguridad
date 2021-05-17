@@ -1,0 +1,39 @@
+<div class="jumbotron jumbotron-fluid bg-transparent">
+  <div class="container">
+    <h1 class="display-4">Deja tus opiniones aquí <i class="fas fa-comments"></i> </h1>
+    <p class="lead">Es esta sección puedes enviar comentarios, retroalimentación o reclamos.</p>
+  </div>
+</div>
+<div class="container">
+
+  <form method="post" action="/appWebSeguridad/add_comment.cgi" id="comments_form">
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" id="name" name="name" required placeholder="Escribe tu nombre">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="last_name">Apelido</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Escribe tu apellido">
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="email">Correo</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Escribe tu correo">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="comment_type">Eije una opción</label>
+      <select class="form-control" id="comment_type" name="comment_type" required>
+        <option value="Comentario">Comentario</option>
+        <option value="Consulta">Consulta</option>
+        <option value="Reclamo">Reclamo</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="comment">Escribe aquí</label>
+      <textarea class="form-control" id="comment" name="comment" required rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-info">Enviar</button></form>
+</div>
