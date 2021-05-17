@@ -80,6 +80,16 @@ footer {
     animation-fill-mode: both;
 }
 
+.h5-register {
+    color: #ffffff;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.register-body {
+    color: #ffffff;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
