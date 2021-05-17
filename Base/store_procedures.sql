@@ -37,6 +37,29 @@ BEGIN
     );
 END$$
 
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `add_product`(
+	IN u_nombre varchar(50),
+    IN u_precio int,
+    IN u_descripcion varchar(200),
+    IN u_categoria varchar(50))
+BEGIN
+	DECLARE creation_date datetime DEFAULT now();
+	IF u_email IS NULL OR u_email = '' THEN
+		SET u_email = 'default@email.com';
+		END IF;
+        
+    INSERT INTO
+    Producto (`nombre`, `precio`, `descripcion`, `categoria`)
+	VALUES
+    (
+        u_nombre,
+        u_precio,
+        u_descripcion,
+        u_categoria,
+    );
+END$$
+
+
 DELIMITER ;
 ;
 

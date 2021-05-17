@@ -73,6 +73,18 @@ bool DBConnection::add_comment(string name, string last_name, string email, stri
     return response;
 }
 
+bool DBConnection::add_product(string name, string price, string description, string category)
+{
+    bool response = false;
+    int price_query = atoi(price);
+    string query = "call add_product('" + name + "'," + "'" + price + "'," + "'" + description + "'," + "'" + category + "'" + ");";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    return response;
+}
+
 // int main()
 // {
 // DBConnection conn = DBConnection();

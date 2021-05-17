@@ -13,6 +13,7 @@
 #include <string.h>
 #include <vector>
 #include <sstream>
+#include <stdlib.h>     
 
 using namespace std;
 
@@ -24,7 +25,7 @@ public:
 
     vector<string> get_user_info(string email);
     bool add_comment(string name, string last_name, string email, string comment_type, string comment);
-
+	bool add_product(string name, int price, string description, string category);
 private:
     MYSQL *mysql = NULL;
 };
