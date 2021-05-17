@@ -11,6 +11,10 @@ g++ src/login.cc utils/utils.cc -o login.cgi -w
 g++ src/home.cc utils/utils.cc -o home.cgi -w 
 ```
 
+```js
+g++ src/add_comment.cc utils/utils.cc utils/db_connection.cc -o add_comment.cgi -w `mysql_config --cflags --libs
+```
+
 ### Para instalar mysql connector
 
 - https://aaronxu17.github.io/blog/install-mysql-connector/
