@@ -28,3 +28,25 @@ g++ utils/db_connection.cc utils/utils.cc  `mysql_config --cflags --libs` -w
 ```js
 https://github.com/hholzgra/connector-c-examples
 ```
+
+### Compilar con make
+Para compilar todos los .cc de la carpeta src/ (Agregar en el makefile nuevos .cc en caso de agregar nuevos):
+```js
+make app
+```
+
+Para borrar todos los .cgi creados tras correr make app (Agregar en el makefile nuevos .cgi en caso de agregar nuevos):
+```js
+make clean
+```
+
+Para compilar componentes individualmente:
+```js
+make home
+make login
+make register
+.
+.
+.
+etc
+```
