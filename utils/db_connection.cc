@@ -79,7 +79,7 @@ bool DBConnection::add_user( string name, string last_name, string email, string
     bool response = false;
 
     string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "',"  + "'" + password + "'," + "'"  + phone_number + "'," + "'" + address + "'" + ");";
-    cout << "Query: " << query << endl;
+
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
