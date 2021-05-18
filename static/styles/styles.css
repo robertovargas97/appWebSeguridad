@@ -186,4 +186,11 @@ footer {
     .wallpaper {
         height: 60vh;
     }
+
+    .comments, .register {
+        margin-bottom: 10rem;
+        
+    }
+
+    
 }
