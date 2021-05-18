@@ -40,7 +40,7 @@ int main(int argc, const char *argv[], const char *env[])
     map<string, string> form_data = utils.get_post_data();
     bool new_product_result = conn.add_product(form_data["name"], form_data["price"], form_data["description"], form_data["category"]);
 
-    if (new_comment_result)
+    if (new_product_result)
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
@@ -62,5 +62,5 @@ int main(int argc, const char *argv[], const char *env[])
     free(navbar_content);
     free(footer_content);
 
-    return new_comment_result;
+    return new_product_result;
 }

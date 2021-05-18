@@ -60,8 +60,8 @@ INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('tefi@
 INSERT INTO Tabla(correoFK,contrasena) VALUES('hellen@gmail.com', 'password');
 INSERT INTO Tabla(correoFK,contrasena) VALUES('tefi@gmail.com', '1234');
 
-INSERT INTO Producto(nombre,precio, descripcion) VALUES('Tennis Adidas', 45660,'Tennis nuevas de mujer talla 37');
-INSERT INTO Producto(nombre,precio, descripcion) VALUES('Jarra Iron Man', 8500,'Jarra de Iron man, bonito detalle para regalar');
+INSERT INTO Producto(nombre,precio, descripcion) VALUES('Tennis Adidas', 45660,'Tennis nuevas de mujer talla 37', 'Deporte');
+INSERT INTO Producto(nombre,precio, descripcion) VALUES('Jarra Iron Man', 8500,'Jarra de Iron man, bonito detalle para regalar', 'Regalos');
 
 INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES('hellen@gmail.com', 1);
 INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES('tefi@gmail.com', 2);
