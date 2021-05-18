@@ -5,7 +5,7 @@ app: src/home.cc src/login.cc src/register.cc src/comments.cc src/add_comment.cc
 	g++ src/register.cc utils/utils.cc -o register.cgi -w 
 	g++ src/comments.cc utils/utils.cc -o comments.cgi -w 
 
-#g++ src/add_comment.cc utils/utils.cc utils/db_connection.cc -o add_comment.cgi -w `mysql_config --cflags --libs
+# g++ src/add_comment.cc utils/utils.cc utils/db_connection.cc -o add_comment.cgi -w `mysql_config --cflags --libs` -w
 
 home: src/home.cc
 	g++ src/home.cc utils/utils.cc -o home.cgi -w
@@ -24,3 +24,4 @@ comments: src/comments.cc utils/utils.cc
 clean:
 	rm home.cgi login.cgi register.cgi comments.cgi
 
+#rm add_comments

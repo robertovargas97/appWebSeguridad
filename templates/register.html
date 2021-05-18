@@ -14,38 +14,72 @@
       
             <div class="mb-1 pb-1 pt-4 row">
         
-                <div class="card bg-white-transparent pl-0 pr-0 col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4 pb-4">
-                  <div class="login-header bg-dark mb-4">
-                    <h5 class=" h5-register ml-4"><i class="fas fa-user-plus"></i>Registrarse</h5>
+                <!-- <div class="card bg-white-transparent pl-0 pr-0 col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4 pb-4"> -->
+                <div class="card bg-white-transparent" >
+                  <div class="login-header bg-dark">
+                    <h5 class="register-form-title ml-4"><i class="register-icon fas fa-user-plus"></i>Registrarse</h5>
                   </div>
         
-                  <div class="pl-4 pr-4 mt-3 mb-3">
+                  <div class="pl-4 pr-4 mt-3">
                     <form class="row mt-0" method="POST">
         
                       <div class="mt-2 col-12">
-                          <label class="login-label" for="username">Ingrese su usuario *</label>
+                          <label class="login-label" for="name">Ingrese su nombre *</label>
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">
                               <div class="input-group-text"><i class="fas fa-user"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="id_username"
-                              name="username" required placeholder="admin">
+                            <input type="text" class="form-control" id="id_name"
+                              name="name" required placeholder="Nombre">
                           </div>
                         </div>
         
-                        <div class="mt-1 mb-3 col-12">
-                          <label class="login-label" for="password">Ingrese su contraseña *</label>
+                        <div class="mt-1 col-12">
+                          <label class="login-label" for="last_name">Ingrese su primer apellido *</label>
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                              <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                              <div class="input-group-text"><i class="fas fa-user"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="id_password"
-                            name="password" placeholder="admin">
+                            <input type="text" class="form-control" id="id_last_name"
+                            name="last_name" required placeholder="Primer apellido">
+                          </div>
+                        </div>
+
+                        <div class="mt-1 col-12">
+                          <label class="login-label" for="email">Ingrese su correo electrónico *</label>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                            </div>
+                            <input type="email" class="form-control" id="id_email"
+                            name="email" required placeholder="Correo electrónico">
+                          </div>
+                        </div>
+
+                        <div class="mt-1 col-12">
+                          <label class="login-label" for="phone_number">Ingrese su teléfono *</label>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-phone"></i></div>
+                            </div>
+                            <input type="tel" class="form-control" id="id_phone_number"
+                            name="phone_number" required placeholder="Número de teléfono" maxlength="8" pattern="[0-9]{8}">
+                          </div>
+                        </div>
+
+                        <div class="mt-1 col-12">
+                          <label class="login-label" for="address">Ingrese su dirección exacta *</label>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-map-marked-alt"></i></div>
+                            </div>
+                            <textarea class="form-control" id="id_address" name="address" required 
+                                      rows="3" placeholder="Dirección exacta" maxlength="100"></textarea>
                           </div>
                         </div>
         
                       <div class="mt-1 mb-3 col-12 text-center">
-                        <a href="" type="submit" class="btn btn-info btn-login" id="btn-spinner" >Entrar</a>
+                        <a href="" type="submit" class="btn btn-info btn-login" id="btn-spinner" >Confirmar</a>
                       </div>
                   </form>
                   </div>

@@ -80,10 +80,14 @@ footer {
     animation-fill-mode: both;
 }
 
-.h5-register {
+.register-form-title {
     color: #ffffff;
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
+}
+
+.register-icon {
+    padding-right: 0.4rem;
 }
 
 .register-body {
