@@ -32,7 +32,6 @@ int main(int argc, char const *argv[])
     char *navbar_content = file_reader.read_file(navbar, navbar_content);
     char *list_products_content = file_reader.read_file(list_products, list_products_content);
     char *footer_content = file_reader.read_file(footer, footer_content);
-    char *view_carrito="/appWebSeguridad/view_car.cgi";
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
@@ -40,9 +39,6 @@ int main(int argc, char const *argv[])
     printf(list_products_content);
     cout << "	<body>";
     cout << "<div class=\"container\">";
-    cout << "<p align=\"right\"> <a href= "<< view_carrito <<" class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
-    cout << "<div class=\"row\">";
-    
     //DBConnection conn = DBConnection();
     //map<string, string> form_data = utils.get_post_data();
     char *categoria="" ;
@@ -52,25 +48,26 @@ int main(int argc, char const *argv[])
     
     	categoria="bi bi-controller" ;
     	nombre="Grogu";
-    	precio = "4000";
+    	precio = "4500";
     	descripcion = "Cute grogu, The Mandalorian Star Wars";
     
-	cout << "<div class=\"col-lg-3\">";
-	cout << "	<div class=\"card\" style=\"width: 18rem;\">";
-	cout << "	  <i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
-	cout << " <hr/>";
-	cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
-	cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-	cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡"<< precio  <<"</h7>";
-	cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
-	cout << "		</div>";
-	cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-	cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";
-	cout << "	  	</div>";
-	cout << "	</div>";
-	cout << "</div>";
+	
+	cout << "<div class=\"card mb-3\" style=\"max-width: 540px;\"> ";
+	cout << "  <div class=\"row g-0\">";
+	cout << "    <div class=\"col-md-4\">";
+	cout << "	<i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
+	cout << "    </div>";
+	cout << "    <div class=\"col-md-8\">";
+	cout << "	  <div class=\"card-body\">";
+	cout << "	    <h5 class=\"card-title\">" << nombre << "</h5>";
+	cout << "	    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡"<< precio  <<"</h7>";
+	cout << "	    <p class=\"card-text\"> "<< descripcion <<"</p>";
+	cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>";
+	cout << "	  </div>";
+	cout << "	 </div>";
+	cout << "   </div>";
+	cout << " </div>";
 
-    cout << "</div>";
     cout <<"</div>";
     cout << "</body>";
     cout << "</html>";
