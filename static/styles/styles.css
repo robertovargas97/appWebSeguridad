@@ -80,6 +80,20 @@ footer {
     animation-fill-mode: both;
 }
 
+.register-form-title {
+    color: #ffffff;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.register-icon {
+    padding-right: 0.4rem;
+}
+
+.register-body {
+    color: #ffffff;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -190,4 +204,11 @@ hr.new4 {
     .wallpaper {
         height: 60vh;
     }
+
+    .comments, .register {
+        margin-bottom: 10rem;
+        
+    }
+
+    
 }

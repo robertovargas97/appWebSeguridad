@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Utils::Utils() {};
+Utils::Utils(){};
 Utils::~Utils(){};
 
 char *Utils::read_file(char *file_name, char *file_content)
@@ -43,17 +43,14 @@ vector<string> Utils::split(string text, string delimiter)
 map<string, string> Utils::get_post_data()
 {
     int post_data_length = atoi(getenv("CONTENT_LENGTH"));
-    char *post_data = new char[post_data_length];
-    fread((void *)post_data, 1, post_data_length, stdin);
-    string content = post_data;
-    delete[] post_data;
-
+    char post_data[post_data_length];
+    fgets(post_data, post_data_length + 1, stdin);
     map<string, string> form_data;
     vector<string> cont;
     string token;
-    stringstream ss(content);
+    stringstream ss(post_data);
     char delimiter = '&';
-    while (std::getline(ss, token, delimiter))
+    while (getline(ss, token, delimiter))
     {
         //Replace "+" with space " "
         int plus_position = token.find('+');

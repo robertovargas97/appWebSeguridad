@@ -85,4 +85,44 @@ bool DBConnection::add_product(string name, string price, string description, st
     return response;
 }
 
+bool DBConnection::add_user( string name, string last_name, string email, string password, string phone_number, string address ){
+
+    bool response = false;
+
+    string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "',"  + "'" + password + "'," + "'"  + phone_number + "'," + "'" + address + "'" + ");";
+
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    return response;
+}
+
+ 
+
+
+// int main()
+// {
+// DBConnection conn = DBConnection();
+// bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
+
+// cout << result;
+// vector<string> user_info = conn.get_user_info("hellen@gmail.com");
+// int user_info_size = user_info.size();
+// for (size_t i = 0; i < user_info_size; i++)
+// {
+//     if (i == (user_info_size - 1))
+//     {
+//         cout << user_info[i] << "\n";
+//     }
+//     else
+//     {
+//         cout << user_info[i] << ", ";
+//     }
+// }
+
+//string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
+//mysql_query(c.mysql, query.c_str());
+// return 1;
+// }
 

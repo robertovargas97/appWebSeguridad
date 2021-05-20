@@ -52,7 +52,7 @@ int main(int argc, const char *argv[], const char *env[])
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
+        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-info-circle text-info\"></i></h1>";
         cout << "</div>";
         cout << "</div>";
     }
