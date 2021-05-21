@@ -1,3 +1,4 @@
+
 #include "../utils/utils.h"
 #include "../utils/db_connection.h"
 #include <iostream>
@@ -37,12 +38,13 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     map<string, string> form_data = utils.get_post_data();
-    bool new_comment_result = conn.add_comment(form_data["name"], form_data["last_name"], form_data["email"], form_data["comment_type"], form_data["comment"]);
-    if (new_comment_result)
+    bool new_product_result = conn.add_product(form_data["name"], form_data["price"], form_data["description"], form_data["category"]);
+
+    if (new_product_result)
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Tu comentario fue enviado correctamente <i class=\"fas fa-check-square text-success\"></i></h1>";
+        cout << "<h1 class=\"display-4\">Tu producto fue agregado correctamente <i class=\"fas fa-check-square text-success\"></i></h1>";
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
@@ -62,5 +64,5 @@ int main(int argc, const char *argv[], const char *env[])
     free(navbar_content);
     free(footer_content);
 
-    return new_comment_result;
+    return new_product_result;
 }

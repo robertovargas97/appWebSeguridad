@@ -77,9 +77,20 @@ bool DBConnection::add_comment(string name, string last_name, string email, stri
     return response;
 }
 
+bool DBConnection::add_product(string name, string price, string description, string category)
+{
+    bool response = false;
+    //const int price_query = stoi(*price);
+    string query = "call add_product('" + name + "'," + "'" + price + "'," + "'" + description + "'," + "'" + category + "'" + ");";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    return response;
+}
+
 bool DBConnection::add_user(string name, string last_name, string email, string password, string phone_number, string address)
 {
-
     bool response = false;
 
     string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "'," + "'" + password + "'," + "'" + phone_number + "'," + "'" + address + "'" + ");";
@@ -88,7 +99,6 @@ bool DBConnection::add_user(string name, string last_name, string email, string 
     {
         response = true;
     }
-
     return response;
 }
 

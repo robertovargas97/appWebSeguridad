@@ -33,6 +33,24 @@ BEGIN
     );
 END$$
 
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_product`(
+	IN u_nombre varchar(50),
+    IN u_precio int,
+    IN u_descripcion varchar(200),
+    IN u_categoria varchar(50))
+BEGIN   
+    INSERT INTO
+    Producto (`nombre`, `precio`, `descripcion`, `categoria`)
+	VALUES
+    (
+        u_nombre,
+        u_precio,
+        u_descripcion,
+        u_categoria,
+    );
+END$$
+
+
 DELIMITER ;
 ;
 
