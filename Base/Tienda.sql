@@ -13,7 +13,7 @@ CREATE TABLE Producto(
 
 codigoProducto INT NOT NULL  AUTO_INCREMENT,
 nombre VARCHAR(50) NOT NULL,
-precio INT NOT NULL,
+precio VARCHAR(50) NOT NULL,
 descripcion VARCHAR(200) NOT NULL,
 categoria VARCHAR(50) NOT NULL,
 CONSTRAINT Codigo_Producto_PK PRIMARY KEY(codigoProducto)

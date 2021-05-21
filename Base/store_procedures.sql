@@ -35,7 +35,7 @@ END$$
 
 CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_product`(
 	IN u_nombre varchar(50),
-    IN u_precio int,
+    IN u_precio varchar(50),
     IN u_descripcion varchar(200),
     IN u_categoria varchar(50))
 BEGIN   
