@@ -50,3 +50,24 @@ make register
 .
 etc
 ```
+
+### Instalar crypto para las necesidades criptograficas del app
+- Ver doc aqui : https://www.cryptopp.com/wiki/Linux#apt-get
+
+```js
+apt-cache pkgnames | grep -i crypto++
+```
+
+- Lo anterior mostrara algo como lo siguiente : 
+```js
+libcrypto++6
+libcrypto++-utils
+libcrypto++-dev
+libcrypto++-doc
+libcrypto++6-dbg
+```
+
+- Aca utilice las versiones mostradas por el comando anterior
+```js
+sudo apt-get install libcrypto++6 libcrypto++6-dbg libcrypto++-dev
+```

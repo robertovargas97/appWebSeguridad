@@ -1,9 +1,5 @@
 --  CHANGE MarketPlaceDB for your db name
 
-ALTER TABLE `MarketPlaceDB`.`Comentarios` 
-DROP FOREIGN KEY `FK_Correo`;
-;
-
 
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `add_comment`;
@@ -14,7 +10,7 @@ DROP procedure IF EXISTS `MarketPlaceDB`.`add_comment`;
 
 DELIMITER $$
 USE `MarketPlaceDB`$$
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `add_comment`(
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_comment`(
 	IN u_name nvarchar(80),
     IN u_email nvarchar(100),
     IN u_comment_type nvarchar(15),
@@ -80,6 +76,43 @@ END$$
 
 DELIMITER ;
 ;
+
+-- Procedura to get the user salt
+USE `MarketPlaceDB`$$
+DROP procedure IF EXISTS `get_user_salt`;
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE PROCEDURE `get_user_salt` (in u_email varchar(50))
+BEGIN
+
+SELECT salt
+FROM Tabla
+WHERE correo = u_email;
+
+END$$
+
+DELIMITER ;
+
+-- Procedure to verify login
+
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `verify_login`;
+
+DELIMITER $$
+USE USE `MarketPlaceDB`$$
+CREATE PROCEDURE `verify_login` (in u_email varchar(50), in u_pass varchar(100))
+BEGIN
+
+SELECT correo
+FROM Tabla
+WHERE correo = u_email AND pass = u_pass;
+
+END$$
+
+DELIMITER ;
+
+
 
 
 

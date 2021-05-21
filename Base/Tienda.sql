@@ -5,7 +5,6 @@ nombre VARCHAR(50) NOT NULL,
 apellido VARCHAR(50) NOT NULL,
 telefono INT NOT NULL,
 direccion VARCHAR(400) NOT NULL,
-
 CONSTRAINT Correo_Persona_PK PRIMARY KEY(correo)
 );
 
@@ -32,13 +31,11 @@ CONSTRAINT FK_CodigoProducto_PCarrito FOREIGN KEY (codigoProductoFK) REFERENCES 
 
 
 
-CREATE TABLE Tabla(
-
-correoFK VARCHAR(50) NOT NULL,
-contrasena VARCHAR(8) NOT NULL,
-CONSTRAINT Correo_Tabla_PK PRIMARY KEY(correoFK),
-CONSTRAINT FK_Correo_Tabla FOREIGN KEY (correoFK) REFERENCES Persona(correo) ON UPDATE CASCADE ON DELETE CASCADE
-);
+CREATE TABLE Tabla (
+  `correo` VARCHAR(50) NOT NULL,
+  `pass` VARCHAR(100) NOT NULL,
+  `salt` VARCHAR(4) NOT NULL,
+  PRIMARY KEY (`correo`));
 
 
 CREATE TABLE Comentarios(
@@ -48,8 +45,7 @@ nombreCompleto VARCHAR(50) NULL,
 tipoDeComentario VARCHAR(17) NOT NULL,
 fechaDeCreacion DATETIME NOT NULL,
 comentario VARCHAR(400) NOT NULL,
-CONSTRAINT Correo_Comentarios_PK PRIMARY KEY(correoFK, fechaDeCreacion), /*Para que sea unico*/
-CONSTRAINT FK_Correo FOREIGN KEY (correoFK) REFERENCES Persona(correo) ON UPDATE CASCADE ON DELETE CASCADE
+CONSTRAINT Correo_Comentarios_PK PRIMARY KEY(correoFK, fechaDeCreacion) /*Para que sea unico*/
 );
 
 

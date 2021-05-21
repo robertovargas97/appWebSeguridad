@@ -94,26 +94,48 @@ map<string, string> Utils::get_post_data()
     return form_data;
 };
 
-// int post_data_length = atoi(getenv("CONTENT_LENGTH"));
+string Utils::replace_pattern(string text, string pattern, string new_value)
+{
+    string result = regex_replace(text, regex("\\" + pattern), new_value);
+    return result;
+}
 
-// char *post_data = new char[post_data_length];
-// fread((void *)post_data, 1, post_data_length, stdin);
-// string content = post_data;
-// delete[] post_data;
+string Utils::create_salt()
+{
+    int length = 4;
+    string salt = "";
+    string characters = "abcdefghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-// vector<string> fields = split(content, "&");
-// for (size_t i = 0; i < fields.size(); i++)
-// {
-//     cout << "<h2>" << fields[i] << "</h2>" << endl;
-// }
-// }
+    for (int x = 0; x < length; x++) // Genera length caracteres diferentes
+    {
+        AutoSeededRandomPool random;
+        long random_number = Integer(random, 0, characters.size()).ConvertToLong(); //60 es el total de caracteres disponibles en la variable Map
+        cout << random_number << " :" << characters[random_number] << endl;
+        salt += characters[random_number];
+    }
+
+    return salt;
+};
+
+string Utils::create_hash_sha2(string password, string salt)
+{
+    CryptoPP::SHA256 sha2;
+    string hash = "";
+    StringSource(password + salt, true, new CryptoPP::HashFilter(sha2, new CryptoPP::HexEncoder(new CryptoPP::StringSink(hash))));
+
+    return hash;
+};
 
 // int main(int argc, char const *argv[])
 // {
 //     Utils u = Utils();
-//     char *content = u.read_file("/templates/login.html", content);
-//     printf(content);
-//     free(content);
+//     string salt = u.create_salt();
+//     cout << salt << endl;
+//     string hash = u.create_hash_sha2("pass", salt);
+//     cout << hash << endl;
+//     // char *content = u.read_file("/templates/login.html", content);
+//     // printf(content);
+//     // free(content);
 
 //     return 0;
 // }

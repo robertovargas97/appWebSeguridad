@@ -12,16 +12,16 @@
                 </div>
       
                 <div class="pl-4 pr-4 mt-3 mb-3">
-                  <form class="row mt-0" method="POST">
+                  <form class="row mt-0" method="POST" action="/appWebSeguridad/login_response.cgi">
       
                     <div class="mt-2 col-12">
-                        <label class="login-label" for="username">Ingrese su usuario *</label>
+                        <label class="login-label" for="email">Ingrese su correo *</label>
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            <div class="input-group-text"><i class="fas fa-at"></i></div>
                           </div>
-                          <input type="text" class="form-control" id="id_username"
-                            name="username" required placeholder="admin">
+                          <input type="text" class="form-control" id="id_email"
+                            name="email" required placeholder="admin">
                         </div>
                       </div>
       
@@ -37,7 +37,7 @@
                       </div>
       
                     <div class="mt-1 mb-3 col-12 text-center">
-                      <a href="" type="submit" class="btn btn-info btn-login" id="btn-spinner" >Entrar</a>
+                      <button type="submit" class="btn btn-info btn-login" id="btn-spinner" >Entrar</button>
                     </div>
                     <div class="mt-1 mb-3 col-12 text-center">
                       <p>No tienes una cuenta?<a href="/appWebSeguridad/register.cgi" > Registrate aquí. </a></p>

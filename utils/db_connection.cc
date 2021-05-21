@@ -8,14 +8,18 @@ DBConnection::DBConnection()
 
     if (!mysql)
     {
-        cout << "<h3 class\"ml-4\">" << "Something went wrong while connection to the database" << "</h3>";
+        cout << "<h3 class\"ml-4\">"
+             << "Something went wrong while connection to the database"
+             << "</h3>";
     }
     else
     {
         mysql_options(mysql, MYSQL_READ_DEFAULT_FILE, (void *)"./my.cnf");
         if (!mysql_real_connect(mysql, DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, 0, NULL, CLIENT_FOUND_ROWS))
         {
-            cout << "<h3 class\"ml-4\">" << "Connection with the database Failed" << "</h3>";
+            cout << "<h3 class\"ml-4\">"
+                 << "Connection with the database Failed"
+                 << "</h3>";
         }
     }
 };
@@ -73,12 +77,12 @@ bool DBConnection::add_comment(string name, string last_name, string email, stri
     return response;
 }
 
-
-bool DBConnection::add_user( string name, string last_name, string email, string password, string phone_number, string address ){
+bool DBConnection::add_user(string name, string last_name, string email, string password, string phone_number, string address)
+{
 
     bool response = false;
 
-    string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "',"  + "'" + password + "'," + "'"  + phone_number + "'," + "'" + address + "'" + ");";
+    string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "'," + "'" + password + "'," + "'" + phone_number + "'," + "'" + address + "'" + ");";
 
     if (mysql_query(mysql, query.c_str()) == 0)
     {
@@ -86,9 +90,55 @@ bool DBConnection::add_user( string name, string last_name, string email, string
     }
 
     return response;
-
 }
 
+string DBConnection::get_user_salt(string email)
+{
+    string salt = "";
+    string query = "call get_user_salt('" + email + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (result) //Checks if we got results
+        {
+            MYSQL_ROW row = mysql_fetch_row(result);
+            if (row != 0)
+            {
+                salt = row[0]; // salt from the db
+            }
+        }
+        mysql_free_result(result);
+    }
+
+    return salt;
+}
+
+bool DBConnection::verify_login(string email, string password, string salt)
+{
+    Utils utils = Utils();
+    bool response = false;
+    string matching_email = "";
+    string password_hash = utils.create_hash_sha2(password, salt);
+    string query = "call verify_login('" + email + "'," + "'" + password_hash + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (result) //Checks if we got results
+        {
+            MYSQL_ROW row = mysql_fetch_row(result);
+            if (row != 0)
+            {
+                matching_email = row[0]; // salt from the db
+                response = true;
+            }
+        }
+        mysql_free_result(result);
+    }
+
+    return response;
+}
 
 // int main()
 // {
