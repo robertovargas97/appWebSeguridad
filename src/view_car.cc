@@ -38,36 +38,50 @@ int main(int argc, char const *argv[])
     printf(navbar_content);
     printf(list_products_content);
     cout << "	<body>";
-    cout << "<div class=\"container\">";
+    cout << "<div class=\"container register\">";
     //DBConnection conn = DBConnection();
-    //map<string, string> form_data = utils.get_post_data();
+
     char *categoria="" ;
     char *nombre="";
     char *precio = "";
     char *descripcion = "";
+    bool vacio = true;
+    int monto = 0; //to do -> revisar
+    //monto = conn.MontoTotalPorCorreo(correoUser,product);
+    bool carrito = false ;
+    carrito = true;//conn.my_cart(correoUser,product);
+    if ( carrito == true){
+    	//for ( int i =0; i < carrito.size() ; i++){
+	    	categoria="bi bi-controller" ;
+	    	nombre="Grogu";
+	    	precio = "4000";
+	    	descripcion = "Cute grogu, The Mandalorian Star Wars";
     
-    	categoria="bi bi-controller" ;
-    	nombre="Grogu";
-    	precio = "4500";
-    	descripcion = "Cute grogu, The Mandalorian Star Wars";
-    
+		cout << "<div class=\"col-lg-3\">";
+		cout << "	<div class=\"card\" style=\"width: 18rem;\">";
+		cout << "	  <i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
+		cout << " <hr/>";
+		cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
+		cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
+		cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡"<< precio  <<"</h7>";
+		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
+		cout << "		</div>";
+		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
+		cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>";
+		cout << "	  	</div>";
+		cout << "	</div>";
+		cout << "</div>";
+	//}
+	cout << "<h1 class=\"display-4\">Monto total a pagar: "<< monto << "</h1>";
+	cout << "<button class=\"btn btn-primary\">Realizar compra</button>";
 	
-	cout << "<div class=\"card mb-3\" style=\"max-width: 540px;\"> ";
-	cout << "  <div class=\"row g-0\">";
-	cout << "    <div class=\"col-md-4\">";
-	cout << "	<i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
-	cout << "    </div>";
-	cout << "    <div class=\"col-md-8\">";
-	cout << "	  <div class=\"card-body\">";
-	cout << "	    <h5 class=\"card-title\">" << nombre << "</h5>";
-	cout << "	    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡"<< precio  <<"</h7>";
-	cout << "	    <p class=\"card-text\"> "<< descripcion <<"</p>";
-	cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>";
-	cout << "	  </div>";
-	cout << "	 </div>";
-	cout << "   </div>";
-	cout << " </div>";
-
+	} else {
+		cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        	cout << "<div class=\"container\">";
+        	cout << "<h1 class=\"display-4\">El carrito está vacío<i class=\"fas fa-time-circle text-info\"></i></h1>";	
+        	cout << "</div>";
+        	cout << "</div>";
+	}
     cout <<"</div>";
     cout << "</body>";
     cout << "</html>";
