@@ -1,6 +1,6 @@
 
-<div class="mt-4 container">
-	<div class=center-add-product>
+<div class="mt-4">
+	<div class="center-add-product bg-transparent">
 		<form method="post" action="/appWebSeguridad/add_product_post.cgi" id="add_product_form">
 			<div class="form-group">
 				<br>
@@ -11,7 +11,7 @@
 			</div>
 			<div class="form-group">
 				<label for="formGroupExampleInput2">Precio en colones</label>
-				<input type="text" class="form-control" id="price" name="price">
+				<input type="number" class="form-control" id="price" name="price" maxlength="10">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Descripción</label>

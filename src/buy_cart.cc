@@ -44,7 +44,7 @@ int main(int argc, const char *argv[], const char *env[])
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Se realizó la compra correctamente <i class=\"fas fa-check-square text-success\"></i></h1>";
+        cout << "<h1 class=\"display-4\">Se realizó la compra correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
