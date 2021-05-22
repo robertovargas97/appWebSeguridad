@@ -49,12 +49,12 @@ int main(int argc, char const *argv[])
     char *precio = "";
     char *descripcion = "";
     bool en_carrito = false;
-    bool lista_productos = false;
+    bool lista_productos = false; // cambiar a vector<product>
     //DBConnection conn = DBConnection();
-    lista_productos = true;//lista_productos = conn.get_allProducts(correoUser,product);
-    if (lista_productos == true){
+    lista_productos = true;//lista_productos = conn.get_all_products(correoUser,product);
+    if (lista_productos == true){ // cambiar a (lista_productos.size() != 0)
     
-    	//for ( int i =0; i < carrito.size() ; i++){
+    	//for ( int i =0; i < lista_productos.size() ; i++){
 	    	categoria="bi bi-controller" ;
 	    	nombre="Grogu";
 	    	precio = "4000";
@@ -70,11 +70,11 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		en_carrito = false;// = conn.en_carrito(correoUser,product);
+		en_carrito = false;// = conn.exist_in_cart(correoUser,product);
 		if ( en_carrito == true){ // to do -> revisar 
 		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
 		} else {
-		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";
+		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";// conn.add_in_cart(correoUser,product);
 		}
 		cout << "	  	</div>";
 		cout << "	</div>";

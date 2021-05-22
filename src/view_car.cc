@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
     int monto = 0; //to do -> revisar
     //monto = conn.MontoTotalPorCorreo(correoUser,product);
     bool carrito = false ;
-    carrito = true;//conn.my_cart(correoUser,product);
+    carrito = true;//conn.get_my_cart(correoUser,product);
     if ( carrito == true){
     	//for ( int i =0; i < carrito.size() ; i++){
 	    	categoria="bi bi-controller" ;
@@ -67,13 +67,13 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>";
+		cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>"; // conn.delete_from_cart(correoUser,product);
 		cout << "	  	</div>";
 		cout << "	</div>";
 		cout << "</div>";
 	//}
-	cout << "<h1 class=\"display-4\">Monto total a pagar: "<< monto << "</h1>";
-	cout << "<button class=\"btn btn-primary\">Realizar compra</button>";
+	cout << "<h1 class=\"display-4\">Monto total a pagar: "<< monto << "</h1>"; // hacer funcion
+	cout << "<button class=\"btn btn-primary\">Realizar compra</button>"; // conn.empty_cart(correoUser,product);
 	
 	} else {
 		cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
