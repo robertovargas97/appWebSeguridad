@@ -1,41 +1,39 @@
-
 <div class="mt-4 add">
 	<div class="center-add-product bg-transparent">
 		<form method="post" action="/add_product_post.cgi" id="add_product_form">
-				<div class="form-group">
-					<br>
-					<h2>Agregar producto para vender <i class="fas fa-thumbs-up"></i></h2>
-					<hr class="new4">
-					<label for="formGroupExampleInput">Nombre del producto</label>
-					<input type="text" class="form-control" id="name" name="name" >
-				</div>
-				<div class="form-group">
-					<label for="formGroupExampleInput2">Precio en colones</label>
-					<input type="number" class="form-control" id="price" name="price" maxlength="10">
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Descripción</label>
-					<textarea class="form-control" id="description" name="description" rows="3"></textarea>
-				</div>
-				<div class="form-group">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="inputGroupSelect01">Categoría</label>
-						</div>
-						<select class="custom-select" id="category" name="category">
-							<option selected>Choose...</option>
-							<option value="fas fa-running">Deporte</option>
-							<option value="fas fa-blender">Electrodomésticos</option>
-							<option value="fas fa-laptop">Tecnología y electrónicos</option>
-							<option value="fas fa-home">Hogar</option>
-							<option value="fas fa-gamepad">Videojuegos</option>
-							<option value="fas fa-tshirt">Ropa</option>
-						</select>
+			<div class="form-group">
+				<br>
+				<h2>Agregar producto para vender <i class="fas fa-thumbs-up"></i></h2>
+				<hr class="new4">
+				<label for="formGroupExampleInput">Nombre del producto</label>
+				<input type="text" class="form-control" id="name" name="name">
+			</div>
+			<div class="form-group">
+				<label for="formGroupExampleInput2">Precio en colones</label>
+				<input type="number" class="form-control" id="price" name="price" maxlength="10">
+			</div>
+			<div class="form-group">
+				<label for="exampleFormControlTextarea1">Descripción</label>
+				<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">Categoría</label>
 					</div>
+					<select class="custom-select" id="category" name="category">
+						<option selected>Choose...</option>
+						<option value="fas fa-running">Deporte</option>
+						<option value="fas fa-blender">Electrodomésticos</option>
+						<option value="fas fa-laptop">Tecnología y electrónicos</option>
+						<option value="fas fa-home">Hogar</option>
+						<option value="fas fa-gamepad">Videojuegos</option>
+						<option value="fas fa-tshirt">Ropa</option>
+					</select>
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-info"> Agregar </button></form>
-				</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-info"> Agregar </button>
 		</form>
-</div>
+	</div>
 </div>
