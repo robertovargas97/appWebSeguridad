@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
     char *navbar_content = file_reader.read_file(navbar, navbar_content);
     char *list_products_content = file_reader.read_file(list_products, list_products_content);
     char *footer_content = file_reader.read_file(footer, footer_content);
-    char *view_carrito="/appWebSeguridad/view_car.cgi";
+    char *view_carrito="/view_car.cgi";
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
