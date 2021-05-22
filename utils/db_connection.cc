@@ -150,6 +150,130 @@ bool DBConnection::verify_login(string email, string password, string salt)
     return response;
 }
 
+
+product DBConnection::get_all_products()
+{
+    vector<product> info_products;
+    string query = "call get_all_products();";
+    
+
+    if (mysql_query(mysql, query.c_str()) != 0)
+    {
+        printf("Query failed: %s\n", mysql_error(mysql));
+    }
+    else
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (!result)
+        {
+            printf("Couldn't get results set: %s\n", mysql_error(mysql));
+        }
+        else
+        {
+            MYSQL_ROW row = mysql_fetch_row(result); // to do
+         /*  info_products.push_back(row[0]); //codigoProducto 
+            info_products.push_back(row[1]); // nombre
+            info_products.push_back(row[2]); // precio
+            info_products.push_back(row[3]); // descripcion 
+            info_products.push_back(row[4]); // categoria */
+
+            mysql_free_result(result);
+        }
+    }
+    return info;
+}
+
+bool DBConnection::exist_in_cart(string email,int code_product)
+{
+    bool response = false;
+    string query = "call exit_in_cart('" + email + "'," + "'" + code_product + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (result) //Checks if we got results
+        {
+            MYSQL_ROW row = mysql_fetch_row(result);
+            if (row != 0)
+            {
+                response = true;
+            }
+        }
+        mysql_free_result(result);
+    }
+
+    return response;
+}
+
+vector<product> DBConnection::get_my_cart(string email)
+{
+    vector<products> info_products;
+    string query = "call get_my_cart('" + email + "';";
+    
+
+    if (mysql_query(mysql, query.c_str()) != 0)
+    {
+        printf("Query failed: %s\n", mysql_error(mysql));
+    }
+    else
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (!result)
+        {
+            printf("Couldn't get results set: %s\n", mysql_error(mysql));
+        }
+        else
+        {
+            MYSQL_ROW row = mysql_fetch_row(result); // to do
+         /*  info_products.push_back(row[0]); //codigoProducto 
+            info_products.push_back(row[1]); // nombre
+            info_products.push_back(row[2]); // precio
+            info_products.push_back(row[3]); // descripcion 
+            info_products.push_back(row[4]); // categoria */
+
+            mysql_free_result(result);
+        }
+    }
+    return info;
+}
+
+
+bool DBConnection::add_in_cart(string email, int code_product)
+{
+    bool response = false;
+    string query = "call add_in_cart('" + email + "'," + "'" + code_product + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    return response;
+}
+
+bool DBConnection::delete_from_cart(string email, int code_product)
+{
+    bool response = false;
+    string query = "call delete_from_cart('" + email + "'," + "'" + code_product + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    return response;
+}
+
+bool DBConnection::empty_cart(string email, int code_product)
+{
+    bool response = false;
+    string query = "call empty_cart('" + email + "'," + "'" + code_product + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    return response;
+} 
+
+
 // int main()
 // {
 // DBConnection conn = DBConnection();

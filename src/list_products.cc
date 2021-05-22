@@ -1,4 +1,5 @@
 #include "../utils/utils.h"
+#include "../utils/product.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
