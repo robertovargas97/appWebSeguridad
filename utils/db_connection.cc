@@ -151,7 +151,7 @@ bool DBConnection::verify_login(string email, string password, string salt)
 }
 
 
-product DBConnection::get_all_products()
+ vector<product> DBConnection::get_all_products()
 {
     vector<product> info_products;
     string query = "call get_all_products();";
@@ -187,7 +187,8 @@ product DBConnection::get_all_products()
 bool DBConnection::exist_in_cart(string email,int code_product)
 {
     bool response = false;
-    string query = "call exit_in_cart('" + email + "'," + "'" + code_product + "');";
+    string s_code_product = to_string(code_product);
+    string query = "call exit_in_cart('" + email + "'," + s_code_product ");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         MYSQL_RES *result = mysql_store_result(mysql);
@@ -209,7 +210,7 @@ bool DBConnection::exist_in_cart(string email,int code_product)
 vector<product> DBConnection::get_my_cart(string email)
 {
     vector<products> info_products;
-    string query = "call get_my_cart('" + email + "';";
+    string query = "call get_my_cart('" + email + "';)";
     
 
     if (mysql_query(mysql, query.c_str()) != 0)
@@ -236,14 +237,15 @@ vector<product> DBConnection::get_my_cart(string email)
             mysql_free_result(result);
         }
     }
-    return info;
+    return info_products;
 }
 
 
 bool DBConnection::add_in_cart(string email, int code_product)
 {
     bool response = false;
-    string query = "call add_in_cart('" + email + "'," + "'" + code_product + "');";
+    string s_code_product = to_string(code_product);
+    string query = "call add_in_cart('" + email + "'," + s_code_product ");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
@@ -254,7 +256,8 @@ bool DBConnection::add_in_cart(string email, int code_product)
 bool DBConnection::delete_from_cart(string email, int code_product)
 {
     bool response = false;
-    string query = "call delete_from_cart('" + email + "'," + "'" + code_product + "');";
+    string s_code_product = to_string(code_product);
+    string query = "call delete_from_cart('" + email + "'," + s_code_product ");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
@@ -265,7 +268,8 @@ bool DBConnection::delete_from_cart(string email, int code_product)
 bool DBConnection::empty_cart(string email, int code_product)
 {
     bool response = false;
-    string query = "call empty_cart('" + email + "'," + "'" + code_product + "');";
+    string s_code_product = to_string(code_product);
+    string query = "call empty_cart('" + email + "',"  s_code_product "');";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
