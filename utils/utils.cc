@@ -105,12 +105,12 @@ string Utils::create_salt()
     int length = 4;
     string salt = "";
     string characters = "abcdefghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ1234567890";
+     srand(time(NULL));
 
     for (int x = 0; x < length; x++) // Genera length caracteres diferentes
     {
         AutoSeededRandomPool random;
-        long random_number = Integer(random, 0, characters.size()).ConvertToLong(); //60 es el total de caracteres disponibles en la variable Map
-        cout << random_number << " :" << characters[random_number] << endl;
+        long random_number = rand()%(characters.size());
         salt += characters[random_number];
     }
 
