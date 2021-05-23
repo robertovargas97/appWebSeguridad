@@ -161,7 +161,7 @@ footer {
 
   margin: auto;
   width: 40%;
-  border: 1px solid hsl(86, 9%, 69%);
+  /* border: 1px solid hsl(86, 9%, 69%); */
   padding: 10px;
   background-color:white;
 }
