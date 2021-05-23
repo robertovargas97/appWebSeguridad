@@ -38,9 +38,9 @@ public:
     void set_category(string my_category);
     void set_description(string my_description);
     void set_code_product(int my_code_product);
-    void set_corero(string my_correo);
+    void set_correo(string my_correo);
     void set_id_product_cart( int id);
-    void set_in_cart(bool in);
+    void set_in_cart();
 
 private:    	
 	int code_product;

@@ -71,13 +71,13 @@ void  product::set_description(string my_description){
 void product::set_code_product(int my_code_product){
 	code_product = my_code_product;
 };
-    void product::set_corero(string my_correo){
+    void product::set_correo(string my_correo){
      correo= my_correo;
    };
     void product::set_id_product_cart( int id){
     	id_product_cart=id;
     };
-    void product::set_in_cart(bool in){
-     		in_cart = in;
+    void product::set_in_cart(){
+     		in_cart = true;
     };
 

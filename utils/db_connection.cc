@@ -155,7 +155,9 @@ bool DBConnection::verify_login(string email, string password, string salt)
 
  vector<product> DBConnection::get_all_products()
 {
-    vector<product> info_products;
+    vector<product> info_products= vector<product>(0);
+    product  prod = product();
+    info_products.push_back(prod);
     string query = "call get_all_products();";
     
 
@@ -174,12 +176,13 @@ bool DBConnection::verify_login(string email, string password, string salt)
         else
         {
             MYSQL_ROW row = mysql_fetch_row(result); // to do
-         /*  info_products.push_back(row[0]); //codigoProducto 
-            info_products.push_back(row[1]); // nombre
-            info_products.push_back(row[2]); // precio
-            info_products.push_back(row[3]); // descripcion 
-            info_products.push_back(row[4]); // categoria */
-
+            product  prod = product();
+         /* prod.set_code_product(row[0]); //codigoProducto 
+            prod.set_name(row[1]); 	    // nombre
+            prod.set_price(row[2]);       // precio
+            prod.set_description(row[3]); // descripcion 
+            prod.set_category(row[4]);    // categoria */    	
+    	    info_products.push_back(prod);
             mysql_free_result(result);
         }
     }
@@ -211,9 +214,10 @@ bool DBConnection::exist_in_cart(string email,int code_product)
 
 vector<product> DBConnection::get_my_cart(string email)
 {
-    vector<product> info_products;
+    vector<product> info_products = vector<product>(0);
     string query = "call get_my_cart('" + email + "';)";
-    
+    product  prod = product();
+    info_products.push_back(prod);
 
     if (mysql_query(mysql, query.c_str()) != 0)
     {
@@ -230,11 +234,13 @@ vector<product> DBConnection::get_my_cart(string email)
         else
         {
             MYSQL_ROW row = mysql_fetch_row(result); // to do
-         /*  info_products.push_back(row[0]); //codigoProducto 
-            info_products.push_back(row[1]); // nombre
-            info_products.push_back(row[2]); // precio
-            info_products.push_back(row[3]); // descripcion 
-            info_products.push_back(row[4]); // categoria */
+            product  prod = product();
+         /* prod.set_id_product_cart(row[0]); // idCarrito
+            prod.set_correo(row[1]); 	       // correo
+            prod.set_code_product(row[2]);   // codigoProducto
+            
+            //prod.set_in_cart(); // es carrito */    	
+    	    info_products.push_back(prod);
 
             mysql_free_result(result);
         }

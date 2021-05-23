@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
     printf(list_products_content);
     cout << "	<body>";
     cout << "<div class=\"container register\">";
-    cout << "<p align=\"right\"> <a href= "" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
+    cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
     //DBConnection conn = DBConnection();
 
     char *categoria="" ;
