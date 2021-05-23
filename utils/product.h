@@ -1,3 +1,5 @@
+#ifndef product_H
+#define product_H
 
 #include <stdlib.h>
 #include <iostream>
@@ -53,6 +55,6 @@ private:
 };
 
 
-
+#endif
 
    

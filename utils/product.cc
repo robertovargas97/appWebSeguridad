@@ -46,15 +46,15 @@ string product::get_description(){
 int product::get_code_product(){
 	return code_product;
 };
-    bool product::get_in_cart(){
-    	return in_cart;
-    };
-    int product::get_id_product_cart(){
-    	return id_product_cart;
-    };
-    string product::get_correo(){
-     return correo;
-    };
+bool product::get_in_cart(){
+	return in_cart;
+};
+int product::get_id_product_cart(){
+	return id_product_cart;
+};
+string product::get_correo(){
+	return correo;
+};
 
 void product::set_price( string my_price){
 	price= my_price;

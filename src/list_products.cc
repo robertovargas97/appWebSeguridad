@@ -1,5 +1,6 @@
 #include "../utils/utils.h"
 #include "../utils/product.h"
+#include "../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -50,10 +51,12 @@ int main(int argc, char const *argv[])
     char *precio = "";
     char *descripcion = "";
     bool en_carrito = false;
-    bool lista_productos = false; // cambiar a vector<product>
-    //DBConnection conn = DBConnection();
-    lista_productos = true;//lista_productos = conn.get_all_products(correoUser,product);
-    if (lista_productos == true){ // cambiar a (lista_productos.size() != 0)
+
+    vector<product> lista_productos; 
+    
+    DBConnection conn = DBConnection();
+    lista_productos = conn.get_all_products();
+    if (lista_productos.size() != 0){ // cambiar a (lista_productos.size() != 0)
     
     	//for ( int i =0; i < lista_productos.size() ; i++){
 	    	categoria="bi bi-controller" ;

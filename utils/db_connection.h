@@ -8,6 +8,7 @@
 #include "host_settings.h"
 #include <stdlib.h>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <cstdlib>
 #include <stdio.h>

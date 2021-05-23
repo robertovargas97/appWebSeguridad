@@ -1,11 +1,11 @@
 # To compile all or separetly
-app: src/home.cc src/login.cc src/register.cc src/comments.cc src/add_comment.cc src/add_user.cc src/delete_from_car.cc src/add_to_car.cc src/buy_car.cc  src/empty_car.cc utils/utils.cc src/login_response.cc src/add_product_post.cc src/add_product.cc src/list_products.cc src/view_car.cc
+app: src/home.cc src/login.cc src/register.cc src/comments.cc  utils/product.cc src/add_comment.cc src/add_user.cc src/delete_from_car.cc src/add_to_car.cc src/buy_car.cc  src/empty_car.cc utils/utils.cc src/login_response.cc src/add_product_post.cc src/add_product.cc src/list_products.cc src/view_car.cc
 	g++ src/home.cc utils/utils.cc -o home.cgi -std=c++11 -w -lcryptopp
 	g++ src/login.cc utils/utils.cc -o login.cgi -std=c++11 -w -lcryptopp
 	g++ src/register.cc utils/utils.cc -o register.cgi -std=c++11 -w -lcryptopp
 	g++ src/comments.cc utils/utils.cc -o comments.cgi -std=c++11 -w -lcryptopp
 	g++ utils/utils.cc src/add_product.cc -o add_product.cgi -std=c++11 -w -lcryptopp
-	g++ src/list_products.cc utils/utils.cc -o list_products.cgi -std=c++11 -w -lcryptopp
+	g++   utils/product.cc utils/product.h src/list_products.cc utils/utils.cc -o list_products.cgi -std=c++11 -w -lcryptopp
 	g++ src/view_car.cc utils/utils.cc -o view_car.cgi -w -std=c++11 -lcryptopp
 	g++ src/add_product_post.cc utils/utils.cc utils/db_connection.cc -o add_product_post.cgi -w `mysql_config --cflags --libs` -std=c++11 -w -lcryptopp
 	g++ src/add_comment.cc utils/utils.cc utils/db_connection.cc -o add_comment.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w

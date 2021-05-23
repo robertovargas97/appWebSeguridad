@@ -129,10 +129,3 @@ WHERE correo = u_email AND pass = u_pass;
 END$$
 
 DELIMITER ;
-
-
-
-
-
-
-
