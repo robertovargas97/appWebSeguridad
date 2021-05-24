@@ -33,10 +33,10 @@ CONSTRAINT FK_CodigoProducto_PCarrito FOREIGN KEY (codigoProductoFK) REFERENCES 
 
 
 CREATE TABLE Tabla (
-  `correo` VARCHAR(50) NOT NULL,
-  `pass` VARCHAR(100) NOT NULL,
-  `salt` VARCHAR(4) NOT NULL,
-  PRIMARY KEY (`correo`));
+  correo VARCHAR(50) NOT NULL,
+  pass VARCHAR(100) NOT NULL,
+  salt VARCHAR(4) NOT NULL,
+  PRIMARY KEY ( correo ) );
 
 
 CREATE TABLE Comentarios(
@@ -50,17 +50,17 @@ CONSTRAINT Correo_Comentarios_PK PRIMARY KEY(correoFK, fechaDeCreacion) /*Para q
 );
 
 
-INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('hellen@gmail.com', 'Hellen', 'Fernandez', 88888888, 'Alajuela, San Ramon, San Isidro');
-INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('tefi@gmail.com', 'Stephanie', 'Leiton', 88988888, 'Alajuela, San Ramon, San Ramon');
+-- INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('hellen@gmail.com', 'Hellen', 'Fernandez', 88888888, 'Alajuela, San Ramon, San Isidro');
+-- INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('tefi@gmail.com', 'Stephanie', 'Leiton', 88988888, 'Alajuela, San Ramon, San Ramon');
 
-INSERT INTO Tabla(correoFK,contrasena) VALUES('hellen@gmail.com', 'password');
-INSERT INTO Tabla(correoFK,contrasena) VALUES('tefi@gmail.com', '1234');
+-- INSERT INTO Tabla(correo,pass,salt) VALUES('hellen@gmail.com', 'password', 'aaaa');
+-- INSERT INTO Tabla(correo,pass,salt) VALUES('tefi@gmail.com', '1234', 'asde');
 
-INSERT INTO Producto(nombre,precio, descripcion) VALUES('Tennis Adidas', 45660,'Tennis nuevas de mujer talla 37', 'Deporte');
-INSERT INTO Producto(nombre,precio, descripcion) VALUES('Jarra Iron Man', 8500,'Jarra de Iron man, bonito detalle para regalar', 'Regalos');
+-- INSERT INTO Producto(nombre,precio, descripcion) VALUES('Tennis Adidas', 45660,'Tennis nuevas de mujer talla 37', 'Deporte');
+-- INSERT INTO Producto(nombre,precio, descripcion) VALUES('Jarra Iron Man', 8500,'Jarra de Iron man, bonito detalle para regalar', 'Regalos');
 
-INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES('hellen@gmail.com', 1);
-INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES('tefi@gmail.com', 2);
+-- INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES('hellen@gmail.com', 1);
+-- INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES('tefi@gmail.com', 2);
 
-INSERT INTO Comentarios(correoFK, nombreCompleto, tipoDeComentario,comentario,fechaDeCreacion) VALUES( 'hellen@gmail.com','Hellen Fernandez','Retroalimentacion', 'Me encanto mi nuevo rompecabezas',CURRENT_DATE);
+-- INSERT INTO Comentarios(correoFK, nombreCompleto, tipoDeComentario,comentario,fechaDeCreacion) VALUES( 'hellen@gmail.com','Hellen Fernandez','Retroalimentacion', 'Me encanto mi nuevo rompecabezas',CURRENT_DATE);
 

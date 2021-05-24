@@ -89,11 +89,11 @@ bool DBConnection::add_product(string name, string price, string description, st
     return response;
 }
 
-bool DBConnection::add_user(string name, string last_name, string email, string password, string phone_number, string address)
+bool DBConnection::add_user(string name, string last_name, string email, string secret, string phone_number, string address, string salt)
 {
     bool response = false;
 
-    string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "'," + "'" + password + "'," + "'" + phone_number + "'," + "'" + address + "'" + ");";
+    string query = "call add_user('" + name + "'," + "'" + last_name + "'," + "'" + email + "'," + "'" + secret + "'," + "'" + phone_number + "'," + "'" + address + "'," + "'" + salt + "'" + ");";
 
     if (mysql_query(mysql, query.c_str()) == 0)
     {
