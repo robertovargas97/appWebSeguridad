@@ -153,11 +153,9 @@ bool DBConnection::verify_login(string email, string password, string salt)
 }
 
 
- /* vector<product> DBConnection::get_all_products()
+  vector<vector<string>> DBConnection::get_all_products()
 {
-    vector<product> info_products= vector<product>(0);
-    product  prod = product();
-    info_products.push_back(prod);
+   vector<vector<string>> product_list;
     string query = "call get_all_products();";
     
 
@@ -175,19 +173,23 @@ bool DBConnection::verify_login(string email, string password, string salt)
         }
         else
         {
-            MYSQL_ROW row = mysql_fetch_row(result); // to do
-            product  prod = product();
-         /* prod.set_code_product(row[0]); //codigoProducto 
-            prod.set_name(row[1]); 	    // nombre
-            prod.set_price(row[2]);       // precio
-            prod.set_description(row[3]); // descripcion 
-            prod.set_category(row[4]);    // categoria */    	
-//     	    info_products.push_back(prod);
-//             mysql_free_result(result);
-//         }
-//     }
-//     return info_products;
-// } */
+                MYSQL_ROW row;
+                int i;
+                unsigned int num_fields = mysql_num_fields(result);
+                vector<vector<string>> product_list;  
+                product_list.resize(0);                                                  
+                while ((row = mysql_fetch_row(result))) {
+                    vector<string> prod;
+                for (i = 0; i < num_fields; i++) {
+                        prod.push_back(row[i]);                             
+                    }
+                product_list.push_back(prod);
+                }
+            mysql_free_result(result);
+         }
+     }
+     return product_list;
+ } 
 
 bool DBConnection::exist_in_cart(string email,int code_product)
 {
@@ -212,12 +214,10 @@ bool DBConnection::exist_in_cart(string email,int code_product)
     return response;
 }
 
-/* vector<product> DBConnection::get_my_cart(string email)
+vector<vector<string>> DBConnection::get_my_cart(string email)
 {
-    vector<product> info_products = vector<product>(0);
+    vector<vector<string>> product_list;
     string query = "call get_my_cart('" + email + "';)";
-    product  prod = product();
-    info_products.push_back(prod);
 
     if (mysql_query(mysql, query.c_str()) != 0)
     {
@@ -233,21 +233,24 @@ bool DBConnection::exist_in_cart(string email,int code_product)
         }
         else
         {
-            MYSQL_ROW row = mysql_fetch_row(result); // to do
-            product  prod = product();
-         /* prod.set_id_product_cart(row[0]); // idCarrito
-            prod.set_correo(row[1]); 	       // correo
-            prod.set_code_product(row[2]);   // codigoProducto
-            
-            //prod.set_in_cart(); // es carrito */    	
-//     	    info_products.push_back(prod);
+              MYSQL_ROW row;
+                int i;
+                unsigned int num_fields = mysql_num_fields(result);
+                vector<vector<string>> product_list;  
+                product_list.resize(0);                                                  
+                while ((row = mysql_fetch_row(result))) {
+                    vector<string> prod;
+                for (i = 0; i < num_fields; i++) {
+                        prod.push_back(row[i]);                             
+                    }
+                product_list.push_back(prod);
+                }
 
-//             mysql_free_result(result);
-//         }
-//     }
-//     return info_products;
-// }
-//  */
+             mysql_free_result(result);
+         }
+     }
+     return product_list;
+ } 
 
 bool DBConnection::add_in_cart(string email, int code_product)
 {

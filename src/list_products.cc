@@ -51,18 +51,20 @@ int main(int argc, char const *argv[])
     char *precio = "";
     char *descripcion = "";
     bool en_carrito = false;
+    char *producto="";
 
-    vector<product> lista_productos; 
+    vector<vector<string>> lista_productos; 
     
     DBConnection conn = DBConnection();
     lista_productos = conn.get_all_products();
-    if (lista_productos.size() != 0){ // cambiar a (lista_productos.size() != 0)
+    if (lista_productos.size() != 0){ 
     
-    	//for ( int i =0; i < lista_productos.size() ; i++){
-	    	categoria="bi bi-controller" ;
-	    	nombre="Grogu";
-	    	precio = "4000";
-	    	descripcion = "Cute grogu, The Mandalorian Star Wars";
+       for ( int i =0; i < lista_productos.size() ; i++){
+	    	categoria=lista_productos[i][4];
+            producto = lista_productos[i][0];
+	    	nombre=lista_productos[i][1];
+	    	precio = lista_productos[i][2];
+	    	descripcion =lista_productos[i][3];
 	    	
 		cout << "<div class=\"col-lg-3\">";
 		cout << "	<div class=\"card\" style=\"width: 18rem;\">";
@@ -83,7 +85,7 @@ int main(int argc, char const *argv[])
 		cout << "	  	</div>";
 		cout << "	</div>";
 		cout << "</div>";
-	// }
+	 }
     }else{
     		cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         	cout << "	<div class=\"container\">";
