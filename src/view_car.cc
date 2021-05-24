@@ -54,6 +54,13 @@ int main(int argc, char const *argv[])
     carrito = true;//conn.get_my_cart(correoUser,product);
     if ( carrito == true){
     	//for ( int i =0; i < carrito.size() ; i++){
+            /*      
+             for ( int i =0; i < lista_productos.size() ; i++){
+	    	categoria=lista_productos[i][4];
+            producto = lista_productos[i][0];
+	    	nombre=lista_productos[i][1];
+	    	precio = lista_productos[i][2];
+	    	descripcion =lista_productos[i][3]; */
 	    	categoria="bi bi-controller" ;
 	    	nombre="Grogu";
 	    	precio = "4000";

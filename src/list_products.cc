@@ -46,6 +46,7 @@ int main(int argc, char const *argv[])
     cout << "<div class=\"row\">";
     
     
+    char *correo="";
     char *categoria="" ;
     char *nombre="";
     char *precio = "";
@@ -76,11 +77,11 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		en_carrito = false;// = conn.exist_in_cart(correoUser,product);
+		en_carrito = false;// = conn.exist_in_cart(correoUser,producto);
 		if ( en_carrito == true){ // to do -> revisar 
 		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
 		} else {
-		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";// conn.add_in_cart(correoUser,product);
+		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";// conn.add_in_cart(correoUser,producto);
 		}
 		cout << "	  	</div>";
 		cout << "	</div>";
