@@ -37,6 +37,7 @@ public:
     bool add_in_cart(string email, int code_product);
     bool delete_from_cart(string email, int code_product);
     bool empty_cart(string email, int code_product);
+    vector<vector<string> > prueba_get_all();
 
 private:
     MYSQL *mysql = NULL;
