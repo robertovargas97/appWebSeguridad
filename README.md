@@ -71,3 +71,26 @@ libcrypto++6-dbg
 ```js
 sudo apt-get install libcrypto++6 libcrypto++6-dbg libcrypto++-dev
 ```
+
+
+### Instalar cgicc para las necesidades de cookies
+- Centos
+```js
+yum search cgicc++
+```
+
+```js
+apt-cache pkgnames | grep -i cgicc
+```
+
+- Lo anterior mostrara algo como lo siguiente : 
+```js
+libcgicc3
+libcgicc-dev
+libcgicc-doc
+```
+
+- Aca utilice las versiones mostradas por el comando anterior
+```js
+ sudo apt-get install libcgicc5 libcgicc5-dev libcgicc-doc
+```
