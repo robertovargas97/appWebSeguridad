@@ -153,44 +153,6 @@ bool DBConnection::verify_login(string email, string password, string salt)
 }
 
 
-  vector<vector<string>> DBConnection::get_all_products()
-{
-   vector<vector<string>> product_list;
-    string query = "call get_all_products();";
-    
-
-    if (mysql_query(mysql, query.c_str()) != 0)
-    {
-        printf("Query failed: %s\n", mysql_error(mysql));
-    }
-    else
-    {
-        MYSQL_RES *result = mysql_store_result(mysql);
-
-        if (!result)
-        {
-            printf("Couldn't get results set: %s\n", mysql_error(mysql));
-        }
-        else
-        {
-                MYSQL_ROW row;
-                int i;
-                unsigned int num_fields = mysql_num_fields(result);
-                vector<vector<string>> product_list;  
-                product_list.resize(0);                                                  
-                while ((row = mysql_fetch_row(result))) {
-                    vector<string> prod;
-                for (i = 0; i < num_fields; i++) {
-                        prod.push_back(row[i]);                             
-                    }
-                product_list.push_back(prod);
-                }
-            mysql_free_result(result);
-         }
-     }
-     return product_list;
- } 
-
 bool DBConnection::exist_in_cart(string email,int code_product)
 {
     bool response = false;
@@ -303,8 +265,8 @@ bool DBConnection::empty_cart(string email, int code_product)
     return response;
 } */
 
-vector<vector<string> > DBConnection::prueba_get_all(){
- 
+vector<vector<string> > DBConnection::get_all_products(){
+    vector<vector<string>> product_list;  
     string query = "call get_all_products";           
     if (mysql_query(mysql, query.c_str())) {
       printf("Query failed: %s\n", mysql_error(mysql));
@@ -316,10 +278,7 @@ vector<vector<string> > DBConnection::prueba_get_all(){
       } else {
         MYSQL_ROW row;
         int i;
-        unsigned int num_fields = mysql_num_fields(result);
-        cout<<"Num fields"<<num_fields<<endl;
-        vector<vector<string>> product_list;  
-        product_list.resize(0);                                                  
+        unsigned int num_fields = mysql_num_fields(result);                                           
         while ((row = mysql_fetch_row(result))) {
             vector<string> prod;
           for (i = 0; i < num_fields; i++) {
@@ -327,43 +286,36 @@ vector<vector<string> > DBConnection::prueba_get_all(){
             }
           product_list.push_back(prod);
         }
-        cout<<"\n Product list "<<product_list.size()<<endl;
-        for(int i=0; i<product_list.size(); i++){
-             for(int j=0; j< product_list[i].size(); j++){
-                cout<<" "<<product_list[i][j];
-            } 
-            printf("\n");
-        }
-        cout<<"Llego aca"<<endl;
         mysql_free_result(result);
       }
     }
+    return product_list;
 }
 
 
 
-int main()
-{
-DBConnection conn = DBConnection();
-conn.prueba_get_all();
+// int main()
+// {
+// DBConnection conn = DBConnection();
+// conn.prueba_get_all();
 
-}
-/* bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
+// }
+// /* bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
 
-cout << result;
-vector<string> user_info = conn.get_user_info("hellen@gmail.com");
-int user_info_size = user_info.size();
-for (size_t i = 0; i < user_info_size; i++)
-{
-    if (i == (user_info_size - 1))
-    {
-        cout << user_info[i] << "\n";
-    }
-    else
-    {
-        cout << user_info[i] << ", ";
-    }
-} */
+// cout << result;
+// vector<string> user_info = conn.get_user_info("hellen@gmail.com");
+// int user_info_size = user_info.size();
+// for (size_t i = 0; i < user_info_size; i++)
+// {
+//     if (i == (user_info_size - 1))
+//     {
+//         cout << user_info[i] << "\n";
+//     }
+//     else
+//     {
+//         cout << user_info[i] << ", ";
+//     }
+// } */
 
 //string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
 //mysql_query(c.mysql, query.c_str());

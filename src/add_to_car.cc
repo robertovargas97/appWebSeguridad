@@ -38,9 +38,9 @@ int main(int argc, const char *argv[], const char *env[])
     DBConnection conn = DBConnection();
     string carreoUser = "";
     string product = "";
-    bool new_product_result = false ;//conn.add_to_car(correoUser,product);
+    bool add_to_car_result = false ;//conn.add_to_car(correoUser,product);
 
-    if (new_product_result)
+    if (add_to_car_result)
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
@@ -62,5 +62,5 @@ int main(int argc, const char *argv[], const char *env[])
     free(navbar_content);
     free(footer_content);
 
-    return new_comment_result;
+    return add_to_car_result;
 }

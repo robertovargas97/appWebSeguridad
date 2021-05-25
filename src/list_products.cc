@@ -46,13 +46,23 @@ int main(int argc, char const *argv[])
     cout << "<div class=\"row\">";
     
     
-    char *correo="";
-    char *categoria="" ;
-    char *nombre="";
-    char *precio = "";
-    char *descripcion = "";
+   
+    string correo="";
+    string categoria="" ;
+    string nombre="";
+    string precio = "";
+    string descripcion = "";
     bool en_carrito = false;
-    char *producto="";
+    string producto="";
+
+
+    //  char *correo="";
+    // char *categoria="" ;
+    // char *nombre="";
+    // char *precio = "";
+    // char *descripcion = "";
+    // bool en_carrito = false;
+    // char *producto="";
 
     vector<vector<string>> lista_productos; 
     

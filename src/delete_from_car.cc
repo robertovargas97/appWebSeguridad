@@ -62,5 +62,5 @@ int main(int argc, const char *argv[], const char *env[])
     free(navbar_content);
     free(footer_content);
 
-    return new_comment_result;
+    return result;
 }

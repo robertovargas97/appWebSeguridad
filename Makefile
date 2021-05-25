@@ -11,7 +11,7 @@ app: src/home.cc src/login.cc src/register.cc src/comments.cc src/add_comment.cc
 	g++ src/add_comment.cc utils/utils.cc utils/db_connection.cc -o add_comment.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
 	g++ src/add_user.cc utils/utils.cc utils/db_connection.cc -o add_user.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
 	g++ src/delete_from_car.cc utils/product.cc utils/utils.cc utils/db_connection.cc -o delete_from_car.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
-	g++ src/add_to_car.cc utils/product.cc tils/utils.cc utils/db_connection.cc -o add_to_car.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
+	g++ src/add_to_car.cc utils/product.cc utils/utils.cc utils/db_connection.cc -o add_to_car.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
 	g++ src/buy_car.cc utils/product.cc utils/utils.cc utils/db_connection.cc -o buy_car.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
 	g++ src/empty_car.cc utils/product.cc utils/utils.cc utils/db_connection.cc -o empty_car.cgi -w `mysql_config --cflags --libs` -lcryptopp -std=c++11 -w
 	g++ src/login_response.cc utils/utils.cc utils/db_connection.cc -o login_response.cgi -w -lcryptopp `mysql_config --cflags --libs` -std=c++11

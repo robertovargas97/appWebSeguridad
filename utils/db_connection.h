@@ -31,13 +31,12 @@ public:
     bool add_user(string name, string last_name, string email, string password, string phone_number, string address);
     string get_user_salt(string password);
     bool verify_login(string email, string password, string salt);
-   vector<vector<string>> get_all_products();
+   vector<vector<string> > get_all_products();
     bool exist_in_cart(string email,int code_product);
-   vector<vector<string>> get_my_cart(string email);
+   vector<vector<string> > get_my_cart(string email);
     bool add_in_cart(string email, int code_product);
     bool delete_from_cart(string email, int code_product);
     bool empty_cart(string email, int code_product);
-    vector<vector<string> > prueba_get_all();
 
 private:
     MYSQL *mysql = NULL;
