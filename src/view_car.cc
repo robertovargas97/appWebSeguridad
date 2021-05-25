@@ -1,5 +1,6 @@
 #include "../utils/utils.h"
 #include "../utils/product.h"
+#include "../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -41,7 +42,7 @@ int main(int argc, char const *argv[])
     cout << "	<body>";
     cout << "<div class=\"container register\">";
     cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
-    
+    cout << "<div class=\"row\">"; 
 
     string correo="hellen@gmail.com";
     string categoria="" ;
@@ -51,21 +52,16 @@ int main(int argc, char const *argv[])
     string producto="1";
     double monto_total = 0.0;
     DBConnection conn = DBConnection();
-   vector<vector<string> > list_cart;//conn.get_my_cart(correoUser);
+   vector<vector<string> > list_cart= conn.get_my_cart(correo);
 
     if ( list_cart.size() != 0){
     	for ( int i =0; i < list_cart.size() ; i++){
-	    	/*categoria=list_cart[i][4];
-            producto = list_cart[i][0];
-	    	nombre=list_cart[i][1];
-	    	precio = list_cart[i][2];
-	    	descripcion =list_cart[i][3];*/
-            monto_total += atof(price.c_str()); //suma los precios 
-	    	categoria="bi bi-controller" ;
-	    	nombre="Grogu";
-	    	precio = "4000";
-	    	descripcion = "Cute grogu, The Mandalorian Star Wars";
-            
+	    	categoria=list_cart[i][7];
+            producto = list_cart[i][3];
+	    	nombre=list_cart[i][4];
+	    	precio = list_cart[i][5];
+	    	descripcion =list_cart[i][6];
+            monto_total += atof(precio.c_str()); //suma los precios 
                 cout << "<div class=\"col-lg-3\">";
                 cout << "	<div class=\"card\" style=\"width: 18rem;\">";
                 cout << "	  <i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
@@ -91,6 +87,7 @@ int main(int argc, char const *argv[])
         	cout << "</div>";
         	cout << "</div>";
 	}
+    cout <<"</div>";
     cout <<"</div>";
     cout << "</body>";
     cout << "</html>";

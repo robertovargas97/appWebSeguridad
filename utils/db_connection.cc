@@ -157,19 +157,20 @@ bool DBConnection::exist_in_cart(string email,string code_product)
 {
     bool response = false; //  no existe
     string query = "call exit_in_cart('" + email + "'," + code_product +");";
-    if (mysql_query(mysql, query.c_str()) == 0)
-    {
-        MYSQL_RES *result = mysql_store_result(mysql);
+    if (mysql_query(mysql, query.c_str())) {
+      //printf("Query failed: %s\n", mysql_error(mysql));
+    } else {
+      MYSQL_RES *result = mysql_store_result(mysql);
 
-        if (result) //Checks if we got results
-        {
-            MYSQL_ROW row = mysql_fetch_row(result);
-            if (row != 0)
-            {
-                response = true; //respondió existe
-            }
+      if (!result) {
+        printf("Couldn't get results set: %s\n", mysql_error(mysql));
+      } else {
+        MYSQL_ROW row = mysql_fetch_row(result);
+        if ( row != 0){
+            response = true;
         }
         mysql_free_result(result);
+      }
     }
 
     return response;
@@ -178,8 +179,7 @@ bool DBConnection::exist_in_cart(string email,string code_product)
 vector<vector<string>> DBConnection::get_my_cart(string email)
 {
     string query = "call get_my_cart('" + email + "');";
-    vector<vector<string>> product_list;  
-    string query = "call get_all_products";           
+    vector<vector<string>> product_list;          
     if (mysql_query(mysql, query.c_str())) {
       printf("Query failed: %s\n", mysql_error(mysql));
     } else {

@@ -78,7 +78,7 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		en_carrito = false;// = conn.exist_in_cart(correoUser,producto); 
+		en_carrito = conn.exist_in_cart(correo,producto); 
 		if ( en_carrito == true){ // existe 
 		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
 		} else { //no existe
