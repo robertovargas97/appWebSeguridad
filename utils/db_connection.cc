@@ -153,11 +153,10 @@ bool DBConnection::verify_login(string email, string password, string salt)
 }
 
 
-bool DBConnection::exist_in_cart(string email,int code_product)
+bool DBConnection::exist_in_cart(string email,string code_product)
 {
-    bool response = false;
-    string s_code_product = to_string(code_product);
-    string query = "call exit_in_cart('" + email + "'," + s_code_product +");";
+    bool response = false; //  no existe
+    string query = "call exit_in_cart('" + email + "'," + code_product +");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         MYSQL_RES *result = mysql_store_result(mysql);
@@ -167,7 +166,7 @@ bool DBConnection::exist_in_cart(string email,int code_product)
             MYSQL_ROW row = mysql_fetch_row(result);
             if (row != 0)
             {
-                response = true;
+                response = true; //respondió existe
             }
         }
         mysql_free_result(result);
@@ -178,74 +177,62 @@ bool DBConnection::exist_in_cart(string email,int code_product)
 
 vector<vector<string>> DBConnection::get_my_cart(string email)
 {
-    vector<vector<string>> product_list;
-    string query = "call get_my_cart('" + email + "';)";
+    string query = "call get_my_cart('" + email + "');";
+    vector<vector<string>> product_list;  
+    string query = "call get_all_products";           
+    if (mysql_query(mysql, query.c_str())) {
+      printf("Query failed: %s\n", mysql_error(mysql));
+    } else {
+      MYSQL_RES *result = mysql_store_result(mysql);
 
-    if (mysql_query(mysql, query.c_str()) != 0)
-    {
-        printf("Query failed: %s\n", mysql_error(mysql));
-    }
-    else
-    {
-        MYSQL_RES *result = mysql_store_result(mysql);
-
-        if (!result)
-        {
-            printf("Couldn't get results set: %s\n", mysql_error(mysql));
+      if (!result) {
+        printf("Couldn't get results set: %s\n", mysql_error(mysql));
+      } else {
+        MYSQL_ROW row;
+        int i;
+        unsigned int num_fields = mysql_num_fields(result);                                           
+        while ((row = mysql_fetch_row(result))) {
+            vector<string> prod;
+          for (i = 0; i < num_fields; i++) {
+                prod.push_back(row[i]);                             
+            }
+          product_list.push_back(prod);
         }
-        else
-        {
-              MYSQL_ROW row;
-                int i;
-                unsigned int num_fields = mysql_num_fields(result);
-                vector<vector<string>> product_list;  
-                product_list.resize(0);                                                  
-                while ((row = mysql_fetch_row(result))) {
-                    vector<string> prod;
-                for (i = 0; i < num_fields; i++) {
-                        prod.push_back(row[i]);                             
-                    }
-                product_list.push_back(prod);
-                }
-
-             mysql_free_result(result);
-         }
-     }
-     return product_list;
+        mysql_free_result(result);
+      }
+    }
+    return product_list;
  } 
 
-bool DBConnection::add_in_cart(string email, int code_product)
+bool DBConnection::add_in_cart(string email, string code_product)
 {
-    bool response = false;
-    string s_code_product = to_string(code_product);
-    string query = "call add_in_cart('" + email + "'," + s_code_product +");";
+    bool response = false;//no ha sido agregado 
+    string query = "call add_in_cart('" + email + "'," + code_product +");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
-        response = true;
+        response = true; //fue agregado al carrito
     }
     return response;
 }
 
-bool DBConnection::delete_from_cart(string email, int code_product)
+bool DBConnection::delete_from_cart(string email, string code_product)
 {
-    bool response = false;
-    string s_code_product = to_string(code_product);
-    string query = "call delete_from_cart('" + email + "'," + s_code_product +");";
+    bool response = false; //no ha sido boraado
+    string query = "call delete_from_cart('" + email + "'," + code_product +");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
-        response = true;
+        response = true; //fue borrado 
     }
     return response;
 }
 
-bool DBConnection::empty_cart(string email, int code_product)
+bool DBConnection::empty_cart(string email, string code_product)
 {
-    bool response = false;
-    string s_code_product = to_string(code_product);
-    string query = "call empty_cart('" + email + "',"+  s_code_product +"');";
+    bool response = false;  //aun no vaciado
+    string query = "call empty_cart('" + email + "',"+  code_product +"');";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
-        response = true;
+        response = true; //vacio el carryto correctamente
     }
     return response;
 } 

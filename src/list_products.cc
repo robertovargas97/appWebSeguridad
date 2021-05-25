@@ -47,22 +47,13 @@ int main(int argc, char const *argv[])
     
     
    
-    string correo="";
+    string correo="hellen@gmail.com";
     string categoria="" ;
     string nombre="";
     string precio = "";
     string descripcion = "";
     bool en_carrito = false;
-    string producto="";
-
-
-    //  char *correo="";
-    // char *categoria="" ;
-    // char *nombre="";
-    // char *precio = "";
-    // char *descripcion = "";
-    // bool en_carrito = false;
-    // char *producto="";
+    string producto="1";
 
     vector<vector<string>> lista_productos; 
     
@@ -87,10 +78,10 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		en_carrito = false;// = conn.exist_in_cart(correoUser,producto);
-		if ( en_carrito == true){ // to do -> revisar 
+		en_carrito = false;// = conn.exist_in_cart(correoUser,producto); 
+		if ( en_carrito == true){ // existe 
 		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
-		} else {
+		} else { //no existe
 		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";// conn.add_in_cart(correoUser,producto);
 		}
 		cout << "	  	</div>";

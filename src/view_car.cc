@@ -41,49 +41,49 @@ int main(int argc, char const *argv[])
     cout << "	<body>";
     cout << "<div class=\"container register\">";
     cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
-    //DBConnection conn = DBConnection();
+    
 
-    char *categoria="" ;
-    char *nombre="";
-    char *precio = "";
-    char *descripcion = "";
-    bool vacio = true;
-    int monto = 0; //to do -> revisar
-    //monto = conn.MontoTotalPorCorreo(correoUser,product);
-    bool carrito = false ;
-    carrito = true;//conn.get_my_cart(correoUser,product);
-    if ( carrito == true){
-    	//for ( int i =0; i < carrito.size() ; i++){
-            /*      
-             for ( int i =0; i < lista_productos.size() ; i++){
-	    	categoria=lista_productos[i][4];
-            producto = lista_productos[i][0];
-	    	nombre=lista_productos[i][1];
-	    	precio = lista_productos[i][2];
-	    	descripcion =lista_productos[i][3]; */
+    string correo="hellen@gmail.com";
+    string categoria="" ;
+    string nombre="";
+    string precio = "";
+    string descripcion = "";
+    string producto="1";
+    double monto_total = 0.0;
+    DBConnection conn = DBConnection();
+   vector<vector<string> > list_cart;//conn.get_my_cart(correoUser);
+
+    if ( list_cart.size() != 0){
+    	for ( int i =0; i < list_cart.size() ; i++){
+	    	/*categoria=list_cart[i][4];
+            producto = list_cart[i][0];
+	    	nombre=list_cart[i][1];
+	    	precio = list_cart[i][2];
+	    	descripcion =list_cart[i][3];*/
+            monto_total += atof(price.c_str()); //suma los precios 
 	    	categoria="bi bi-controller" ;
 	    	nombre="Grogu";
 	    	precio = "4000";
 	    	descripcion = "Cute grogu, The Mandalorian Star Wars";
-    
-		cout << "<div class=\"col-lg-3\">";
-		cout << "	<div class=\"card\" style=\"width: 18rem;\">";
-		cout << "	  <i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
-		cout << " <hr/>";
-		cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
-		cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-		cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡"<< precio  <<"</h7>";
-		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
-		cout << "		</div>";
-		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>"; // conn.delete_from_cart(correoUser,product);
-		cout << "	  	</div>";
-		cout << "	</div>";
-		cout << "</div>";
-	//}
-	cout << "<h1 class=\"display-4\">Monto total a pagar: "<< monto << "</h1>"; // hacer funcion
-	cout << "<button class=\"btn btn-primary\">Realizar compra</button>"; // conn.empty_cart(correoUser,product);
-	
+            
+                cout << "<div class=\"col-lg-3\">";
+                cout << "	<div class=\"card\" style=\"width: 18rem;\">";
+                cout << "	  <i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
+                cout << " <hr/>";
+                cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
+                cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
+                cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡"<< precio  <<"</h7>";
+                cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
+                cout << "		</div>";
+                cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
+                cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>"; // conn.delete_from_cart(correoUser,product); -> delete_from_car.cgi
+                cout << "	  	</div>";
+                cout << "	</div>";
+                cout << "</div>";
+        }
+        cout << "<h1 class=\"display-4\">Monto total a pagar: "<< monto_total << "</h1>";
+        cout << "<button class=\"btn btn-primary\">Realizar compra</button>"; // conn.empty_cart(correoUser,product); -> buy_car.cgi
+        
 	} else {
 		cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         	cout << "<div class=\"container\">";
