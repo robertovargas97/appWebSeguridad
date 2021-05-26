@@ -204,7 +204,7 @@ vector<vector<string>> DBConnection::get_my_cart(string email)
     return product_list;
  } 
 
-bool DBConnection::add_in_cart(string email, string code_product)
+void DBConnection::add_to_cart(string email, string code_product)
 {
     bool response = false;//no ha sido agregado 
     string query = "call add_in_cart('" + email + "'," + code_product +");";
@@ -212,7 +212,7 @@ bool DBConnection::add_in_cart(string email, string code_product)
     {
         response = true; //fue agregado al carrito
     }
-    return response;
+    //return response;
 }
 
 bool DBConnection::delete_from_cart(string email, string code_product)

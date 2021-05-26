@@ -82,7 +82,7 @@ int main(int argc, char const *argv[])
 		if ( en_carrito == true){ // existe 
 		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
 		} else { //no existe
-		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";// conn.add_in_cart(correoUser,producto);
+		cout << "		    <button class=\"btn btn-primary\"; onclick=\"add_to_cart_ajax(producto,correo)\";>Añadir al carrito</button>";// conn.add_in_cart(correoUser,producto);
 		}
 		cout << "	  	</div>";
 		cout << "	</div>";
