@@ -36,26 +36,9 @@ int main(int argc, const char *argv[], const char *env[])
     printf(navbar_content);
 
     DBConnection conn = DBConnection();
-    map<string, string> data_from_ajax = utils.get_post_data();
-    bool add_product_to_cart_result = conn.add_to_cart();
-    if (add_product_to_cart_result)
-    {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Tu comentario fue enviado correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
-        cout << "<hr>";
-        cout << "</div>";
-        cout << "</div>";
-    }
-    else
-    {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-info-circle text-info\"></i></h1>";
-        cout << "<hr>";
-        cout << "</div>";
-        cout << "</div>";
-    }
+    map<string, string> form_data = utils.get_post_data();
+    bool add_product_to_cart_result = conn.add_to_cart(form_data["producto"], form_data["correo"]);
+    //bool add_product_to_cart_result = conn.add_to_cart("hellen@gmail.com", "5");
 
     printf(footer_content);
     free(header_content);

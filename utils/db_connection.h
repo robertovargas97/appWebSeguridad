@@ -34,7 +34,7 @@ public:
    vector<vector<string> > get_all_products();
     bool exist_in_cart(string email,string code_product);
    vector<vector<string> > get_my_cart(string email);
-    void add_to_cart(string email, string code_product);
+    bool add_to_cart(string email, string code_product);
     bool delete_from_cart(string email, string code_product);
     bool empty_cart(string email, string code_product);
 

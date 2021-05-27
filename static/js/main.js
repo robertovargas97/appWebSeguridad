@@ -30,6 +30,9 @@
 // });
 
 function add_to_cart_ajax(producto, correo) {
+    var fd = new FormData("producto", "correo");
+    fd.append(producto, correo);
+    request.send(fd);
     const url = window.location.href;
     console.log("SIIIIII FUNCIONAAA")
     if (url.includes("list_products")) {
@@ -37,7 +40,8 @@ function add_to_cart_ajax(producto, correo) {
             type: "POST",
             async: false,
             url: '/appWebSeguridad/select_product.cgi',
-            data: { "producto": producto, "correo": correo},
+            //data: { "producto": producto, "correo": correo},
+            data:fd,
             success: function (response) {
                 alert("Se agregó producto con exito")
             },
