@@ -1,9 +1,9 @@
 
-//Module to avoid that the data can be viewed externally
+// // Module to avoid that the data can be viewed externally
 // $(document).ready(function () {
 
 //     const url = window.location.href;
-//     if (url.includes("list_products")) {
+//     if (url.includes("comments")) {
 //         console.log("kaka")
 //         document.querySelector("#comments_form").addEventListener('submit', (e) => {
 //             e.preventDefault();
@@ -29,23 +29,19 @@
 
 // });
 
-function add_to_cart_ajax(producto, correo) {
-    var fd = new FormData();
-    fd.append("producto",producto);
-    fd.append("correo", correo);
-    //request.send(fd);
-    console.log("SIIIIII FUNCIONAAA")
-        // $.ajax({
-        //     type: "POST",
-        //     url: '/appWebSeguridad/select_product.cgi',
-        //     //data: { "producto": producto, "correo": correo},
-        //     data:fd,
-        //     success: function (response) {
-        //         alert("Se agregó producto con exito")
-        //     },
-        // });
-    
+
+function add_to_cart_ajax(producto, u_correo) {
+    $("#id_codigo_producto").val(producto);
+    $("#id_correo").val(u_correo);
+    form_data = $('#jaja_form').serialize();
+
+    $.ajax({
+        url: '/appWebSeguridad/select_product.cgi',
+        data: form_data,
+        type: 'POST',
+        success: function (data) {
+            alert("El producto se agrego con exito");
+        }
+    });
 }
-
-
 

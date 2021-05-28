@@ -43,6 +43,6 @@ view_car: src/view_car.cc utils/utils.cc
 
 # To clean all cgi files
 clean:
-	rm home.cgi login.cgi register.cgi comments.cgi add_comment.cgi add_user.cgi list_products.cgi view_car.cgi
+	rm home.cgi login.cgi register.cgi comments.cgi add_comment.cgi add_user.cgi list_products.cgi view_car.cgi add_product.cgi add_product_post.cgi login_response.cgi
 
 #rm add_comments

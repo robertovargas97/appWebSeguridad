@@ -37,7 +37,14 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     map<string, string> form_data = utils.get_post_data();
-    bool new_comment_result = conn.add_user(form_data["name"], form_data["last_name"], form_data["email"], form_data["password"], form_data["phone_number"], form_data["address"]);
+    
+    //Generate salt here
+    std::string u_salt = utils.create_salt();
+
+    //Encrypt password
+    std::string u_secret = utils.create_hash_sha2( form_data["password"], u_salt );
+
+    bool new_comment_result = conn.add_user( form_data["name"], form_data["last_name"], form_data["email"], u_secret, form_data["phone_number"], form_data["address"], u_salt );
 
     if (new_comment_result)
     {

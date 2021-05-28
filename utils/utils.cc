@@ -105,12 +105,12 @@ string Utils::create_salt()
     int length = 4;
     string salt = "";
     string characters = "abcdefghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ1234567890";
-     srand(time(NULL));
+    srand(time(NULL));
 
     for (int x = 0; x < length; x++) // Genera length caracteres diferentes
     {
         AutoSeededRandomPool random;
-        long random_number = rand()%(characters.size());
+        long random_number = rand() % (characters.size());
         salt += characters[random_number];
     }
 

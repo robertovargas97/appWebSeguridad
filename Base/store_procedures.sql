@@ -70,7 +70,8 @@ CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_user`(
     IN u_email nvarchar(100),
     IN u_pass nvarchar(80),
     IN u_phone_number nvarchar(15),
-    IN u_address nvarchar(400)
+    IN u_address nvarchar(400),
+    IN u_salt nvarchar(4)
 )
 BEGIN
 
@@ -87,8 +88,8 @@ BEGIN
     );
     
     INSERT INTO
-    Tabla (`correoFK`, `contrasena`)
-	VALUES( u_email, u_pass );
+    Tabla (`correo`, `pass`, 'salt')
+	VALUES( u_email, u_pass, u_salt );
 
 END$$
 
