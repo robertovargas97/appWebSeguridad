@@ -30,23 +30,21 @@
 // });
 
 function add_to_cart_ajax(producto, correo) {
-    var fd = new FormData("producto", "correo");
-    fd.append(producto, correo);
-    request.send(fd);
-    const url = window.location.href;
+    var fd = new FormData();
+    fd.append("producto",producto);
+    fd.append("correo", correo);
+    //request.send(fd);
     console.log("SIIIIII FUNCIONAAA")
-    if (url.includes("list_products")) {
-        $.ajax({
-            type: "POST",
-            async: false,
-            url: '/appWebSeguridad/select_product.cgi',
-            //data: { "producto": producto, "correo": correo},
-            data:fd,
-            success: function (response) {
-                alert("Se agregó producto con exito")
-            },
-        });
-    }
+        // $.ajax({
+        //     type: "POST",
+        //     url: '/appWebSeguridad/select_product.cgi',
+        //     //data: { "producto": producto, "correo": correo},
+        //     data:fd,
+        //     success: function (response) {
+        //         alert("Se agregó producto con exito")
+        //     },
+        // });
+    
 }
 
 

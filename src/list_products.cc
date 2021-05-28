@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
     string precio = "";
     string descripcion = "";
     bool en_carrito = false;
-    string producto="1";
+    string codigo_producto="1";
 
     vector<vector<string>> lista_productos; 
     
@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
     
        for ( int i =0; i < lista_productos.size() ; i++){
 	    	categoria=lista_productos[i][4];
-            producto = lista_productos[i][0];
+            codigo_producto = lista_productos[i][0];
 	    	nombre=lista_productos[i][1];
 	    	precio = lista_productos[i][2];
 	    	descripcion =lista_productos[i][3];
@@ -78,11 +78,11 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		en_carrito = conn.exist_in_cart(correo,producto); 
+		en_carrito = conn.exist_in_cart(correo,codigo_producto); 
 		if ( en_carrito == true){ // existe 
 		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
 		} else { //no existe
-		cout << "		    <button class=\"btn btn-primary\"; onclick=\"add_to_cart_ajax(producto,correo)\";>Añadir al carrito</button>";// conn.add_in_cart(correoUser,producto);
+		cout << "		    <button class=\"btn btn-primary\"; onclick=\"add_to_cart_ajax(\"5\", \"hellen@gmail.com\")\";>Añadir al carrito</button>";// conn.add_in_cart(correoUser,producto);
 		}
 		cout << "	  	</div>";
 		cout << "	</div>";

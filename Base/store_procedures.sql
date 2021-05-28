@@ -129,3 +129,27 @@ WHERE correo = u_email AND pass = u_pass;
 END$$
 
 DELIMITER ;
+
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_to_cart`(
+IN u_correoFK varchar(50),
+IN u_codigoProductoFK varchar(4)
+)
+BEGIN
+INSERT INTO ProductoEnCarrito(correoFK, codigoProductoFK) VALUES(u_correoFK,CONVERT(u_codigoProductoFK, SIGNED));
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `get_my_cart`(
+IN u_correo VARCHAR(50))
+BEGIN
+SELECT * FROM ProductoEnCarrito PC JOIN Producto P
+ON PC.codigoProductoFK=P.codigoProducto WHERE PC.correoFK=u_correo;
+END$$
+
+DELIMITER ;
