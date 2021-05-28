@@ -209,7 +209,7 @@ bool DBConnection::add_to_cart(string email, string code_product)
     //int code_product_int = stoi(code_product);
     bool response = false;//no ha sido agregado 
     string query = "call add_to_cart('"+email+"', '"+ code_product+"');";
-    
+    cout<<query<<endl;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true; //fue agregado al carrito

@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
     string precio = "";
     string descripcion = "";
     bool en_carrito = false;
-    string codigo_producto = "1";
+    string codigo_producto = "5";
 
     vector<vector<string>> lista_productos;
 

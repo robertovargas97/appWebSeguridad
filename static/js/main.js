@@ -34,13 +34,13 @@ function add_to_cart_ajax(producto, u_correo) {
     $("#id_codigo_producto").val(producto);
     $("#id_correo").val(u_correo);
     form_data = $('#jaja_form').serialize();
-
+    console.log(form_data);
     $.ajax({
         url: '/appWebSeguridad/select_product.cgi',
         data: form_data,
         type: 'POST',
         success: function (data) {
-            alert("El producto se agrego con exito");
+            alert(data);
         }
     });
 }
