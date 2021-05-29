@@ -36,9 +36,9 @@ int main(int argc, const char *argv[], const char *env[])
     printf(navbar_content);
 
     DBConnection conn = DBConnection();
-    string carreoUser = "";
-    string product = "";
-    bool buy_car_result = false ;//conn.empty_car(correoUser,product);
+    map<string, string> form_data = utils.get_post_data();
+    bool buy_car_result = true;// conn.buy_cart( form_data["correo"]);
+
 
     if (buy_car_result)
     {

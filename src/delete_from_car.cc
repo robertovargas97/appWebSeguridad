@@ -24,43 +24,16 @@ const string ENV[26] = {
 int main(int argc, const char *argv[], const char *env[])
 {
 
+
     Utils utils = Utils();
+    DBConnection conn = DBConnection();
     char *header = "/templates/header.html";
-    char *navbar = "/templates/navbar.html";
-    char *footer = "/templates/footer.html";
     char *header_content = utils.read_file(header, header_content);
-    char *navbar_content = utils.read_file(navbar, navbar_content);
-    char *footer_content = utils.read_file(footer, footer_content);
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    printf(navbar_content);
-
-    DBConnection conn = DBConnection();
-    string carreoUser = "";
-    string product = "";
-    bool result = false ;//conn.delete_from_car(correoUser,product);
-
-    if (result)
-    {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">El producto quitado correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
-        cout << "</div>";
-        cout << "</div>";
-    }
-    else
-    {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
-        cout << "</div>";
-        cout << "</div>";
-    }
-
-    printf(footer_content);
+    map<string, string> form_data = utils.get_post_data();
+    bool delete_from_cart_result = conn.delete_from_cart( form_data["correo"], form_data["producto"]);
     free(header_content);
-    free(navbar_content);
-    free(footer_content);
 
-    return result;
+    return 1;
 }
