@@ -32,7 +32,7 @@ int main(int argc, const char *argv[], const char *env[])
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
     map<string, string> form_data = utils.get_post_data();
-    bool delete_from_cart_result = conn.delete_from_cart( form_data["correo"], form_data["producto"]);
+    bool delete_from_cart_result = true;//conn.delete_from_cart( form_data["correo"], form_data["producto"]);
     free(header_content);
 
     return 1;
