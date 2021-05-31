@@ -36,7 +36,7 @@ int main(int argc, const char *argv[], const char *env[])
     printf(navbar_content);
 
     DBConnection conn = DBConnection();
-    map<string, string> form_data = utils.get_post_data();
+    std::map<string, string> form_data = utils.get_post_data();
     
     //Generate salt here
     std::string u_salt = utils.create_salt();

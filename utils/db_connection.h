@@ -29,6 +29,7 @@ public:
     bool add_user(string name, string last_name, string email, string secret, string phone_number, string address, string salt);
     string get_user_salt(string password);
     bool verify_login(string email, string password, string salt);
+    bool verify_session(string email, string password);
 
 private:
     MYSQL *mysql = NULL;

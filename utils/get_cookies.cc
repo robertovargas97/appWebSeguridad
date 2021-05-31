@@ -36,7 +36,7 @@ int main ()
       cout << cci->getValue();                                 
       cout << "</td></tr>\n";
    }
-   cout << "</table><\n";
+   cout << "</table>\n";
   
    cout << "<br/>\n";
    cout << "</body>\n";

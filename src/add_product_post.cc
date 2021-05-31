@@ -37,7 +37,7 @@ int main(int argc, const char *argv[], const char *env[])
     printf(navbar_content);
 
     DBConnection conn = DBConnection();
-    map<string, string> form_data = utils.get_post_data();
+    std::map<string, string> form_data = utils.get_post_data();
     bool new_product_result = conn.add_product(form_data["name"], form_data["price"], form_data["description"], form_data["category"]);
 
     if (new_product_result)

@@ -36,7 +36,7 @@ int main(int argc, const char *argv[], const char *env[])
     printf(navbar_content);
 
     DBConnection conn = DBConnection();
-    map<string, string> form_data = utils.get_post_data();
+    std::map<string, string> form_data = utils.get_post_data();
     bool new_comment_result = conn.add_comment(form_data["name"], form_data["last_name"], form_data["email"], form_data["comment_type"], form_data["comment"]);
     if (new_comment_result)
     {
