@@ -37,10 +37,13 @@ utils: utils/utils.cc
 list_products: src/list_products.cc utils/utils.cc src/select_product.cc
 	g++ src/list_products.cc utils/product.cc utils/utils.cc  utils/db_connection.cc  -o list_products.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
 	g++ src/select_product.cc utils/utils.cc  utils/db_connection.cc  -o select_product.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
+	g++ src/delete_from_car.cc utils/utils.cc  utils/db_connection.cc  -o delete_from_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
 	
 view_car: src/view_car.cc utils/utils.cc
 	g++ src/view_car.cc  utils/product.cc  utils/utils.cc utils/db_connection.cc  -o view_car.cgi -w  `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
-
+	g++ src/buy_car.cc utils/utils.cc  utils/db_connection.cc  -o buy_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
+	g++ src/empty_car.cc utils/utils.cc  utils/db_connection.cc  -o empty_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
+	
 # To clean all cgi files
 clean:
 	rm home.cgi login.cgi register.cgi comments.cgi add_comment.cgi add_user.cgi list_products.cgi view_car.cgi add_product.cgi add_product_post.cgi login_response.cgi

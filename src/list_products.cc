@@ -39,8 +39,10 @@ int main(int argc, char const *argv[])
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
     printf(navbar_content);
- 
+    
+
     cout << "<div class=\"container register\">";
+    cout << "<br/>";
     cout << "<p align=\"right\"> <a href= " << view_carrito << " class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
     cout << "<div class=\"row\">";
     string correo = "hellen@gmail.com";
@@ -55,9 +57,46 @@ int main(int argc, char const *argv[])
 
     DBConnection conn = DBConnection();
     lista_productos = conn.get_all_products();
-    if (lista_productos.size() != 0)
+    	    vector<string> productos;
+           
+            productos.push_back("1");//codigo_producto 
+            productos.push_back("Gro"); //nombre 
+            productos.push_back("4000"); //precio 
+            productos.push_back("peluche"); //descripcion
+    	    productos.push_back("bi bi-emoji-heart-eyes");// categoria
+       lista_productos.push_back(productos);  
+       vector<string> productos2;
+ 
+            productos2.push_back("2");//codigo_producto 
+            productos2.push_back("play"); //nombre 
+            productos2.push_back("400000"); //precio 
+            productos2.push_back("video game"); //descripcion
+    	    productos2.push_back("bi bi-emoji-heart-eyes");// categoria
+        lista_productos.push_back(productos2);
+            cout << "<br/>";
+    		cout << "<div class=\"form-group pull-right\">";
+		cout << "  <input type=\"text\" class=\"search form-control\" placeholder=\"Buscar\">";
+		cout << "</div>";
+		cout << "<span class=\"counter pull-right\"></span>";
+		cout << "<table class=\"table table-hover table-bordered results\">";
+		cout << "   <thead>";
+		cout << "   <tr>";
+		cout << "    <th>#</th>"; 
+		cout << "    <th class=\"col-md-3 col-xs-3\">          </th>";
+		cout << "    <th class=\"col-md-5 col-xs-5\">Nombre</th>";
+		cout << "    <th class=\"col-md-4 col-xs-4\">Precio</th>";
+		cout << "    <th class=\"col-md-4 col-xs-4\">Descripción</th>";
+		 
+		cout << "    <th class=\"col-md-3 col-xs-3\">Añadir</th>";
+		cout << "  </tr>";
+		cout << "</thead> ";
+		cout << " <tbody>";
+	if (lista_productos.size() != 0)
     {
-
+		
+		  
+		  
+		  int num=0;
         for (int i = 0; i < lista_productos.size(); i++)
         {
             categoria = lista_productos[i][4];
@@ -65,8 +104,28 @@ int main(int argc, char const *argv[])
             nombre = lista_productos[i][1];
             precio = lista_productos[i][2];
             descripcion = lista_productos[i][3];
+	     num=i+1;
+		
+		      cout << "<tr>";
+		      cout << "<th scope=\"row\">"<<num<<"</th>";
+		      cout << "<td class=\"center aligned\"> ";
+		      cout << "<i class=\"fas fa-gamepad\"></i>";
+		      cout <<" </td> ";
+		      cout << "<td>"<<nombre<<"</td>";
+		      cout << "<td>"<< precio <<"</td>";
+		      cout << "<td>"<<descripcion<<"</td>";
+		     cout << "<td>";
+		     en_carrito = conn.exist_in_cart(correo, codigo_producto);
+		     if (en_carrito == false){ // existe
+				cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > + </button>";
+			}else{//no existe
+				cout << "<button class=\"btn btn-primary\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> + </button>";
+			    }
+		   cout << "</td>";
+		   cout << "</tr>";
 
-            cout << "<div class=\"col-lg-3\">";
+	
+            /*cout << "<div class=\"col-lg-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
             cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
             cout << " <hr/>";
@@ -88,17 +147,24 @@ int main(int argc, char const *argv[])
             }
             cout << "	  	</div>";
             cout << "	</div>";
-            cout << "</div>";
+            cout << "</div>";*/
         }
-    }
+        
+    }	  
     else
     {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        /*cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "	<div class=\"container\">";
         cout << "		<h1 class=\"display-4\">No hay productos disponibles<i class=\"fas fa-time-circle text-info\"></i></h1>";
         cout << "	</div>";
-        cout << "</div>";
+        cout << "</div>";*/
+        cout << "  <tr class=\"warning no-result\">";
+	cout << "    <td colspan=\"4\"><i class=\"fa fa-warning\"></i> No resulto</td>";
+	cout << "  </tr>";
+        
     }
+	cout << "</tbody>";
+	cout << "</table>";
     cout << "</div>";
     cout << "</div>";
  
