@@ -156,7 +156,7 @@ bool DBConnection::verify_login(string email, string password, string salt)
 bool DBConnection::exist_in_cart(string email,string code_product)
 {
     bool response = false; //  no existe
-    string query = "call exit_in_cart('" + email + "'," + code_product +");";
+    string query = "call exists_product_in_cart('" + email + "'," + code_product +");";
     if (mysql_query(mysql, query.c_str())) {
       //printf("Query failed: %s\n", mysql_error(mysql));
     } else {
@@ -166,13 +166,12 @@ bool DBConnection::exist_in_cart(string email,string code_product)
         printf("Couldn't get results set: %s\n", mysql_error(mysql));
       } else {
         MYSQL_ROW row = mysql_fetch_row(result);
-        if ( row != 0){
+        if ( row  != 0){
             response = true;
         }
         mysql_free_result(result);
       }
     }
-
     return response;
 }
 
@@ -220,7 +219,7 @@ bool DBConnection::add_to_cart(string email, string code_product)
 bool DBConnection::delete_from_cart(string email, string code_product)
 {
     bool response = false; //no ha sido boraado
-    string query = "call delete_from_cart('" + email + "'," + code_product +");";
+    string query = "call remove_from_cart('" + email + "'," + code_product +");";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true; //fue borrado 
@@ -283,36 +282,37 @@ vector<vector<string> > DBConnection::get_all_products(){
 
 
 
-// int main()
-//  {
-//     DBConnection conn = DBConnection();
-//     bool exito = conn.add_to_cart("hellen@gmail.com", "4");
-//     if(exito){
-//         printf("Exito");
-//     }
-//     else{
-//         printf("No sirvio");
-//     }
+//  int main()
+//   {
+//      DBConnection conn = DBConnection();
+//      bool exito = conn.exist_in_cart("hellen@gmail.com", "7");
+//      if(exito){
+//          printf("Exito");
+//      }
+//      else{
+//          printf("No sirvio");
+//      }
+//      return 1;
+//   }
 
-    // }
-    // /* bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
+//     // }
+//     // /* bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
 
-    // cout << result;
-    // vector<string> user_info = conn.get_user_info("hellen@gmail.com");
-    // int user_info_size = user_info.size();
-    // for (size_t i = 0; i < user_info_size; i++)
-    // {
-    //     if (i == (user_info_size - 1))
-    //     {
-    //         cout << user_info[i] << "\n";
-    //     }
-    //     else
-    //     {
-    //         cout << user_info[i] << ", ";
-    //     }
-    // } */
+//     // cout << result;
+//     // vector<string> user_info = conn.get_user_info("hellen@gmail.com");
+//     // int user_info_size = user_info.size();
+//     // for (size_t i = 0; i < user_info_size; i++)
+//     // {
+//     //     if (i == (user_info_size - 1))
+//     //     {
+//     //         cout << user_info[i] << "\n";
+//     //     }
+//     //     else
+//     //     {
+//     //         cout << user_info[i] << ", ";
+//     //     }
+//     // } */
 
-    //string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
-    //mysql_query(c.mysql, query.c_str());
-//     return 1;
-//  }
+//     //string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
+//     //mysql_query(c.mysql, query.c_str());
+

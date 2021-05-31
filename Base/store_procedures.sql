@@ -154,3 +154,36 @@ ON PC.codigoProductoFK=P.codigoProducto WHERE PC.correoFK=u_correo;
 END$$
 
 DELIMITER ;
+
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `exists_product_in_cart`;
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `exists_product_in_cart`(
+IN correoFK varchar(50), 
+IN codigoProductoFK varchar(4)
+)
+BEGIN
+SELECT  * 
+	FROM	Persona p JOIN ProductoEnCarrito pc ON p.correo =pc.correoFK
+	WHERE	p.correo  =  correoFK AND pc.codigoProductoFK = CONVERT(codigoProductoFK, SIGNED);
+END$$
+
+DELIMITER ;
+
+
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `remove_from_cart`;
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `remove_from_cart`( 
+IN u_correoFK VARCHAR(50),
+IN u_codigoProductoFK varchar(4)
+)
+BEGIN
+delete from ProductoEnCarrito where  correoFK= u_correoFK AND codigoProductoFK=CONVERT(u_codigoProductoFK, SIGNED);
+END$$
+
+DELIMITER ;

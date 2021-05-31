@@ -44,7 +44,7 @@ function add_to_cart_ajax(producto, u_correo) {
         }
     });
 }
-/*
+
 function delete_from_cart_ajax(producto, u_correo) {
     $("#id_codigo_producto").val(producto);
     $("#id_correo").val(u_correo);
@@ -58,7 +58,7 @@ function delete_from_cart_ajax(producto, u_correo) {
             alert(data);
         }
     });
-}*/
+}
 
 /*
 function buy_cart_ajax(producto, u_correo) {
