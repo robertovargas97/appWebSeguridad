@@ -1,5 +1,5 @@
-#include "../utils/utils.h"
-#include "../utils/db_connection.h"
+#include "../../utils/utils.h"
+#include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -21,28 +21,48 @@ const string ENV[26] = {
     "SERVER_NAME", "SERVER_PORT", "SERVER_PROTOCOL",
     "SERVER_SIGNATURE", "SERVER_SOFTWARE", "CONTENT_LENGTH", "HTTP_COOKIE"};
 
-int main(int argc, char const *argv[])
+int main(int argc, const char *argv[], const char *env[])
 {
+
     Utils utils = Utils();
     char *header = "/templates/header.html";
-    char *home = "/templates/home.html";
     char *footer = "/templates/footer.html";
     char *header_content = utils.read_file(header, header_content);
-    char *home_content = utils.read_file(home, home_content);
     char *footer_content = utils.read_file(footer, footer_content);
-
-    DBConnection conn = DBConnection();
-    std::map<string, string> cookies = utils.get_cookies();
-    bool is_signed = conn.verify_session(cookies["Email"], cookies["Password"]);
-
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    utils.get_navbar(is_signed);
-    printf(home_content);
-    printf(footer_content);
 
+    DBConnection conn = DBConnection();
+    DBConnection conn_2 = DBConnection();
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn.verify_session(cookies["Email"], cookies["Password"]);
+    utils.get_navbar(is_signed);
+    string carreoUser = "";
+    string product = "";
+    bool new_product_result = false; //conn.empty_car(correoUser,product);
+
+    if (new_product_result)
+    {
+        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        cout << "<div class=\"container\">";
+        cout << "<h1 class=\"display-4\">Se realizó la compra correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
+        cout << "<hr>";
+        cout << "</div>";
+        cout << "</div>";
+    }
+    else
+    {
+        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        cout << "<div class=\"container\">";
+        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
+        cout << "<hr>";
+        cout << "</div>";
+        cout << "</div>";
+    }
+
+    printf(footer_content);
     free(header_content);
-    free(home_content);
     free(footer_content);
-    return 0;
+
+    return new_product_result;
 }

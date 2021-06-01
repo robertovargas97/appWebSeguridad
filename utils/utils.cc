@@ -157,7 +157,7 @@ void Utils::get_navbar(bool is_signed)
 
     if (is_signed)
     {
-       
+
         cout << "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">";
         cout << "    <button class=\"navbar-toggler\" type=\"button\"";
         cout << "        data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\"";
@@ -191,22 +191,26 @@ void Utils::get_navbar(bool is_signed)
         cout << "    <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\">";
         cout << "        <div class=\"navbar-nav\" id='navbar'>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/home.cgi\" id=\"/\">Inicio<span class=\"sr-only\"></span></a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/add_product.cgi\" id=\"/oficios\">Agregar Producto</a>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/comments.cgi\" id=\"/oficios\">Comentarios</a>";
         cout << "        </div>";
         cout << "    </div>";
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
         cout << "    <li class=\"nav-item\">";
-        cout << "    <a class=\"ml-2 nav-link no-hover\"> Bienvenido(a)</a>";
-        cout << "    </li>";
-        cout << "    <li class=\"nav-item\">";
         cout << "    <a class=\"ml-2 nav-link\" href=\"/appWebSeguridad/login.cgi\">Iniciar sesión<i class=\"fas fa-sign-out-alt\"></i></a>";
-        cout <<"    </li>";
+        cout << "    </li>";
         cout << "    </div>";
         cout << "</nav>";
     }
+}
 
+void Utils::log_app_action(string action, string result, string user)
+{
+    ofstream myfile;
+    myfile.open("example.txt");
+    myfile << "Writing this to a file.\n";
+    myfile.close();
+    return 0;
 }
 
 // int main(int argc, char const *argv[])

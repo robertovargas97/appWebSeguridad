@@ -1,4 +1,5 @@
-#include "../utils/utils.h"
+#include "../../utils/utils.h"
+#include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -23,40 +24,45 @@ const string ENV[26] = {
 int main(int argc, char const *argv[])
 {
 
-    Utils file_reader = Utils();
+    Utils utils = Utils();
     char *header = "/templates/header.html";
-    char *navbar = "/templates/navbar.html";
     char *list_products = "/templates/list_products.html";
     char *footer = "/templates/footer.html";
-    char *header_content = file_reader.read_file(header, header_content);
-    char *navbar_content = file_reader.read_file(navbar, navbar_content);
-    char *list_products_content = file_reader.read_file(list_products, list_products_content);
-    char *footer_content = file_reader.read_file(footer, footer_content);
-
+    char *header_content = utils.read_file(header, header_content);
+    char *list_products_content = utils.read_file(list_products, list_products_content);
+    char *footer_content = utils.read_file(footer, footer_content);
+    char *view_carrito="/appWebSeguridad/view_car.cgi";
+    
+    DBConnection conn_2 = DBConnection();
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
+    
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    printf(navbar_content);
+    utils.get_navbar(is_signed);
     printf(list_products_content);
     cout << "	<body>";
     cout << "<div class=\"container register\">";
-    //DBConnection conn = DBConnection();
-
+    cout << "<p align=\"right\"> <a href= "<< view_carrito <<" class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
+    cout << "<div class=\"row\">";
+    
+    
     char *categoria="" ;
     char *nombre="";
     char *precio = "";
     char *descripcion = "";
-    bool vacio = true;
-    int monto = 0; //to do -> revisar
-    //monto = conn.MontoTotalPorCorreo(correoUser,product);
-    bool carrito = false ;
-    carrito = true;//conn.my_cart(correoUser,product);
-    if ( carrito == true){
+    bool en_carrito = false;
+    bool lista_productos = false;
+    //DBConnection conn = DBConnection();
+    lista_productos = true;//lista_productos = conn.get_allProducts(correoUser,product);
+    if (lista_productos == true){
+    
     	//for ( int i =0; i < carrito.size() ; i++){
 	    	categoria="bi bi-controller" ;
 	    	nombre="Grogu";
 	    	precio = "4000";
 	    	descripcion = "Cute grogu, The Mandalorian Star Wars";
-    
+	    	
 		cout << "<div class=\"col-lg-3\">";
 		cout << "	<div class=\"card\" style=\"width: 18rem;\">";
 		cout << "	  <i class=\""<< categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
@@ -67,28 +73,30 @@ int main(int argc, char const *argv[])
 		cout << "		    <p class=\"card-text\"> "<< descripcion <<"</p>";
 		cout << "		</div>";
 		cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-		cout << "		    <button class=\"btn btn-secondary\">Quitar del carrito</button>";
+		en_carrito = false;// = conn.en_carrito(correoUser,product);
+		if ( en_carrito == true){ // to do -> revisar 
+		cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
+		} else {
+		cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";
+		}
 		cout << "	  	</div>";
 		cout << "	</div>";
 		cout << "</div>";
-	//}
-	cout << "<h1 class=\"display-4\">Monto total a pagar: "<< monto << "</h1>";
-	cout << "<button class=\"btn btn-primary\">Realizar compra</button>";
-	
-	} else {
-		cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        	cout << "<div class=\"container\">";
-        	cout << "<h1 class=\"display-4\">El carrito está vacío<i class=\"fas fa-time-circle text-info\"></i></h1>";	
+	// }
+    }else{
+    		cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        	cout << "	<div class=\"container\">";
+        	cout << "		<h1 class=\"display-4\">No hay productos disponibles<i class=\"fas fa-time-circle text-info\"></i></h1>";	
+        	cout << "	</div>";
         	cout << "</div>";
-        	cout << "</div>";
-	}
+    }
+    cout << "</div>";
     cout <<"</div>";
     cout << "</body>";
     cout << "</html>";
     printf(footer_content);
 
     free(header_content);
-    free(navbar_content);
     free(list_products_content);
     free(footer_content);
     return 0;

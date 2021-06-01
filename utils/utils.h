@@ -1,6 +1,7 @@
 #ifndef Utils_H
 #define Utils_H
 
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -22,6 +23,8 @@
 #include <cgicc/HTMLClasses.h>
 
 #define PATH_MAX 4096
+#define LOGS_PATH "/logs/logs.txt"
+#define ERROR_LOGS_PATH "/logs/error.txt"
 
 using namespace std;
 using namespace CryptoPP;
@@ -40,6 +43,7 @@ public:
     string replace_pattern(string text, string pattern, string new_value);
     std::map<string, string> get_cookies();
     void get_navbar(bool is_signed);
+    void log_app_action(string action, string result, string user);
 };
 
 #endif
