@@ -136,7 +136,7 @@ std::map<string, string> Utils::get_cookies()
     cout << cookies_env;
     // string temp (cookies_env);
 
-    if (cookies_env != null)
+    if (cookies_env != NULL)
     {
         std::vector<string> cookies_list = split(cookies_env, ";");
 
