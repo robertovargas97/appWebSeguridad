@@ -50,8 +50,7 @@ BEGIN
 END$$
 
 
-DELIMITER ;
-
+DELIMITER$$
 -- Add User Procedure --
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `add_user`;
@@ -90,7 +89,6 @@ BEGIN
 
 END$$
 
-DELIMITER ;
 
 -- Procedura to get the user salt
 USE `MarketPlaceDB`$$
@@ -107,7 +105,6 @@ WHERE correo = u_email;
 
 END$$
 
-DELIMITER ;
 
 -- Procedure to verify login
 
@@ -124,8 +121,6 @@ FROM Tabla
 WHERE correo = u_email AND pass = u_pass;
 
 END$$
-
-DELIMITER ;
 
 
 
