@@ -1,5 +1,5 @@
-#include "../utils/utils.h"
-#include "../utils/db_connection.h"
+#include "../../utils/utils.h"
+#include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -26,33 +26,26 @@ int main(int argc, const char *argv[], const char *env[])
 
     Utils utils = Utils();
     char *header = "/templates/header.html";
-    char *navbar = "/templates/navbar.html";
     char *footer = "/templates/footer.html";
     char *header_content = utils.read_file(header, header_content);
-    char *navbar_content = utils.read_file(navbar, navbar_content);
     char *footer_content = utils.read_file(footer, footer_content);
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    printf(navbar_content);
 
     DBConnection conn = DBConnection();
-    map<string, string> form_data = utils.get_post_data();
-    
-    //Generate salt here
-    std::string u_salt = utils.create_salt();
+    DBConnection conn_2 = DBConnection();
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
+    string carreoUser = "";
+    string product = "";
+    bool new_product_result = false; //conn.add_to_car(correoUser,product);
+    utils.get_navbar(is_signed);
 
-    //Encrypt password
-    std::string u_secret = utils.create_hash_sha2( form_data["password"], u_salt );
-
-    bool new_comment_result = conn.add_user( form_data["name"], form_data["last_name"], form_data["email"], u_secret, form_data["phone_number"], form_data["address"], u_salt );
-
-    if (new_comment_result)
+    if (new_product_result)
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Tu usuario ha sido registrado. <i class=\"fas fa-check-square text-info\"></i></h1>";
-        cout << "<hr>";
-        cout << "<a class=\"btn btn-info btn-login mt-4\" href=\"/login.cgi\">Ir a Login</a>";
+        cout << "<h1 class=\"display-4\">El producto fue añadido correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
         cout << "</div>";
         cout << "</div>";
     }
@@ -61,14 +54,12 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
         cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
-        cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
     }
 
     printf(footer_content);
     free(header_content);
-    free(navbar_content);
     free(footer_content);
 
     return new_comment_result;

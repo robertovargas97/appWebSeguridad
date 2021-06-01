@@ -1,5 +1,5 @@
-#include "../utils/utils.h"
-#include "../utils/db_connection.h"
+#include "../../utils/utils.h"
+#include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -25,30 +25,22 @@ int main(int argc, char const *argv[])
 {
     Utils utils = Utils();
     char *header = "/templates/header.html";
-    char *navbar = "/templates/navbar.html";
     char *footer = "/templates/footer.html";
     char *header_content = utils.read_file(header, header_content);
-    char *navbar_content = utils.read_file(navbar, navbar_content);
     char *footer_content = utils.read_file(footer, footer_content);
 
-    cout << "Content-type:text/html\r\n\r\n";
-    cout << header_content;
     DBConnection conn_1 = DBConnection();
     DBConnection conn_2 = DBConnection();
-    map<string, string> form_data = utils.get_post_data();
+    std::map<string, string> form_data = utils.get_post_data();
     string user_salt = conn_1.get_user_salt(form_data["email"]);
     bool is_valid_login = conn_2.verify_login(form_data["email"], form_data["password"], user_salt);
 
+    cout << "Content-type:text/html\r\n\r\n";
+    cout << header_content;
+    utils.get_navbar(is_valid_login);
+
     if (is_valid_login)
     {
-        // string new_navbar = utils.replace_pattern(navbar_content, "REMOVE-->", "");
-        // new_navbar = utils.replace_pattern(new_navbar, "<!--REMOVE", "");
-        // cout << new_navbar << endl;verify_login
-        // cout << "<script>" << endl;
-        // cout << "alert(\" Login Successful \");" << endl;
-        // // cout << "window.location.replace('http://" << serverIP << "/cgi-bin/Wall/Wall?id=" << id << "');" << endl;
-        // cout << "</script>" << endl;
-        cout << navbar_content;
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent mt-4 mb-4\">";
         cout << "<div class=\"container\">";
         cout << "<h1 class=\"display-4\">Has iniciado sesión correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
@@ -59,10 +51,10 @@ int main(int argc, char const *argv[])
         cout << "</div>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("login", "success", form_data["email"]);
     }
     else
     {
-        cout << navbar_content;
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent mt-4 mb-4\">";
         cout << "<div class=\"container\">";
         cout << "<h1 class=\"display-4\">Usuario y/o contraseña incorrectos. Intentalo de nuevo <i class=\"fas fa-info-circle text-info\"></i></h1>";
@@ -73,11 +65,11 @@ int main(int argc, char const *argv[])
         cout << "</div>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("login", "error", form_data["email"], "Email or password incorrect");
     }
 
     cout << footer_content;
     free(header_content);
-    free(navbar_content);
     free(footer_content);
     return 0;
 }

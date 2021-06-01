@@ -142,6 +142,40 @@ bool DBConnection::verify_login(string email, string password, string salt)
             {
                 matching_email = row[0]; // salt from the db
                 response = true;
+
+                cout << "Set-Cookie:Email=" + email + ";\r\n";
+                cout << "Set-Cookie:Password=" + password_hash + ";\r\n";
+                cout << "Set-Cookie:Domain=localhost;\r\n";
+            }
+            else
+            {
+
+                cout << "Set-Cookie:Email=null;\r\n";
+                cout << "Set-Cookie:Password=null;\r\n";
+                cout << "Set-Cookie:Domain=null;\r\n";
+            }
+        }
+        mysql_free_result(result);
+    }
+
+    return response;
+}
+
+bool DBConnection::verify_session(string email, string password)
+{
+    Utils utils = Utils();
+    bool response = false;
+    string query = "call verify_login('" + email + "'," + "'" + password + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (result) //Checks if we got results
+        {
+            MYSQL_ROW row = mysql_fetch_row(result);
+            if (row != 0)
+            {
+                response = true;
             }
         }
         mysql_free_result(result);

@@ -1,4 +1,5 @@
-#include "../utils/utils.h"
+#include "../../utils/utils.h"
+#include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -23,20 +24,22 @@ const string ENV[26] = {
 int main(int argc, char const *argv[])
 {
 
-    Utils file_reader = Utils();
+    Utils utils = Utils();
     char *header = "/templates/header.html";
-    char *navbar = "/templates/navbar.html";
     char *list_products = "/templates/list_products.html";
     char *footer = "/templates/footer.html";
-    char *header_content = file_reader.read_file(header, header_content);
-    char *navbar_content = file_reader.read_file(navbar, navbar_content);
-    char *list_products_content = file_reader.read_file(list_products, list_products_content);
-    char *footer_content = file_reader.read_file(footer, footer_content);
+    char *header_content = utils.read_file(header, header_content);
+    char *list_products_content = utils.read_file(list_products, list_products_content);
+    char *footer_content = utils.read_file(footer, footer_content);
     char *view_carrito="/view_car.cgi";
-
+    
+    DBConnection conn_2 = DBConnection();
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
+    
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    printf(navbar_content);
+    utils.get_navbar(is_signed);
     printf(list_products_content);
     cout << "	<body>";
     cout << "<div class=\"container register\">";
@@ -94,7 +97,6 @@ int main(int argc, char const *argv[])
     printf(footer_content);
 
     free(header_content);
-    free(navbar_content);
     free(list_products_content);
     free(footer_content);
     return 0;

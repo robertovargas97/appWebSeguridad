@@ -1,4 +1,5 @@
-#include "../utils/utils.h"
+#include "../../utils/utils.h"
+#include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
 #include <algorithm>
@@ -23,25 +24,25 @@ const string ENV[26] = {
 int main(int argc, char const *argv[])
 {
 
-    Utils file_reader = Utils();
+    Utils utils = Utils();
     char *header = "/templates/header.html";
-    char *navbar = "/templates/navbar.html";
-    char *login = "/templates/register.html";
+    char *home = "/templates/comments.html";
     char *footer = "/templates/footer.html";
-    char *header_content = file_reader.read_file(header, header_content);
-    char *navbar_content = file_reader.read_file(navbar, navbar_content);
-    char *login_content = file_reader.read_file(login, login_content);
-    char *footer_content = file_reader.read_file(footer, footer_content);
+    char *header_content = utils.read_file(header, header_content);
+    char *home_content = utils.read_file(home, home_content);
+    char *footer_content = utils.read_file(footer, footer_content);
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    printf(navbar_content);
-    printf(login_content);
+    DBConnection conn = DBConnection();
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn.verify_session(cookies["Email"], cookies["Password"]);
+    utils.get_navbar(is_signed);
+    printf(home_content);
     printf(footer_content);
 
     free(header_content);
-    free(navbar_content);
-    free(login_content);
+    free(home_content);
     free(footer_content);
     return 0;
 }
