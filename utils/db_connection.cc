@@ -280,6 +280,33 @@ vector<vector<string> > DBConnection::get_all_products(){
     return product_list;
 }
 
+vector<vector<string> > DBConnection::search_product(string product){
+    vector<vector<string>> product_list;  
+    string query = "call search_product('" + product + "')";           
+    if (mysql_query(mysql, query.c_str())) {
+      printf("Query failed: %s\n", mysql_error(mysql));
+    } else {
+      MYSQL_RES *result = mysql_store_result(mysql);
+
+      if (!result) {
+        printf("Couldn't get results set: %s\n", mysql_error(mysql));
+      } else {
+        MYSQL_ROW row;
+        int i;
+        unsigned int num_fields = mysql_num_fields(result);                                           
+        while ((row = mysql_fetch_row(result))) {
+            vector<string> prod;
+          for (i = 0; i < num_fields; i++) {
+                prod.push_back(row[i]);                             
+            }
+          product_list.push_back(prod);
+        }
+        mysql_free_result(result);
+      }
+    }
+    return product_list;
+}
+
 
 
 //  int main()

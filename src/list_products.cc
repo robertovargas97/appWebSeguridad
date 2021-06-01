@@ -44,6 +44,22 @@ int main(int argc, char const *argv[])
     cout << "<div class=\"container register\">";
     cout << "<br/>";
     cout << "<p align=\"right\"> <a href= " << view_carrito << " class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
+    
+
+    cout<<"<div>";
+         cout << " <div class=\"input-group .center\">";
+        cout<< "<div class=\"form-outline\">";
+        cout<< "<input type=\"search\" id=\"form1\" class=\"form-control\" />";
+        cout<<"<label class=\"form-label\" for=\"form1\">Search</label>";
+        cout<<"</div>";
+        cout<<"<button type=\"button\" class=\"btn btn-primary\">";
+        cout<<"<i class=\"fas fa-search\"></i>";
+        cout<<"</button>";
+        cout<<"</div>";
+        cout<<"</br>";
+    cout<<"</div>";
+    
+    
     cout << "<div class=\"row\">";
     string correo = "hellen@gmail.com";
     string categoria = "";
@@ -90,7 +106,9 @@ int main(int argc, char const *argv[])
 	// 	cout << "    <th class=\"col-md-3 col-xs-3\">Añadir</th>";
 	// 	cout << "  </tr>";
 	// 	cout << "</thead> ";
-	// 	cout << " <tbody>";
+	// 	// 	cout << " <tbody>";
+     	
+
 	if (lista_productos.size() != 0)
     {
 		

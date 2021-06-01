@@ -187,3 +187,19 @@ delete from ProductoEnCarrito where  correoFK= u_correoFK AND codigoProductoFK=C
 END$$
 
 DELIMITER ;
+
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `search_product`;
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `search_product`(
+in producto varchar(50) )
+BEGIN
+SELECT * FROM MarketPlaceDB.Producto where nombre like CONCAT('%',producto,'%');
+END$$
+
+DELIMITER ;
+
+
+
