@@ -51,6 +51,7 @@ int main(int argc, char const *argv[])
         cout << "</div>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("login", "success", form_data["email"]);
     }
     else
     {
@@ -64,6 +65,7 @@ int main(int argc, char const *argv[])
         cout << "</div>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("login", "error", form_data["email"], "Email or password incorrect");
     }
 
     cout << footer_content;

@@ -204,11 +204,31 @@ void Utils::get_navbar(bool is_signed)
     }
 }
 
-void Utils::log_app_action(string action, string result, string user)
+void Utils::log_app_action(string action, string result, string user, string description)
 {
+
+    auto end = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+    string log_path = "";
+    string message = "";
+    if (result == "success")
+    {
+        log_path = LOGS_PATH;
+        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time)  +"\n";
+    }
+    else
+    {
+
+        log_path = ERROR_LOGS_PATH;
+        message = "Action: " + action  +" -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
+    }
+
     ofstream myfile;
-    myfile.open("example.txt");
-    myfile << "Writing this to a file.\n";
+    myfile.open(log_path);
+    // cout << message << "\n";
+    // cout << log_path << "\n";
+    myfile << message;
     myfile.close();
 }
 
@@ -220,9 +240,9 @@ void Utils::log_app_action(string action, string result, string user)
 //     // cout << salt << endl;
 //     // string hash = u.create_hash_sha2("pass", salt);
 //     // cout << hash << endl;
-//     char *content = nullptr;
-//     string content_2 = u.get_navbar(false);
-//     cout << content_2;
+
+//     u.log_app_action("login", "error", "form_data", "Email or password incorrect");
+
 //     // free(content);
 
 //     return 0;
