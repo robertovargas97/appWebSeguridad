@@ -45,11 +45,12 @@ int main(int argc, char const *argv[])
     cout << "<br/>";
     cout << "<p align=\"right\"> <a href= " << view_carrito << " class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
     
-
+    cout<<"<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" id=\"search_product_form\">";
     cout<<"<div>";
          cout << " <div class=\"input-group .center\">";
-        cout<< "<div class=\"form-outline\">";
-        cout<< "<input type=\"search\" id=\"form1\" class=\"form-control\" />";
+        //cout<< "<div class=\"form-outline\">";
+        cout<<"<div class=\"form-group\">";
+        cout<< "<input type=\"search\" id=\"product_to_search\" name=\"product_to_search\" class=\"form-control\" />";
         cout<<"<label class=\"form-label\" for=\"form1\">Search</label>";
         cout<<"</div>";
         cout<<"<button type=\"button\" class=\"btn btn-primary\">";
@@ -58,7 +59,8 @@ int main(int argc, char const *argv[])
         cout<<"</div>";
         cout<<"</br>";
     cout<<"</div>";
-    
+    cout<<"</form>";
+
     
     cout << "<div class=\"row\">";
     string correo = "hellen@gmail.com";

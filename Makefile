@@ -35,9 +35,11 @@ utils: utils/utils.cc
 	g++ utils/utils.cc -o utils.cgi -w  -lcryptopp -std=c++11
 
 list_products: src/list_products.cc utils/utils.cc src/select_product.cc
+	g++ src/search_product.cc utils/utils.cc  utils/db_connection.cc  -o search_product.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
 	g++ src/list_products.cc utils/product.cc utils/utils.cc  utils/db_connection.cc  -o list_products.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
 	g++ src/select_product.cc utils/utils.cc  utils/db_connection.cc  -o select_product.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
 	g++ src/delete_from_car.cc utils/utils.cc  utils/db_connection.cc  -o delete_from_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp
+
 	
 view_car: src/view_car.cc utils/utils.cc
 	g++ src/view_car.cc  utils/product.cc  utils/utils.cc utils/db_connection.cc  -o view_car.cgi -w  `mysql_config --cflags --libs`  -std=c++11 -lcryptopp

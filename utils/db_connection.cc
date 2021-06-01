@@ -239,20 +239,6 @@ bool DBConnection::empty_cart(string email, string code_product)
 } 
 
 
-
-
-/* bool DBConnection::add_product(string name, string price, string description, string category)
-{
-    bool response = false;
-    //const int price_query = stoi(*price);
-    string query = "call add_product('" + name + "'," + "'" + price + "'," + "'" + description + "'," + "'" + category + "'" + ");";
-    if (mysql_query(mysql, query.c_str()) == 0)
-    {
-        response = true;
-    }
-    return response;
-} */
-
 vector<vector<string> > DBConnection::get_all_products(){
     vector<vector<string>> product_list;  
     string query = "call get_all_products";           
@@ -309,18 +295,22 @@ vector<vector<string> > DBConnection::search_product(string product){
 
 
 
-//  int main()
-//   {
-//      DBConnection conn = DBConnection();
-//      bool exito = conn.exist_in_cart("hellen@gmail.com", "7");
-//      if(exito){
-//          printf("Exito");
-//      }
-//      else{
-//          printf("No sirvio");
-//      }
-//      return 1;
-//   }
+//   int main()
+//    {
+//       DBConnection conn = DBConnection();
+//       vector<vector<string> > resultado = conn.search_product("plancha");
+//       bool exito = false;
+//       if(resultado.size()>0){
+//           exito = true;
+//       }
+//       if(exito){
+//           printf("\nExito\n");
+//       }
+//       else{
+//           printf("\nNo sirvio\n");
+//       }
+//       return 1;
+//    }
 
 //     // }
 //     // /* bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");

@@ -144,6 +144,8 @@ END$$
 
 DELIMITER ;
 
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `get_my_cart`;
 DELIMITER $$
 USE `MarketPlaceDB`$$
 CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `get_my_cart`(
@@ -197,6 +199,17 @@ CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `search_product`(
 in producto varchar(50) )
 BEGIN
 SELECT * FROM MarketPlaceDB.Producto where nombre like CONCAT('%',producto,'%');
+END$$
+
+DELIMITER ;
+
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `get_all_products`;
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `get_all_products`()
+BEGIN
+SELECT * FROM Producto;
 END$$
 
 DELIMITER ;
