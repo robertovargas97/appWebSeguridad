@@ -31,12 +31,11 @@ int main(int argc, char const *argv[])
     char *home_content = utils.read_file(home, home_content);
     char *footer_content = utils.read_file(footer, footer_content);
 
+    printf("Content-type:text/html\r\n\r\n");
+    printf(header_content);
     DBConnection conn = DBConnection();
     std::map<string, string> cookies = utils.get_cookies();
     bool is_signed = conn.verify_session(cookies["Email"], cookies["Password"]);
-
-    printf("Content-type:text/html\r\n\r\n");
-    printf(header_content);
     utils.get_navbar(is_signed);
     printf(home_content);
     printf(footer_content);
