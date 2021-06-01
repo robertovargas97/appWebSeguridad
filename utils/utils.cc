@@ -129,23 +129,29 @@ string Utils::create_hash_sha2(string password, string salt)
 std::map<string, string> Utils::get_cookies()
 {
     std::map<string, string> cookies;
+    cookies["Email"] = "fail";
+    cookies["Password"] = "fail";
     std::vector<string> cookie;
-    string cookies_env = getenv("HTTP_COOKIE");
-    std::vector<string> cookies_list = split(cookies_env, ";");
+    char *cookies_env = getenv("HTTP_COOKIE");
 
-    for (int i = 0; i < cookies_list.size(); ++i)
+    if (cookies_env != NULL)
     {
+        std::vector<string> cookies_list = split(cookies_env, ";");
 
-        cookie = split(cookies_list[i], "=");
-
-        if (cookie[0].find(char(32)) != std::string::npos)
+        for (int i = 0; i < cookies_list.size(); ++i)
         {
-            cookie[0].erase(cookie[0].find(char(32)), 1);
-        }
 
-        if (cookie[0] == "Email" || cookie[0] == "Password")
-        {
-            cookies[cookie[0]] = cookie[1];
+            cookie = split(cookies_list[i], "=");
+
+            if (cookie[0].find(char(32)) != std::string::npos)
+            {
+                cookie[0].erase(cookie[0].find(char(32)), 1);
+            }
+
+            if (cookie[0] == "Email" || cookie[0] == "Password")
+            {
+                cookies[cookie[0]] = cookie[1];
+            }
         }
     }
 
@@ -215,13 +221,13 @@ void Utils::log_app_action(string action, string result, string user, string des
     if (result == "success")
     {
         log_path = LOGS_PATH;
-        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time)  +"\n";
+        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time) + "\n";
     }
     else
     {
 
         log_path = ERROR_LOGS_PATH;
-        message = "Action: " + action  +" -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
+        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
     }
 
     ofstream myfile;
