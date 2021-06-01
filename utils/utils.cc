@@ -210,7 +210,6 @@ void Utils::log_app_action(string action, string result, string user)
     myfile.open("example.txt");
     myfile << "Writing this to a file.\n";
     myfile.close();
-    return 0;
 }
 
 // int main(int argc, char const *argv[])
