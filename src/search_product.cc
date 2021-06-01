@@ -48,12 +48,10 @@ int main(int argc, char const *argv[])
     cout<<"<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" id=\"search_product_form\">";
     cout<<"<div>";
          cout << " <div class=\"input-group .center\">";
-        //cout<< "<div class=\"form-outline\">";
         cout<<"<div class=\"form-group\">";
-        cout<< "<input type=\"search\" id=\"product_to_search\" name=\"product_to_search\" class=\"form-control\" />";
-        cout<<"<label class=\"form-label\" for=\"form1\">Search</label>";
+        cout<< "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" class=\"form-control\" placeholder=\"Buscar\"/>";
         cout<<"</div>";
-        cout<<"<button type=\"button\" class=\"btn btn-primary\">";
+        cout<<"<button type=\"submit\" class=\"btn btn-primary\">";
         cout<<"<i class=\"fas fa-search\"></i>";
         cout<<"</button>";
         cout<<"</div>";
@@ -68,13 +66,16 @@ int main(int argc, char const *argv[])
     string nombre = "";
     string precio = "";
     string descripcion = "";
-    bool esta_en_carrito = false;
+    string esta_en_carrito = "false";
     string codigo_producto = "5";
 
     vector<vector<string>> lista_productos;
 
     DBConnection conn = DBConnection();
-    lista_productos = conn.search_product("plancha");
+    map<string, string> form_data = file_reader.get_post_data();
+    //cout<<"form_data["search_product_form"]";
+    lista_productos = conn.search_product(form_data["product_to_search"]);
+    //lista_productos = conn.search_product("agua");
    
      	
 
@@ -124,7 +125,7 @@ int main(int argc, char const *argv[])
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
             esta_en_carrito = conn.exist_in_cart("hellen@gmail.com", "7");
             cout<<esta_en_carrito<<endl;
-            if (esta_en_carrito)
+            if (esta_en_carrito=="true")
             { // existe
                 cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
             }

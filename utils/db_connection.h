@@ -33,7 +33,7 @@ public:
     bool verify_login(string email, string password, string salt);
     vector<vector<string> > get_all_products();
     vector<vector<string> >search_product(string product);
-    bool exist_in_cart(string email,string code_product);
+    string exist_in_cart(string email,string code_product);
     vector<vector<string> > get_my_cart(string email);
     bool add_to_cart(string email, string code_product);
     bool delete_from_cart(string email, string code_product);

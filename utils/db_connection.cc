@@ -153,9 +153,9 @@ bool DBConnection::verify_login(string email, string password, string salt)
 }
 
 
-bool DBConnection::exist_in_cart(string email,string code_product)
+string  DBConnection::exist_in_cart(string email,string code_product)
 {
-    bool response = false; //  no existe
+    string response = "false"; //  no existe
     string query = "call exists_product_in_cart('" + email + "'," + code_product +");";
     if (mysql_query(mysql, query.c_str())) {
       //printf("Query failed: %s\n", mysql_error(mysql));
@@ -167,7 +167,7 @@ bool DBConnection::exist_in_cart(string email,string code_product)
       } else {
         MYSQL_ROW row = mysql_fetch_row(result);
         if ( row  != 0){
-            response = true;
+            response = "true";
         }
         mysql_free_result(result);
       }
