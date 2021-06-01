@@ -1,3 +1,10 @@
+CREATE DATABASE MarketPlaceDB;
+
+CREATE USER `seguridad`@`localhost` IDENTIFIED BY 's3cur3@pr0j3ct';
+
+GRANT ALL PRIVILEGES ON *.* TO `seguridad`@`localhost` IDENTIFIED BY 'password1';
+
+
 CREATE TABLE Persona(
 
 correo VARCHAR(50) NOT NULL,
