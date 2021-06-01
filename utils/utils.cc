@@ -132,8 +132,11 @@ std::map<string, string> Utils::get_cookies()
     cookies["Email"] = "";
     cookies["Password"] = "";
     std::vector<string> cookie;
-    string cookies_env = getenv("HTTP_COOKIE");
-    if (cookies_env.size() > 0)
+    char *cookies_env = getenv("HTTP_COOKIE");
+    cout << cookies_env;
+    // string temp (cookies_env);
+
+    if (cookies_env != null)
     {
         std::vector<string> cookies_list = split(cookies_env, ";");
 
@@ -237,18 +240,19 @@ void Utils::get_navbar(bool is_signed)
 //     myfile.close();
 // }
 
-// int main(int argc, char const *argv[])
-// {
-//     Utils u = Utils();
+int main(int argc, char const *argv[])
+{
+    Utils u = Utils();
+    std::map<string, string> cookies = u.get_cookies();
 
-//     // string salt = u.create_salt();
-//     // cout << salt << endl;
-//     // string hash = u.create_hash_sha2("pass", salt);
-//     // cout << hash << endl;
+    // string salt = u.create_salt();
+    // cout << salt << endl;
+    // string hash = u.create_hash_sha2("pass", salt);
+    // cout << hash << endl;
 
-//     u.log_app_action("login", "error", "form_data", "Email or password incorrect");
+    // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
 
-//     // free(content);
+    // free(content);
 
-//     return 0;
-// }
+    return 0;
+}
