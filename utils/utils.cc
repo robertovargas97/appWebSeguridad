@@ -238,21 +238,21 @@ void Utils::get_navbar(bool is_signed)
 //     myfile.close();
 // }
 
-int main(int argc, char const *argv[])
-{
-    Utils u = Utils();
-    std::map<string, string> cookies = u.get_cookies();
-    cout << cookies["Email"];
-    cout << cookies["Password"];
+// int main(int argc, char const *argv[])
+// {
+//     Utils u = Utils();
+//     std::map<string, string> cookies = u.get_cookies();
+//     cout << cookies["Email"];
+//     cout << cookies["Password"];
 
-    // string salt = u.create_salt();
-    // cout << salt << endl;
-    // string hash = u.create_hash_sha2("pass", salt);
-    // cout << hash << endl;
+//     // string salt = u.create_salt();
+//     // cout << salt << endl;
+//     // string hash = u.create_hash_sha2("pass", salt);
+//     // cout << hash << endl;
 
-    // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
+//     // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
 
-    // free(content);
+//     // free(content);
 
-    return 0;
-}
+//     return 0;
+// }
