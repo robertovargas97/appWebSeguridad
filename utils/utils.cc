@@ -204,33 +204,33 @@ void Utils::get_navbar(bool is_signed)
     }
 }
 
-void Utils::log_app_action(string action, string result, string user, string description)
-{
+// void Utils::log_app_action(string action, string result, string user, string description)
+// {
 
-    auto end = std::chrono::system_clock::now();
-    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+//     auto end = std::chrono::system_clock::now();
+//     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
-    string log_path = "";
-    string message = "";
-    if (result == "success")
-    {
-        log_path = LOGS_PATH;
-        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time)  +"\n";
-    }
-    else
-    {
+//     string log_path = "";
+//     string message = "";
+//     if (result == "success")
+//     {
+//         log_path = LOGS_PATH;
+//         message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time)  +"\n";
+//     }
+//     else
+//     {
 
-        log_path = ERROR_LOGS_PATH;
-        message = "Action: " + action  +" -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
-    }
+//         log_path = ERROR_LOGS_PATH;
+//         message = "Action: " + action  +" -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
+//     }
 
-    ofstream myfile;
-    myfile.open(log_path);
-    // cout << message << "\n";
-    // cout << log_path << "\n";
-    myfile << message;
-    myfile.close();
-}
+//     ofstream myfile;
+//     myfile.open(log_path);
+//     // cout << message << "\n";
+//     // cout << log_path << "\n";
+//     myfile << message;
+//     myfile.close();
+// }
 
 // int main(int argc, char const *argv[])
 // {
