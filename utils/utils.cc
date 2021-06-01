@@ -131,23 +131,27 @@ std::map<string, string> Utils::get_cookies()
     std::map<string, string> cookies;
     std::vector<string> cookie;
     string cookies_env = getenv("HTTP_COOKIE");
-    std::vector<string> cookies_list = split(cookies_env, ";");
-
-    for (int i = 0; i < cookies_list.size(); ++i)
+    cookies["Email"] = "";
+    cookies["Password"] = "";
+    if (cookies_env.size() > 0)
     {
-
-        cookie = split(cookies_list[i], "=");
-
-        if (cookie[0].find(char(32)) != std::string::npos)
+        for (int i = 0; i < cookies_list.size(); ++i)
         {
-            cookie[0].erase(cookie[0].find(char(32)), 1);
-        }
 
-        if (cookie[0] == "Email" || cookie[0] == "Password")
-        {
-            cookies[cookie[0]] = cookie[1];
+            cookie = split(cookies_list[i], "=");
+
+            if (cookie[0].find(char(32)) != std::string::npos)
+            {
+                cookie[0].erase(cookie[0].find(char(32)), 1);
+            }
+
+            if (cookie[0] == "Email" || cookie[0] == "Password")
+            {
+                cookies[cookie[0]] = cookie[1];
+            }
         }
     }
+    std::vector<string> cookies_list = split(cookies_env, ";");
 
     return cookies;
 }
