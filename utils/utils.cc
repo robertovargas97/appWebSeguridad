@@ -133,8 +133,7 @@ std::map<string, string> Utils::get_cookies()
     cookies["Password"] = "";
     std::vector<string> cookie;
     char *cookies_env = getenv("HTTP_COOKIE");
-    cout << cookies_env;
-    // string temp (cookies_env);
+    ;
 
     if (cookies_env != NULL)
     {
@@ -244,6 +243,8 @@ int main(int argc, char const *argv[])
 {
     Utils u = Utils();
     std::map<string, string> cookies = u.get_cookies();
+    cout << cookies["Email"];
+    cout << cookies["Password"];
 
     // string salt = u.create_salt();
     // cout << salt << endl;
