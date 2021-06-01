@@ -6,7 +6,6 @@ DROP procedure IF EXISTS `add_comment`;
 
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `MarketPlaceDB`.`add_comment`;
-;
 
 DELIMITER $$
 USE `MarketPlaceDB`$$
@@ -52,7 +51,6 @@ END$$
 
 
 DELIMITER ;
-;
 
 -- Add User Procedure --
 USE `MarketPlaceDB`;
@@ -60,7 +58,6 @@ DROP procedure IF EXISTS `add_user`;
 
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `MarketPlaceDB`.`add_user`;
-;
 
 DELIMITER $$
 USE `MarketPlaceDB`$$
@@ -94,7 +91,6 @@ BEGIN
 END$$
 
 DELIMITER ;
-;
 
 -- Procedura to get the user salt
 USE `MarketPlaceDB`$$
