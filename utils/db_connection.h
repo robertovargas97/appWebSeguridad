@@ -3,10 +3,12 @@
 
 #include "utils.h"
 #include "config.h"
+#include "product.h"
 #include <mysql/mysql.h>
 #include "host_settings.h"
 #include <stdlib.h>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <cstdlib>
 #include <stdio.h>
@@ -30,9 +32,16 @@ public:
     string get_user_salt(string password);
     bool verify_login(string email, string password, string salt);
     bool verify_session(string email, string password);
+    vector<vector<string>> get_all_products();
+    bool exist_in_cart(string email, string code_product);
+    vector<vector<string>> get_my_cart(string email);
+    bool add_to_cart(string email, string code_product);
+    bool delete_from_cart(string email, string code_product);
+    bool empty_cart(string email, string code_product);
 
 private:
     MYSQL *mysql = NULL;
+    Utils utils = Utils();
 };
 
 #endif

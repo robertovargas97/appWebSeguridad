@@ -26,22 +26,23 @@ int main(int argc, const char *argv[], const char *env[])
 
     Utils utils = Utils();
     char *header = "/templates/header.html";
+
     char *footer = "/templates/footer.html";
     char *header_content = utils.read_file(header, header_content);
+
     char *footer_content = utils.read_file(footer, footer_content);
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-
-    DBConnection conn = DBConnection();
     DBConnection conn_2 = DBConnection();
     std::map<string, string> cookies = utils.get_cookies();
-    bool is_signed = conn.verify_session(cookies["Email"], cookies["Password"]);
+    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
-    string carreoUser = "";
-    string product = "";
-    bool new_product_result = false; //conn.empty_car(correoUser,product);
 
-    if (new_product_result)
+    DBConnection conn = DBConnection();
+    std::map<string, string> form_data = utils.get_post_data();
+    bool buy_car_result = true; // conn.buy_cart( form_data["correo"]);
+
+    if (buy_car_result)
     {
         cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
         cout << "<div class=\"container\">";
@@ -49,6 +50,7 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("buy products", "success", cookies["email"]);
     }
     else
     {
@@ -58,11 +60,12 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("buy products", "error", cookies["email"], "There was a problem while processing the order");
     }
 
     printf(footer_content);
     free(header_content);
     free(footer_content);
 
-    return new_product_result;
+    return buy_car_result;
 }

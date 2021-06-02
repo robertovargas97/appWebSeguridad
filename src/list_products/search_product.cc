@@ -25,13 +25,13 @@ const string ENV[26] = {
 int main(int argc, char const *argv[])
 {
 
-    Utils utils = Utils();
+    Utils file_reader = Utils();
     char *header = "/templates/header.html";
     char *list_products = "/templates/list_products.html";
     char *footer = "/templates/footer.html";
-    char *header_content = utils.read_file(header, header_content);
-    char *list_products_content = utils.read_file(list_products, list_products_content);
-    char *footer_content = utils.read_file(footer, footer_content);
+    char *header_content = file_reader.read_file(header, header_content);
+    char *list_products_content = file_reader.read_file(list_products, list_products_content);
+    char *footer_content = file_reader.read_file(footer, footer_content);
     char *view_carrito = "/appWebSeguridad/view_car.cgi";
 
     printf("Content-type:text/html\r\n\r\n");
@@ -47,6 +47,7 @@ int main(int argc, char const *argv[])
     {
         cout << "<p align=\"right\"> <a href= " << view_carrito << " class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
     }
+
     cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" id=\"search_product_form\">";
     cout << "<div>";
     cout << " <div class=\"input-group .center\">";
@@ -70,14 +71,18 @@ int main(int argc, char const *argv[])
     string esta_en_carrito = "false";
     string codigo_producto = "5";
 
-    vector<vector<string>> my_cart;
+    vector<vector<string>> lista_productos;
 
     DBConnection conn = DBConnection();
+    map<string, string> form_data = file_reader.get_post_data();
+    //cout<<"form_data["search_product_form"]";
+    lista_productos = conn.search_product(form_data["product_to_search"]);
+    //lista_productos = conn.search_product("agua");
 
-    vector<vector<string>> lista_productos = conn.get_all_products();
     if (lista_productos.size() != 0)
     {
 
+        //int num=0;
         for (int i = 0; i < lista_productos.size(); i++)
         {
             categoria = lista_productos[i][4];
@@ -85,6 +90,25 @@ int main(int argc, char const *argv[])
             nombre = lista_productos[i][1];
             precio = lista_productos[i][2];
             descripcion = lista_productos[i][3];
+            //  num=i+1;
+
+            //       cout << "<tr>";
+            //       cout << "<th scope=\"row\">"<<num<<"</th>";
+            //       cout << "<td class=\"center aligned\"> ";
+            //       cout << "<i class=\"fas fa-gamepad\"></i>";
+            //       cout <<" </td> ";
+            //       cout << "<td>"<<nombre<<"</td>";
+            //       cout << "<td>"<< precio <<"</td>";
+            //       cout << "<td>"<<descripcion<<"</td>";
+            //      cout << "<td>";
+            //      en_carrito = conn.exist_in_cart(correo, codigo_producto);
+            //      if (en_carrito == false){ // existe
+            // 		cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > + </button>";
+            // 	}else{//no existe
+            // 		cout << "<button class=\"btn btn-primary\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> + </button>";
+            // 	    }
+            //    cout << "</td>";
+            //    cout << "</tr>";
 
             cout << "<div class=\"col-lg-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
@@ -96,12 +120,20 @@ int main(int argc, char const *argv[])
             cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
             cout << "		</div>";
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-
-            if (is_signed)
-            {
-                cout << "<button class=\"btn btn-primary\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+            esta_en_carrito = conn.exist_in_cart("hellen@gmail.com", "7");
+            cout << esta_en_carrito << endl;
+            if (esta_en_carrito == "true")
+            { // existe
+                cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
             }
-
+            else
+            {
+                if (is_signed)
+                {
+                    //no existe
+                    cout << "<button class=\"btn btn-primary\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+                }
+            }
             cout << "	  	</div>";
             cout << "	</div>";
             cout << "</div>";
@@ -114,8 +146,12 @@ int main(int argc, char const *argv[])
         cout << "		<h1 class=\"display-4\">No hay productos disponibles<i class=\"fas fa-time-circle text-info\"></i></h1>";
         cout << "	</div>";
         cout << "</div>";
+        //cout << "  <tr class=\"warning no-result\">";
+        // cout << "    <td colspan=\"4\"><i class=\"fa fa-warning\"></i> No resulto</td>";
+        // cout << "  </tr>";
     }
-
+    //cout << "</tbody>";
+    //cout << "</table>";
     cout << "</div>";
     cout << "</div>";
 

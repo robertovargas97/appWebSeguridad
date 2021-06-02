@@ -1,0 +1,2 @@
+Action: db connection -- User: - -- Result: error -- Error description: PROCEDURE testdb.get_all_products does not exist -- Datetime: Tue Jun  1 21:17:14 2021
+

@@ -130,7 +130,7 @@ std::map<string, string> Utils::get_cookies()
 {
     std::map<string, string> cookies;
     cookies["Email"] = "guest";
-    cookies["Password"] = "null";
+    cookies["Password"] = "none";
     std::vector<string> cookie;
     char *cookies_env = getenv("HTTP_COOKIE");
 

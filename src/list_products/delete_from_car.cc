@@ -24,14 +24,15 @@ const string ENV[26] = {
 int main(int argc, const char *argv[], const char *env[])
 {
 
+
     Utils utils = Utils();
     DBConnection conn = DBConnection();
     char *header = "/templates/header.html";
     char *header_content = utils.read_file(header, header_content);
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
-    map<string, string> form_data = utils.get_post_data();
-    bool add_product_to_cart_result = conn.add_to_cart( form_data["correo"], form_data["producto"]);
+    std::map<string, string> form_data = utils.get_post_data();
+    bool delete_from_cart_result = conn.delete_from_cart( form_data["correo"], form_data["producto"]);
     free(header_content);
 
     return 1;
