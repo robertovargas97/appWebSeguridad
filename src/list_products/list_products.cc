@@ -32,7 +32,6 @@ int main(int argc, char const *argv[])
     char *header_content = utils.read_file(header, header_content);
     char *list_products_content = utils.read_file(list_products, list_products_content);
     char *footer_content = utils.read_file(footer, footer_content);
-    char *view_carrito = "/appWebSeguridad/view_car.cgi";
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
@@ -41,22 +40,8 @@ int main(int argc, char const *argv[])
     bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
 
-    cout << "<div class=\"container register\">";
+    cout << "<div class=\"container register mt-4\">";
     cout << "<br/>";
-   
-    cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" id=\"search_product_form\">";
-    cout << "<div>";
-    cout << " <div class=\"input-group .center\">";
-    cout << "<div class=\"form-group\">";
-    cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" class=\"form-control\" placeholder=\"Buscar\"/>";
-    cout << "</div>";
-    cout << "<button type=\"submit\" class=\"btn btn-primary\">";
-    cout << "<i class=\"fas fa-search\"></i>";
-    cout << "</button>";
-    cout << "</div>";
-    cout << "</br>";
-    cout << "</div>";
-    cout << "</form>";
 
     cout << "<div class=\"row\">";
     string correo = cookies["Email"];
@@ -70,10 +55,12 @@ int main(int argc, char const *argv[])
     vector<vector<string>> my_cart;
 
     DBConnection conn = DBConnection();
+    DBConnection conn_3 = DBConnection();
 
     vector<vector<string>> lista_productos = conn.get_all_products();
     if (lista_productos.size() != 0)
     {
+     
 
         for (int i = 0; i < lista_productos.size(); i++)
         {
@@ -83,20 +70,30 @@ int main(int argc, char const *argv[])
             precio = lista_productos[i][2];
             descripcion = lista_productos[i][3];
 
-            cout << "<div class=\"col-lg-3\">";
+            cout << "<div class=\"col-lg-3 mt-3 ml-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
             cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
             cout << " <hr/>";
             cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
             cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-            cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡" << precio << "</h7>";
+            cout << "		    <h7 lass=\"card-sub title\" style=\"bold\"> Precio: ₡" << precio << "</h7>";
             cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
             cout << "		</div>";
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
 
             if (is_signed)
             {
-                cout << "<button class=\"btn btn-primary\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+                esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
+                // cout << esta_en_carrito << endl;
+                if (esta_en_carrito == "true")
+                { // existe
+                    cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
+                }
+                else
+                {
+                    //no existe
+                    cout << "<button id='prod_" << codigo_producto << "' class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+                }
             }
 
             cout << "	  	</div>";

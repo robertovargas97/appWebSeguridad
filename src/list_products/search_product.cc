@@ -32,7 +32,6 @@ int main(int argc, char const *argv[])
     char *header_content = utils.read_file(header, header_content);
     char *list_products_content = utils.read_file(list_products, list_products_content);
     char *footer_content = utils.read_file(footer, footer_content);
-    char *view_carrito = "/appWebSeguridad/view_car.cgi";
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
@@ -41,23 +40,9 @@ int main(int argc, char const *argv[])
     bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
 
-    cout << "<div class=\"container register\">";
+    cout << "<div class=\"container register mt-4\">";
     cout << "<br/>";
    
-    cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" id=\"search_product_form\">";
-    cout << "<div>";
-    cout << " <div class=\"input-group .center\">";
-    cout << "<div class=\"form-group\">";
-    cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" class=\"form-control\" placeholder=\"Buscar\"/>";
-    cout << "</div>";
-    cout << "<button type=\"submit\" class=\"btn btn-primary\">";
-    cout << "<i class=\"fas fa-search\"></i>";
-    cout << "</button>";
-    cout << "</div>";
-    cout << "</br>";
-    cout << "</div>";
-    cout << "</form>";
-
     cout << "<div class=\"row\">";
     string correo = cookies["Email"];
     string categoria = "";
@@ -109,7 +94,7 @@ int main(int argc, char const *argv[])
                 else
                 {
                     //no existe
-                    cout << "<button class=\"btn btn-primary\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+                    cout << "<button class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
                 }
             }
 

@@ -31,6 +31,11 @@
 
 
 function add_to_cart_ajax(producto, u_correo) {
+    console.log(localStorage.getItem('codes'));
+
+    localStorage.setItem(`prod_${producto}`, producto);
+    $(`#prod_${producto}`).prop("disabled", true);
+
     $("#id_codigo_producto").val(producto);
     $("#id_correo").val(u_correo);
     form_data = $('#jaja_form').serialize();
@@ -46,6 +51,8 @@ function add_to_cart_ajax(producto, u_correo) {
 }
 
 function delete_from_cart_ajax(producto, u_correo) {
+    localStorage.removeItem(`prod_${producto}`);
+
     $("#id_codigo_producto").val(producto);
     $("#id_correo").val(u_correo);
     form_data = $('#jaja_form').serialize();
@@ -56,9 +63,12 @@ function delete_from_cart_ajax(producto, u_correo) {
         type: 'POST',
         success: function (data) {
             alert(data);
+            location.reload();
         }
     });
 }
+
+
 
 /*
 function buy_cart_ajax(producto, u_correo) {
@@ -91,3 +101,13 @@ function empty_cart_ajax(producto, u_correo) {
         }
     });
 }*/
+
+
+   // cout << "<script> var codes = [];";
+        // cout << "</ script>";
+        // cout << "<script>";
+        // cout << "codes.push('" << codigo_producto << "');";
+        // cout << "</ script>";
+        // cout << "<script>";
+        // cout << "localStorage.setItem('codes', JSON.stringify(codes));";
+        // cout << "</ script>";

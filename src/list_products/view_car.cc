@@ -40,10 +40,6 @@ int main(int argc, char const *argv[])
     bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
     printf(list_products_content);
-    cout << "	<body>";
-    cout << "<div class=\"container register\">";
-    //cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
-    cout << "<div class=\"row\">";
 
     string correo = cookies["Email"];
     string categoria = "";
@@ -55,8 +51,12 @@ int main(int argc, char const *argv[])
     DBConnection conn = DBConnection();
     vector<vector<string>> list_cart = conn.get_my_cart(correo);
 
+    cout << "<div class=\"container register mt-4\">";
+    //cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
+
     if (list_cart.size() != 0)
     {
+        cout << "<div class=\"row\">";
         for (int i = 0; i < list_cart.size(); i++)
         {
             categoria = list_cart[i][7];
@@ -65,28 +65,26 @@ int main(int argc, char const *argv[])
             precio = list_cart[i][5];
             descripcion = list_cart[i][6];
             monto_total += atof(precio.c_str()); //suma los precios
-            cout << "<div class=\"col-lg-3\">";
+            cout << "<div class=\"col-lg-3 mt-3 ml-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
             cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
             cout << " <hr/>";
             cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
             cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-            cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡" << precio << "</h7>";
+            cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio: ₡" << precio << "</h7>";
             cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
             cout << "		</div>";
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-            // conn.delete_from_cart(correoUser,product); -> delete_from_car.cgi
-            cout << "<a href=\"/appWebSeguridad/view_car.cgi\"> <button class=\"btn btn-primary\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Remover del carrito</button></a>";
+            cout << "<a href=\"\"> <button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Remover del carrito</button></a>";
             cout << "	  	</div>";
             cout << "	</div>";
             cout << "</div>";
         }
         cout << "</div>";
-        cout << "</div>";
         cout << " <br/>";
         cout << "<h1 class=\"display-4\">Monto total a pagar: " << monto_total << "</h1>";
         cout << " <br/>";
-        cout << "<button class=\"btn btn-primary\">Realizar compra</button>"; // conn.empty_cart(correoUser,product); -> buy_car.cgi
+        cout << "<button class=\"btn btn-info\">Realizar compra</button>"; // conn.empty_cart(correoUser,product); -> buy_car.cgi
     }
     else
     {
@@ -96,9 +94,7 @@ int main(int argc, char const *argv[])
         cout << "</div>";
         cout << "</div>";
     }
-
-    cout << "</body>";
-    cout << "</html>";
+    cout << "</div>";
     printf(footer_content);
 
     free(header_content);
