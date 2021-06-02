@@ -57,9 +57,7 @@ int main(int argc, char const *argv[])
     DBConnection conn = DBConnection();
     DBConnection conn_3 = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    //cout<<"form_data["search_product_form"]";
     lista_productos = conn.search_product(form_data["product_to_search"]);
-    //lista_productos = conn.search_product("agua");
 
     if (lista_productos.size() != 0)
     {
