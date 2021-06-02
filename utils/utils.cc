@@ -129,8 +129,8 @@ string Utils::create_hash_sha2(string password, string salt)
 std::map<string, string> Utils::get_cookies()
 {
     std::map<string, string> cookies;
-    cookies["Email"] = "fail";
-    cookies["Password"] = "fail";
+    cookies["Email"] = "guest";
+    cookies["Password"] = "null";
     std::vector<string> cookie;
     char *cookies_env = getenv("HTTP_COOKIE");
 
@@ -231,9 +231,7 @@ void Utils::log_app_action(string action, string result, string user, string des
     }
 
     ofstream myfile;
-    myfile.open(log_path);
-    // cout << message << "\n";
-    // cout << log_path << "\n";
+    myfile.open(log_path, std::ios_base::app);
     myfile << message;
     myfile.close();
 }

@@ -1,0 +1,2 @@
+Action: logout -- User: e@mail.com -- Result: success -- Datetime: Tue Jun  1 18:49:02 2021
+

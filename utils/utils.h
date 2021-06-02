@@ -23,8 +23,8 @@
 #include <cgicc/HTMLClasses.h>
 
 #define PATH_MAX 4096
-#define LOGS_PATH "/logs/logs.txt"
-#define ERROR_LOGS_PATH "/logs/error.txt"
+#define LOGS_PATH "logs.txt"
+#define ERROR_LOGS_PATH "error_logs.txt"
 
 using namespace std;
 using namespace CryptoPP;
