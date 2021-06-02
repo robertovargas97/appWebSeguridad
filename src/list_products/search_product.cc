@@ -43,11 +43,7 @@ int main(int argc, char const *argv[])
 
     cout << "<div class=\"container register\">";
     cout << "<br/>";
-    if (is_signed)
-    {
-        cout << "<p align=\"right\"> <a href= " << view_carrito << " class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
-    }
-
+   
     cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" id=\"search_product_form\">";
     cout << "<div>";
     cout << " <div class=\"input-group .center\">";

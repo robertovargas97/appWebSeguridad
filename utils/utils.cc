@@ -177,8 +177,15 @@ void Utils::get_navbar(bool is_signed)
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/add_product.cgi\" id=\"/oficios\">Agregar Producto</a>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/comments.cgi\" id=\"/oficios\">Comentarios</a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/view_car.cgi\" id=\"/oficios\">Ver Carrito</a>";
         cout << "        </div>";
         cout << "    </div>";
+
+        cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
+        cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
+        cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
+        cout << "</form>";
+
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
         cout << "            <a class=\"ml-2 nav-link text-whiter\"> Bienvenido(a)</a>";
         cout << "            <a class=\"ml-2 nav-link text-white\" href=\"/appWebSeguridad/logout_response.cgi\">Cerrar sesión <i class=\"fas fa-sign-out-alt\"></i></a>";
