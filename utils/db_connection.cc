@@ -216,9 +216,9 @@ bool DBConnection::verify_session(string email, string password)
     return response;
 }
 
-bool DBConnection::exist_in_cart(string email, string code_product)
+string DBConnection::exist_in_cart(string email, string code_product)
 {
-    bool response = false; //  no existe
+    string response = "false"; //  no existe
     string query = "call exists_product_in_cart('" + email + "'," + code_product + ");";
     if (mysql_query(mysql, query.c_str()))
     {
@@ -239,7 +239,7 @@ bool DBConnection::exist_in_cart(string email, string code_product)
             MYSQL_ROW row = mysql_fetch_row(result);
             if (row != 0)
             {
-                response = true;
+                response = "true";
                 utils.log_app_action("db connection (exist in cart)", "success", email, "Product in cart");
             }
             mysql_free_result(result);
@@ -340,18 +340,6 @@ bool DBConnection::empty_cart(string email, string code_product)
     return response;
 }
 
-/* bool DBConnection::add_product(string name, string price, string description, string category)
-{
-    bool response = false;
-    //const int price_query = stoi(*price);
-    string query = "call add_product('" + name + "'," + "'" + price + "'," + "'" + description + "'," + "'" + category + "'" + ");";
-    if (mysql_query(mysql, query.c_str()) == 0)
-    {
-        response = true;
-    }
-    return response;
-} */
-
 vector<vector<string>> DBConnection::get_all_products()
 {
     vector<vector<string>> product_list;
@@ -394,13 +382,56 @@ vector<vector<string>> DBConnection::get_all_products()
 
                 product_list.push_back(prod);
             }
-            utils.log_app_action("db connection (get all products)", "success", "guest");
+            utils.log_app_action("db connection (get all products)", "success", "");
             mysql_free_result(result);
         }
     }
     return product_list;
 }
 
+vector<vector<string>> DBConnection::search_product(string product)
+{
+    vector<vector<string>> product_list;
+    string query = "call search_product('" + product + "')";
+    if (mysql_query(mysql, query.c_str()))
+    {
+        string error = mysql_error(mysql);
+        utils.log_app_action("db connection", "error", "-", error);
+    }
+    else
+    {
+        MYSQL_RES *result = mysql_store_result(mysql);
+
+        if (!result)
+        {
+            string error = mysql_error(mysql);
+            utils.log_app_action("db connection", "error", "-", error);
+        }
+        else
+        {
+            MYSQL_ROW row;
+            int i;
+            unsigned int num_fields = mysql_num_fields(result);
+            while ((row = mysql_fetch_row(result)))
+            {
+                vector<string> prod;
+                for (i = 0; i < num_fields; i++)
+                    if (row[i] != nullptr)
+                    {
+                        prod.push_back(row[i]);
+                    }
+                    else
+                    {
+                        prod.push_back("");
+                    }
+                product_list.push_back(prod);
+            }
+            utils.log_app_action("db connection (get search products)", "success", "");
+            mysql_free_result(result);
+        }
+    }
+    return product_list;
+}
 //  int main()
 //   {
 //      DBConnection conn = DBConnection();
@@ -413,24 +444,3 @@ vector<vector<string>> DBConnection::get_all_products()
 //      }
 //      return 1;
 //   }
-
-//     // }
-//     // /* bool result = conn.add_comment("Camila", "Viquez", "cv@mail.com", "Consulta", "Todo muy bonito");
-
-//     // cout << result;
-//     // vector<string> user_info = conn.get_user_info("hellen@gmail.com");
-//     // int user_info_size = user_info.size();
-//     // for (size_t i = 0; i < user_info_size; i++)
-//     // {
-//     //     if (i == (user_info_size - 1))
-//     //     {
-//     //         cout << user_info[i] << "\n";
-//     //     }
-//     //     else
-//     //     {
-//     //         cout << user_info[i] << ", ";
-//     //     }
-//     // } */
-
-//     //string query = "call login('dieg0cr98@gmail.com','8054EC4A85B659BCB31F22F5FC6756DC9F9AD51ED4B3E4EE09D38E1869C26627')";
-//     //mysql_query(c.mysql, query.c_str());
