@@ -84,7 +84,6 @@ int main(int argc, char const *argv[])
             if (is_signed)
             {
                 esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
-                cout << esta_en_carrito << endl;
                 if (esta_en_carrito == "true")
                 { // existe
                     cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
