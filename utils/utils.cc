@@ -129,8 +129,8 @@ string Utils::create_hash_sha2(string password, string salt)
 std::map<string, string> Utils::get_cookies()
 {
     std::map<string, string> cookies;
-    cookies["Email"] = "none";
-    cookies["Password"] = "none";
+    cookies["Email"] = "-";
+    cookies["Password"] = "-";
     std::vector<string> cookie;
     char *cookies_env = getenv("HTTP_COOKIE");
 
