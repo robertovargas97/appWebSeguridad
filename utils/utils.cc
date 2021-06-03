@@ -182,7 +182,7 @@ void Utils::get_navbar(bool is_signed)
         cout << "    </div>";
 
         cout << "<form method=\"post\" action=\"/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
-        cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" maxlength="50" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
+        cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" maxlength='50' required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
         cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
         cout << "</form>";
 
@@ -209,7 +209,7 @@ void Utils::get_navbar(bool is_signed)
         cout << "        </div>";
         cout << "    </div>";
         cout << "<form method=\"post\" action=\"/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
-        cout << "<input type=\"text\" id=\"product_to_search\" maxlength="50" name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
+        cout << "<input type=\"text\" id=\"product_to_search\" maxlength='50' name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
         cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
         cout << "</form>";
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
