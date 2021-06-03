@@ -16,6 +16,7 @@ app: src/home/home.cc src/login/login.cc src/registry/register.cc src/comments/c
 	g++ src/list_products/empty_car.cc utils/utils.cc  utils/db_connection.cc  -o empty_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	g++ src/list_products/buy_car.cc utils/utils.cc  utils/db_connection.cc  -o buy_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	g++ src/list_products/search_product.cc utils/utils.cc  utils/db_connection.cc  -o search_product.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
+	g++ src/list_products/add_to_car.cc utils/utils.cc  utils/db_connection.cc  -o search_product.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	g++ src/add_products/add_product_post.cc utils/utils.cc utils/db_connection.cc -o add_product_post.cgi -w `mysql_config --cflags --libs` -std=c++11 -w -lcryptopp -l:libcgicc.a
 
 home: src/home/home.cc
