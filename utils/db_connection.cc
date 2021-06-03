@@ -385,9 +385,7 @@ bool DBConnection::erase_products(string correo, vector<vector<string> > cart_li
         for (int i = 0; i < cart_list.size(); i++)
         {           
             codigo_producto = cart_list[i][3];
-            cout<<"\nProducto a eliminar "<<codigo_producto<<endl;
             erased_product = erase_product(codigo_producto);   
-            cout<<"\nEliminado: "<<erased_product<<endl;         
         }
     }     else{
             utils.log_app_action("db connection (erase_product)", "error", correo, "Failure erasing product is empty"); 
