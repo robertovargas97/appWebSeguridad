@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
     char *footer_content = utils.read_file(footer, footer_content);
 
     printf("Content-type:text/html\r\n\r\n");
-    // printf(header_content);
+    printf(header_content);
     // DBConnection conn_2 = DBConnection();
     // std::map<string, string> cookies = utils.get_cookies();
     // bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
