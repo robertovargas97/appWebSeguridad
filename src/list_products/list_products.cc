@@ -50,9 +50,7 @@ int main(int argc, char const *argv[])
     string precio = "";
     string descripcion = "";
     string esta_en_carrito = "false";
-    string codigo_producto = "5";
-
-    vector<vector<string>> my_cart;
+    string codigo_producto = "";
 
     DBConnection conn = DBConnection();
     DBConnection conn_3 = DBConnection();
@@ -87,7 +85,6 @@ int main(int argc, char const *argv[])
 
             if (is_signed)
             {
-                //esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
                 esta_en_carrito = "false";
                 for(int j =0; j < my_cart.size(); j ++){
                         if(my_cart[j][3]==codigo_producto){
