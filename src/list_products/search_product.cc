@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
     std::map<string, string> cookies = utils.get_cookies();
     bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
-    // printf(list_products_content);
+    printf(list_products_content);
     cout << "<h1> LLEGUE </h1>";
     // cout << "<h1> " << cookies["Email"] << "</h1>";
     // cout << "<div class=\"container register mt-4\">";
@@ -121,7 +121,7 @@ int main(int argc, char const *argv[])
     printf(footer_content);
 
     free(header_content);
+    free(list_products_content);
     free(footer_content);
-    // free(list_products_content);
     return 0;
 }
