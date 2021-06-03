@@ -68,7 +68,6 @@ bool DBConnection::add_comment(string name, string last_name, string email, stri
     string u_last_name = last_name;
     string full_name = u_name + " " + u_last_name;
     string query = "call add_comment('" + full_name + "'," + "'" + email + "'," + "'" + comment_type + "'," + "'" + comment + "'" + ");";
-    cout << query;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
