@@ -169,9 +169,9 @@ bool DBConnection::verify_login(string email, string password, string salt)
             else
             {
 
-                cout << "Set-Cookie:Email=null;\r\n";
-                cout << "Set-Cookie:Password=null;\r\n";
-                cout << "Set-Cookie:Domain=null;\r\n";
+                cout << "Set-Cookie:Email=none;\r\n";
+                cout << "Set-Cookie:Password=none;\r\n";
+                cout << "Set-Cookie:Domain=none;\r\n";
                 string error = mysql_error(mysql);
                 utils.log_app_action("db connection (verify login)", "error", "-", error);
             }

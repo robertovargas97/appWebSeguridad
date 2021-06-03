@@ -39,6 +39,8 @@ int main(int argc, const char *argv[], const char *env[])
     std::map<string, string> cookies = utils.get_cookies();
     std::map<string, string> form_data = utils.get_post_data();
     bool is_signed = conn.verify_session(cookies["Email"], cookies["Password"]);
+    cout << "</h1>" << cookies["Email"] << "</h1>";
+    cout << "</h1>" << is_signed << "</h1>";
     utils.get_navbar(is_signed);
     bool new_comment_result = conn_2.add_comment(form_data["name"], form_data["last_name"], form_data["email"], form_data["comment_type"], form_data["comment"]);
     if (new_comment_result)
