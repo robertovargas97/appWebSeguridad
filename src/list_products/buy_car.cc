@@ -40,32 +40,57 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    bool buy_car_result = true; // conn.buy_cart( form_data["correo"]);
+    bool buy_car_result = false;//conn.erase_products(form_data["correo"]);
 
-    if (buy_car_result)
-    {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Se realizó la compra correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
-        cout << "<hr>";
-        cout << "</div>";
-        cout << "</div>";
-        utils.log_app_action("buy products", "success", cookies["email"]);
-    }
-    else
-    {
-        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-        cout << "<div class=\"container\">";
-        cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
-        cout << "<hr>";
-        cout << "</div>";
-        cout << "</div>";
-        utils.log_app_action("buy products", "error", cookies["email"], "There was a problem while processing the order");
-    }
+    
+    DBConnection conn4 = DBConnection();
+    vector<vector<string> > cart_list = conn4.get_my_cart(cookies["Email"]);
 
+    DBConnection conn3 = DBConnection();
+    buy_car_result = conn3.erase_products(cookies["Email"], cart_list);
+
+
+    if(is_signed){
+            if (buy_car_result)
+            {
+                cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+                cout << "<div class=\"container\">";
+                cout << "<h1 class=\"display-4\">Se realizó la compra correctamente <i class=\"fas fa-check-square text-info\"></i></h1>";
+                cout << "<hr>";
+                cout << "</div>";
+                cout << "</div>";
+                utils.log_app_action("buy products", "success", cookies["email"]);
+            }
+            else
+            {
+                cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+                cout << "<div class=\"container\">";
+                cout << "<h1 class=\"display-4\">Algo ha salido mal , por favor vuelve a intentarlo <i class=\"fas fa-time-circle text-info\"></i></h1>";
+                cout << "<hr>";
+                cout << "</div>";
+                cout << "</div>";
+                utils.log_app_action("buy products", "error", cookies["email"], "There was a problem while processing the order");
+            }
+    } else{
+                cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+                cout << "<div class=\"container\">";
+                cout << "<h1 class=\"display-4\">No hay sesión iniciada <i class=\"fas fa-time-circle text-info\"></i></h1>";
+                cout << "<hr>";
+                cout << "</div>";
+                cout << "</div>";
+    }
     printf(footer_content);
     free(header_content);
     free(footer_content);
+   /* Utils utils = Utils();
+    char *header = "/templates/header.html";
+    char *header_content = utils.read_file(header, header_content);
+    printf("Content-type:text/html\r\n\r\n");
+    printf(header_content);
+    DBConnection conn = DBConnection();
+    std::map<string, string> form_data = utils.get_post_data();
+    bool buy_car_result = conn.erase_products(form_data["correo"]);
+    free(header_content);*/
 
-    return buy_car_result;
+    return 1;
 }

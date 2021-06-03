@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
     string precio = "";
     string descripcion = "";
     string codigo_producto = "1";
-    double monto_total = 0.0;
+    long long int monto_total = 0;
     DBConnection conn = DBConnection();
     vector<vector<string>> list_cart = conn.get_my_cart(correo);
 
@@ -64,7 +64,7 @@ int main(int argc, char const *argv[])
             nombre = list_cart[i][4];
             precio = list_cart[i][5];
             descripcion = list_cart[i][6];
-            monto_total += atof(precio.c_str()); //suma los precios
+            monto_total += atoi(precio.c_str()); //suma los precios
             cout << "<div class=\"col-lg-3 mt-3 ml-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
             cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
         cout << " <br/>";
         cout << "<h1 class=\"display-4\">Monto total a pagar: " << monto_total << "</h1>";
         cout << " <br/>";
-        cout << "<button class=\"btn btn-info\">Realizar compra</button>"; // conn.empty_cart(correoUser,product); -> buy_car.cgi
+        cout << "<button class=\"btn btn-info\" onclick=\"buy_cart_ajax('"<<codigo_producto <<"')\">Realizar compra</button> "; 
     }
     else
     {

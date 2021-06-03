@@ -70,9 +70,8 @@ function delete_from_cart_ajax(producto, u_correo) {
 
 
 
-/*
-function buy_cart_ajax(producto, u_correo) {
-    $("#id_codigo_producto").val(producto);
+
+function buy_cart_ajax(u_correo) {
     $("#id_correo").val(u_correo);
     form_data = $('#jaja_form').serialize();
     console.log(form_data);
@@ -81,10 +80,11 @@ function buy_cart_ajax(producto, u_correo) {
         data: form_data,
         type: 'POST',
         success: function (data) {
-            alert(data);
+            alert("Su producto fue comprado");
+            location.reload();
         }
     });
-}*/
+}
 
 /*
 function empty_cart_ajax(producto, u_correo) {

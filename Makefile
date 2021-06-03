@@ -48,7 +48,7 @@ list_products: src/list_products.cc utils/utils.cc src/select_product.cc
 	g++ src/list_products/select_product.cc utils/utils.cc  utils/db_connection.cc  -o select_product.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	g++ src/list_products/delete_from_car.cc utils/utils.cc  utils/db_connection.cc  -o delete_from_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	
-view_car: src/view_car.cc utils/utils.cc
+view_car: src/list_products/view_car.cc utils/utils.cc 
 	g++ src/list_products/view_car.cc  utils/product.cc  utils/utils.cc utils/db_connection.cc  -o view_car.cgi -w  `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	g++ src/list_products/buy_car.cc utils/utils.cc  utils/db_connection.cc  -o buy_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
 	g++ src/list_products/empty_car.cc utils/utils.cc  utils/db_connection.cc  -o empty_car.cgi -w `mysql_config --cflags --libs`  -std=c++11 -lcryptopp -l:libcgicc.a
