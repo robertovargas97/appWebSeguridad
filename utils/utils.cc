@@ -45,8 +45,6 @@ std::map<string, string> Utils::get_post_data()
     int post_data_length = atoi(getenv("CONTENT_LENGTH"));
     char post_data[post_data_length];
     fgets(post_data, post_data_length + 1, stdin);
-    cout << post_data << endl;
-    cout << post_data_length << endl;
     std::map<string, string> form_data;
     vector<string> cont;
     string token;

@@ -45,7 +45,7 @@ function add_to_cart_ajax(producto, u_correo) {
         data: form_data,
         type: 'POST',
         success: function (data) {
-            alert("Se agrego al carrito");
+            alert("Se agrego al carrito correctamente");
         }
     });
 }
@@ -62,7 +62,8 @@ function delete_from_cart_ajax(producto, u_correo) {
         data: form_data,
         type: 'POST',
         success: function (data) {
-            alert(data);
+            console.log(data);
+            alert("Eliminado del carrito correctamente");
             location.reload();
         }
     });
