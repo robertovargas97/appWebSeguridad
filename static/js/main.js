@@ -41,7 +41,7 @@ function add_to_cart_ajax(producto, u_correo) {
     form_data = $('#jaja_form').serialize();
     //console.log(form_data);
     $.ajax({
-        url: '/appWebSeguridad/select_product.cgi',
+        url: '/select_product.cgi',
         data: form_data,
         type: 'POST',
         success: function (data) {
@@ -58,7 +58,7 @@ function delete_from_cart_ajax(producto, u_correo) {
     form_data = $('#jaja_form').serialize();
     console.log(form_data);
     $.ajax({
-        url: '/appWebSeguridad/delete_from_car.cgi',
+        url: '/delete_from_car.cgi',
         data: form_data,
         type: 'POST',
         success: function (data) {
