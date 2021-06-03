@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
     // bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     // utils.get_navbar(is_signed);
     cout << "<h1> LLEGUE </h1>";
-    cout << "<h1> " << cookies["Email"] << "</h1>";
+    // cout << "<h1> " << cookies["Email"] << "</h1>";
     // cout << "<div class=\"container register mt-4\">";
     // cout << "<br/>";
    
