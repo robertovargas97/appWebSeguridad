@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
     cout << "<h1> " << cookies["Email"] << "</h1>";
     cout << "<div class=\"container register mt-4\">";
     cout << "<br/>";
-   
+
     cout << "<div class=\"row\">";
     string correo = cookies["Email"];
     string categoria = "";
@@ -58,64 +58,63 @@ int main(int argc, char const *argv[])
     DBConnection conn = DBConnection();
     DBConnection conn_3 = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    cout<<form_data["search_product_form"];
+    cout << form_data["product_to_search"];
     lista_productos = conn.search_product(form_data["product_to_search"]);
 
-    // if (lista_productos.size() != 0)
-    // {
+    if (lista_productos.size() != 0)
+    {
 
-    //     //int num=0;
-    //     for (int i = 0; i < lista_productos.size(); i++)
-    //     {
-    //         categoria = lista_productos[i][4];
-    //         codigo_producto = lista_productos[i][0];
-    //         nombre = lista_productos[i][1];
-    //         precio = lista_productos[i][2];
-    //         descripcion = lista_productos[i][3];
+        //int num=0;
+        for (int i = 0; i < lista_productos.size(); i++)
+        {
+            categoria = lista_productos[i][4];
+            codigo_producto = lista_productos[i][0];
+            nombre = lista_productos[i][1];
+            precio = lista_productos[i][2];
+            descripcion = lista_productos[i][3];
 
-    //         cout << "<div class=\"col-lg-3\">";
-    //         cout << "	<div class=\"card\" style=\"width: 18rem;\">";
-    //         cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
-    //         cout << " <hr/>";
-    //         cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
-    //         cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-    //         cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio: ₡" << precio << "</h7>";
-    //         cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
-    //         cout << "		</div>";
-    //         cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-    //         if (is_signed)
-    //         {
-    //             esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
-    //             cout << esta_en_carrito << endl;
-    //             if (esta_en_carrito == "true")
-    //             { // existe
-    //                 cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
-    //             }
-    //             else
-    //             {
-    //                 //no existe
-    //                 cout << "<button class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
-    //             }
-    //         }
+            cout << "<div class=\"col-lg-3\">";
+            cout << "	<div class=\"card\" style=\"width: 18rem;\">";
+            cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
+            cout << " <hr/>";
+            cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
+            cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
+            cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio: ₡" << precio << "</h7>";
+            cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
+            cout << "		</div>";
+            cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
+            if (is_signed)
+            {
+                esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
+                cout << esta_en_carrito << endl;
+                if (esta_en_carrito == "true")
+                { // existe
+                    cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
+                }
+                else
+                {
+                    //no existe
+                    cout << "<button class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+                }
+            }
 
-    //         cout << "	  	</div>";
-    //         cout << "	</div>";
-    //         cout << "</div>";
-    //     }
-    // }
-    // else
-    // {
-    //     cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
-    //     cout << "	<div class=\"container\">";
-    //     cout << "		<h1 class=\"display-4\">No hay productos disponibles<i class=\"fas fa-time-circle text-info\"></i></h1>";
-    //     cout << "	</div>";
-    //     cout << "</div>";
-    // }
+            cout << "	  	</div>";
+            cout << "	</div>";
+            cout << "</div>";
+        }
+    }
+    else
+    {
+        cout << "<div class=\"jumbotron jumbotron-fluid bg-transparent\">";
+        cout << "	<div class=\"container\">";
+        cout << "		<h1 class=\"display-4\">No hay productos disponibles<i class=\"fas fa-time-circle text-info\"></i></h1>";
+        cout << "	</div>";
+        cout << "</div>";
+    }
 
-    // cout << "</div>";
-    // cout << "</div>";
+    cout << "</div>";
+    cout << "</div>";
 
-    
     printf(footer_content);
 
     free(header_content);
