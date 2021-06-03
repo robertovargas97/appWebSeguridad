@@ -77,7 +77,7 @@ function buy_cart_ajax(u_correo) {
     form_data = $('#jaja_form').serialize();
     console.log(form_data);
     $.ajax({
-        url: '/appWebSeguridad/buy_car.cgi',
+        url: '/buy_car.cgi',
         data: form_data,
         type: 'POST',
         success: function (data) {
