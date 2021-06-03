@@ -38,9 +38,7 @@ int main(int argc, char const *argv[])
     DBConnection conn_2 = DBConnection();
     std::map<string, string> cookies = utils.get_cookies();
     bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
-    cout << "</h1>" << is_signed << "</h1>";
     utils.get_navbar(is_signed);
-    cout << "</h1>" << cookies["Email"] << "</h1>";
 
     cout << "<div class=\"container register mt-4\">";
     cout << "<br/>";
