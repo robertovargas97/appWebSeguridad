@@ -1,4 +1,5 @@
 #include "../../utils/utils.h"
+#include "../../utils/product.h"
 #include "../../utils/db_connection.h"
 #include <iostream>
 #include <stdlib.h>
@@ -31,61 +32,74 @@ int main(int argc, char const *argv[])
     char *header_content = utils.read_file(header, header_content);
     char *list_products_content = utils.read_file(list_products, list_products_content);
     char *footer_content = utils.read_file(footer, footer_content);
-    char *view_carrito = "/view_car.cgi";
-
-    DBConnection conn_2 = DBConnection();
-    std::map<string, string> cookies = utils.get_cookies();
-    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
 
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
+    DBConnection conn_2 = DBConnection();
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
-    printf(list_products_content);
-    cout << "	<body>";
-    cout << "<div class=\"container register\">";
-    cout << "<p align=\"right\"> <a href= " << view_carrito << " class=\"btn btn-primary\" align=\"right\" id=\"/\">Ver carrito<span class=\"sr-only\"></span></a></p>";
+
+    cout << "<div class=\"container register mt-4\">";
+    cout << "<br/>";
+
     cout << "<div class=\"row\">";
+    string correo = cookies["Email"];
+    string categoria = "";
+    string nombre = "";
+    string precio = "";
+    string descripcion = "";
+    string esta_en_carrito = "false";
+    string codigo_producto = "5";
 
-    char *categoria = "";
-    char *nombre = "";
-    char *precio = "";
-    char *descripcion = "";
-    bool en_carrito = false;
-    bool lista_productos = false;
-    //DBConnection conn = DBConnection();
-    lista_productos = true; //lista_productos = conn.get_allProducts(correoUser,product);
-    if (lista_productos == true)
+    vector<vector<string>> my_cart;
+
+    DBConnection conn = DBConnection();
+    DBConnection conn_3 = DBConnection();
+
+    vector<vector<string>> lista_productos = conn.get_all_products();
+    if (lista_productos.size() != 0)
     {
+     
 
-        //for ( int i =0; i < carrito.size() ; i++){
-        categoria = "bi bi-controller";
-        nombre = "Grogu";
-        precio = "4000";
-        descripcion = "Cute grogu, The Mandalorian Star Wars";
-
-        cout << "<div class=\"col-lg-3\">";
-        cout << "	<div class=\"card\" style=\"width: 18rem;\">";
-        cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
-        cout << " <hr/>";
-        cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
-        cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-        cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio=₡" << precio << "</h7>";
-        cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
-        cout << "		</div>";
-        cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-        en_carrito = false; // = conn.en_carrito(correoUser,product);
-        if (en_carrito == true)
-        { // to do -> revisar
-            cout << "		    <button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
-        }
-        else
+        for (int i = 0; i < lista_productos.size(); i++)
         {
-            cout << "		    <button class=\"btn btn-primary\">Añadir al carrito</button>";
+            categoria = lista_productos[i][4];
+            codigo_producto = lista_productos[i][0];
+            nombre = lista_productos[i][1];
+            precio = lista_productos[i][2];
+            descripcion = lista_productos[i][3];
+
+            cout << "<div class=\"col-lg-3 mt-3 ml-3\">";
+            cout << "	<div class=\"card\" style=\"width: 18rem;\">";
+            cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
+            cout << " <hr/>";
+            cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
+            cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
+            cout << "		    <h7 lass=\"card-sub title\" style=\"bold\"> Precio: ₡" << precio << "</h7>";
+            cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
+            cout << "		</div>";
+            cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
+
+            if (is_signed)
+            {
+                esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
+                // cout << esta_en_carrito << endl;
+                if (esta_en_carrito == "true")
+                { // existe
+                    cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";
+                }
+                else
+                {
+                    //no existe
+                    cout << "<button id='prod_" << codigo_producto << "' class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
+                }
+            }
+
+            cout << "	  	</div>";
+            cout << "	</div>";
+            cout << "</div>";
         }
-        cout << "	  	</div>";
-        cout << "	</div>";
-        cout << "</div>";
-        // }
     }
     else
     {
@@ -95,10 +109,11 @@ int main(int argc, char const *argv[])
         cout << "	</div>";
         cout << "</div>";
     }
+
     cout << "</div>";
     cout << "</div>";
-    cout << "</body>";
-    cout << "</html>";
+
+    printf(list_products_content);
     printf(footer_content);
 
     free(header_content);

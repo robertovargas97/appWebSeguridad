@@ -129,11 +129,11 @@ string Utils::create_hash_sha2(string password, string salt)
 std::map<string, string> Utils::get_cookies()
 {
     std::map<string, string> cookies;
-    cookies["Email"] = "fail";
-    cookies["Password"] = "fail";
+    cookies["Email"] = "none";
+    cookies["Password"] = "none";
     std::vector<string> cookie;
     char *cookies_env = getenv("HTTP_COOKIE");
-    
+
     if (cookies_env != NULL)
     {
         std::vector<string> cookies_list = split(cookies_env, ";");
@@ -177,8 +177,15 @@ void Utils::get_navbar(bool is_signed)
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/add_product.cgi\" id=\"/oficios\">Agregar Producto</a>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/comments.cgi\" id=\"/oficios\">Comentarios</a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/view_car.cgi\" id=\"/oficios\">Ver Carrito</a>";
         cout << "        </div>";
         cout << "    </div>";
+
+        cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
+        cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
+        cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
+        cout << "</form>";
+
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
         cout << "            <a class=\"ml-2 nav-link text-whiter\"> Bienvenido(a)</a>";
         cout << "            <a class=\"ml-2 nav-link text-white\" href=\"/logout_response.cgi\">Cerrar sesión <i class=\"fas fa-sign-out-alt\"></i></a>";
@@ -201,6 +208,10 @@ void Utils::get_navbar(bool is_signed)
         cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/comments.cgi\" id=\"/oficios\">Comentarios</a>";
         cout << "        </div>";
         cout << "    </div>";
+        cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
+        cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
+        cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
+        cout << "</form>";
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
         cout << "    <li class=\"nav-item\">";
         cout << "    <a class=\"ml-2 nav-link\" href=\"/login.cgi\">Iniciar sesión<i class=\"fas fa-sign-out-alt\"></i></a>";
@@ -210,33 +221,31 @@ void Utils::get_navbar(bool is_signed)
     }
 }
 
-// void Utils::log_app_action(string action, string result, string user, string description)
-// {
+void Utils::log_app_action(string action, string result, string user, string description)
+{
 
-//     auto end = std::chrono::system_clock::now();
-//     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+    auto end = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
-//     string log_path = "";
-//     string message = "";
-//     if (result == "success")
-//     {
-//         log_path = LOGS_PATH;
-//         message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time)  +"\n";
-//     }
-//     else
-//     {
+    string log_path = "";
+    string message = "";
+    if (result == "success")
+    {
+        log_path = LOGS_PATH;
+        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Datetime: " + std::ctime(&end_time) + "\n";
+    }
+    else
+    {
 
-//         log_path = ERROR_LOGS_PATH;
-//         message = "Action: " + action  +" -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
-//     }
+        log_path = ERROR_LOGS_PATH;
+        message = "Action: " + action + " -- User: " + user + " -- Result: " + result + " -- Error description: " + description + " -- Datetime: " + std::ctime(&end_time) + "\n";
+    }
 
-//     ofstream myfile;
-//     myfile.open(log_path);
-//     // cout << message << "\n";
-//     // cout << log_path << "\n";
-//     myfile << message;
-//     myfile.close();
-// }
+    ofstream myfile;
+    myfile.open(log_path, std::ios_base::app);
+    myfile << message;
+    myfile.close();
+}
 
 // int main(int argc, char const *argv[])
 // {

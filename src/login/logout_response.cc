@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
     char *header_content = utils.read_file(header, header_content);
 
     char *footer_content = utils.read_file(footer, footer_content);
-
+    std::map<string, string> cookies = utils.get_cookies();
     cout << "Set-Cookie:Email=null;\r\n";
     cout << "Set-Cookie:Password=null;\r\n";
     cout << "Set-Cookie:Domain=null;\r\n";
@@ -49,6 +49,8 @@ int main(int argc, char const *argv[])
     cout << "</div>";
 
     cout << footer_content;
+
+    utils.log_app_action("logout", "success", cookies["Email"]);
     free(header_content);
     free(footer_content);
     return 0;

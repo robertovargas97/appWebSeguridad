@@ -49,6 +49,7 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("add product", "success", cookies["email"]);
     }
     else
     {
@@ -58,6 +59,7 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("add product", "error", cookies["email"], "The product could not be added");
     }
 
     printf(footer_content);

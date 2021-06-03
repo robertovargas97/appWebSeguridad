@@ -61,6 +61,7 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<a class=\"btn btn-info btn-login mt-4\" href=\"/login.cgi\">Ir a Login</a>";
         cout << "</div>";
         cout << "</div>";
+         utils.log_app_action("add user", "success", cookies["email"]);
     }
     else
     {
@@ -70,6 +71,7 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<hr>";
         cout << "</div>";
         cout << "</div>";
+        utils.log_app_action("add user", "error", cookies["email"], "The user could not be added");
     }
 
     printf(footer_content);

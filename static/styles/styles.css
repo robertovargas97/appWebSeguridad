@@ -212,3 +212,13 @@ hr.new4 {
 
     
 }
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 90%;
+}
