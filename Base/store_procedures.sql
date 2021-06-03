@@ -159,7 +159,7 @@ IN codigoProductoFK varchar(4)
 )
 BEGIN
 SELECT  * 
-	FROM	Persona p JOIN ProductoEnCarrito pc ON p.correo =pc.correoFK
+	FROM Persona p JOIN ProductoEnCarrito pc ON p.correo =pc.correoFK
 	WHERE	p.correo  =  correoFK AND pc.codigoProductoFK = CONVERT(codigoProductoFK, SIGNED);
 END$$
 
