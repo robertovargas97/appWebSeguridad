@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
             cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
             cout << "		</div>";
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-            cout << "<a href=\"\"> <button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Remover del carrito</button></a>";
+            cout << "<a href=\"#\"> <button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Remover del carrito</button></a>";
             cout << "	  	</div>";
             cout << "	</div>";
             cout << "</div>";

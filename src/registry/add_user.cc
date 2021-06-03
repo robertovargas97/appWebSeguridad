@@ -58,10 +58,10 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<div class=\"container\">";
         cout << "<h1 class=\"display-4\">Tu usuario ha sido registrado. <i class=\"fas fa-check-square text-info\"></i></h1>";
         cout << "<hr>";
-        cout << "<a class=\"btn btn-info btn-login mt-4\" href=\"/appWebSeguridad/login.cgi\">Ir a Login</a>";
+        cout << "<a class=\"btn btn-info btn-login mt-4\" href=\"/login.cgi\">Ir a Login</a>";
         cout << "</div>";
         cout << "</div>";
-         utils.log_app_action("add user", "success", cookies["email"]);
+        utils.log_app_action("add user", "success", cookies["email"]);
     }
     else
     {

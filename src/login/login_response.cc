@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
         cout << "<hr>";
         cout << "<br>";
         cout << "<div class=\"mt-1 mb-3 col-12 text-center\">";
-        cout << "<a href=\"/appWebSeguridad/home.cgi\" type=\"submit\" class=\"btn btn-info btn-login mt-4\" id=\"btn-spinner\" >Ir al inicio</a>";
+        cout << "<a href=\"/home.cgi\" type=\"submit\" class=\"btn btn-info btn-login mt-4\" id=\"btn-spinner\" >Ir al inicio</a>";
         cout << "</div>";
         cout << "</div>";
         cout << "</div>";
@@ -61,7 +61,7 @@ int main(int argc, char const *argv[])
         cout << "<hr>";
         cout << "<br>";
         cout << "<div class=\"mt-1 mb-3 col-12 text-center\">";
-        cout << "<a href=\"/appWebSeguridad/login.cgi\" type=\"submit\" class=\"btn btn-info btn-login mt-4\" id=\"btn-spinner\" >Volver al login</a>";
+        cout << "<a href=\"/login.cgi\" type=\"submit\" class=\"btn btn-info btn-login mt-4\" id=\"btn-spinner\" >Volver al login</a>";
         cout << "</div>";
         cout << "</div>";
         cout << "</div>";

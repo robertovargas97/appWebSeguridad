@@ -129,7 +129,7 @@ string Utils::create_hash_sha2(string password, string salt)
 std::map<string, string> Utils::get_cookies()
 {
     std::map<string, string> cookies;
-    cookies["Email"] = "guest";
+    cookies["Email"] = "none";
     cookies["Password"] = "none";
     std::vector<string> cookie;
     char *cookies_env = getenv("HTTP_COOKIE");
@@ -173,22 +173,22 @@ void Utils::get_navbar(bool is_signed)
         cout << "    </button>";
         cout << "    <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\">";
         cout << "        <div class=\"navbar-nav\" id='navbar'>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/home.cgi\" id=\"/\">Inicio<span class=\"sr-only\"></span></a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/add_product.cgi\" id=\"/oficios\">Agregar Producto</a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/comments.cgi\" id=\"/oficios\">Comentarios</a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/view_car.cgi\" id=\"/oficios\">Ver Carrito</a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/home.cgi\" id=\"/\">Inicio<span class=\"sr-only\"></span></a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/add_product.cgi\" id=\"/oficios\">Agregar Producto</a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/comments.cgi\" id=\"/oficios\">Comentarios</a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/view_car.cgi\" id=\"/oficios\">Ver Carrito</a>";
         cout << "        </div>";
         cout << "    </div>";
 
-        cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
+        cout << "<form method=\"post\" action=\"/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
         cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
         cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
         cout << "</form>";
 
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
         cout << "            <a class=\"ml-2 nav-link text-whiter\"> Bienvenido(a)</a>";
-        cout << "            <a class=\"ml-2 nav-link text-white\" href=\"/appWebSeguridad/logout_response.cgi\">Cerrar sesión <i class=\"fas fa-sign-out-alt\"></i></a>";
+        cout << "            <a class=\"ml-2 nav-link text-white\" href=\"/logout_response.cgi\">Cerrar sesión <i class=\"fas fa-sign-out-alt\"></i></a>";
         cout << "    </div>";
         cout << "</nav>";
     }
@@ -203,18 +203,18 @@ void Utils::get_navbar(bool is_signed)
         cout << "    </button>";
         cout << "    <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\">";
         cout << "        <div class=\"navbar-nav\" id='navbar'>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/home.cgi\" id=\"/\">Inicio<span class=\"sr-only\"></span></a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
-        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/appWebSeguridad/comments.cgi\" id=\"/oficios\">Comentarios</a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/home.cgi\" id=\"/\">Inicio<span class=\"sr-only\"></span></a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/list_products.cgi\" id=\"/\">Lista de Productos<span class=\"sr-only\"></span></a>";
+        cout << "            <a class=\"ml-3 nav-link text-white\" href=\"/comments.cgi\" id=\"/oficios\">Comentarios</a>";
         cout << "        </div>";
         cout << "    </div>";
-        cout << "<form method=\"post\" action=\"/appWebSeguridad/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
+        cout << "<form method=\"post\" action=\"/search_product.cgi\" class='form-inline my-2 my-lg-0' id=\"search_product_form\">";
         cout << "<input type=\"text\" id=\"product_to_search\" name=\"product_to_search\" required class=\"form-control mr-sm-2\" placeholder=\"Buscar\"/>";
         cout << "<button class='btn btn-outline-info my-2 my-sm-0' type='submit'>Buscar</button>";
         cout << "</form>";
         cout << "    <div class=\"navbar-nav align-left\" id=\"navbar\">";
         cout << "    <li class=\"nav-item\">";
-        cout << "    <a class=\"ml-2 nav-link\" href=\"/appWebSeguridad/login.cgi\">Iniciar sesión<i class=\"fas fa-sign-out-alt\"></i></a>";
+        cout << "    <a class=\"ml-2 nav-link\" href=\"/login.cgi\">Iniciar sesión<i class=\"fas fa-sign-out-alt\"></i></a>";
         cout << "    </li>";
         cout << "    </div>";
         cout << "</nav>";
@@ -250,13 +250,16 @@ void Utils::log_app_action(string action, string result, string user, string des
 // int main(int argc, char const *argv[])
 // {
 //     Utils u = Utils();
+//     std::map<string, string> cookies = u.get_cookies();
+//     cout << cookies["Email"];
+//     cout << cookies["Password"];
 
 //     // string salt = u.create_salt();
 //     // cout << salt << endl;
 //     // string hash = u.create_hash_sha2("pass", salt);
 //     // cout << hash << endl;
 
-//     u.log_app_action("login", "error", "form_data", "Email or password incorrect");
+//     // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
 
 //     // free(content);
 
