@@ -57,7 +57,6 @@ int main(int argc, char const *argv[])
     DBConnection conn = DBConnection();
     DBConnection conn_3 = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    cout << form_data["product_to_search"];
     lista_productos = conn.search_product(form_data["product_to_search"]);
 
     if (lista_productos.size() != 0)
@@ -72,7 +71,7 @@ int main(int argc, char const *argv[])
             precio = lista_productos[i][2];
             descripcion = lista_productos[i][3];
 
-            cout << "<div class=\"col-lg-3\">";
+            cout << "<div class=\"col-lg-3 mt-3 ml-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
             cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
             cout << " <hr/>";
