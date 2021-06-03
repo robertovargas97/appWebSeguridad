@@ -36,8 +36,8 @@ int main(int argc, char const *argv[])
     printf("Content-type:text/html\r\n\r\n");
     printf(header_content);
     DBConnection conn_2 = DBConnection();
-    // std::map<string, string> cookies = utils.get_cookies();
-    // bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
+    std::map<string, string> cookies = utils.get_cookies();
+    bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     // utils.get_navbar(is_signed);
     // printf(list_products_content);
     cout << "<h1> LLEGUE </h1>";
