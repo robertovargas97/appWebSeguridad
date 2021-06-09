@@ -1,20 +1,20 @@
-<div class="mt-4">
+<div class="mt-4 add">
 	<div class="center-add-product bg-transparent">
-		<form method="post" action="/appWebSeguridad/add_product_post.cgi" id="add_product_form">
+		<form method="post" action="/add_product_post.cgi" id="add_product_form">
 			<div class="form-group">
 				<br>
 				<h2>Agregar producto para vender <i class="fas fa-thumbs-up"></i></h2>
 				<hr class="new4">
 				<label for="formGroupExampleInput">Nombre del producto</label>
-				<input type="text" class="form-control" id="name" name="name">
+				<input type="text" class="form-control" id="name" name="name" maxlength='50'>
 			</div>
 			<div class="form-group">
 				<label for="formGroupExampleInput2">Precio en colones</label>
-				<input type="number" class="form-control" id="price" name="price" max="10000000" min="1">
+				<input type="number" class="form-control" id="price" name="price" maxlength="8" max="10000000" min="1" pattern="[0-9]{8}">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">Descripción</label>
-				<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+				<textarea class="form-control" id="description" name="description" rows="3" maxlength='150'></textarea>
 			</div>
 			<div class="form-group">
 				<div class="input-group mb-3">

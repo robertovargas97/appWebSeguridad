@@ -1,6 +1,7 @@
 #ifndef Utils_H
 #define Utils_H
 
+#include <chrono>
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,8 +24,8 @@
 #include <cgicc/HTMLClasses.h>
 
 #define PATH_MAX 4096
-#define LOGS_PATH "logs.txt"
-#define ERROR_LOGS_PATH "error_logs.txt"
+#define LOGS_PATH "app_logs.txt"
+#define ERROR_LOGS_PATH "app_error_logs.txt"
 
 using namespace std;
 using namespace CryptoPP;

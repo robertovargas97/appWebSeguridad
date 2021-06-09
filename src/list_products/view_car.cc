@@ -99,7 +99,7 @@ int main(int argc, char const *argv[])
         cout << "    </button>";
         cout << "  </div>";
         cout << "  <div class='modal-body'>";
-        cout << "    <form method='POST' action='/appWebSeguridad/buy_car.cgi' autocomplete='off'>";
+        cout << "    <form method='POST' action='/buy_car.cgi' autocomplete='off'>";
         cout << "        <div class='form-group'>";
         cout << "            <input type='hidden' class='form-control' id='price' name='price' value='" << monto_total << "'>";
         cout << "          </div>";
