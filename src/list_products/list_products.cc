@@ -99,7 +99,7 @@ int main(int argc, char const *argv[])
                 else
                 {
                     //no existe
-                    cout << "<button id='prod_" << codigo_producto << "' class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"><i class='bi bi-cart-plus-fill' style='font-size: 1rem;'></i> Añadir al carrito </button>";
+                    cout << "<button id='prod_" << codigo_producto << "' class=\"btn btn-info\" onclick=\"add_to_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Añadir al carrito</button>";
                 }
             }
 

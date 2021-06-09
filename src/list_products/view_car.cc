@@ -52,6 +52,7 @@ int main(int argc, char const *argv[])
     vector<vector<string>> list_cart = conn.get_my_cart(correo);
 
     cout << "<div class=\"container register mt-4\">";
+    //cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
 
     if (list_cart.size() != 0)
     {
@@ -70,71 +71,20 @@ int main(int argc, char const *argv[])
             cout << " <hr/>";
             cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
             cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-            cout << "		    <h5 class=\"card-sub title\"> Precio: ₡" << precio << "</h5>";
+            cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio: ₡" << precio << "</h7>";
             cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
             cout << "		</div>";
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-            cout << "<button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"><i class='bi bi-cart-dash-fill' style='font-size: 1rem;'></i> Remover del carrito </button>";
+            cout << "<a href=\"#\"> <button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Remover del carrito</button></a>";
             cout << "	  	</div>";
             cout << "	</div>";
             cout << "</div>";
         }
         cout << "</div>";
         cout << " <br/>";
-        cout << " <hr/>";
-        cout << "<h4 class=\"ml-4\">Monto total a pagar: ₡" << monto_total << "</h4>";
+        cout << "<h1 class=\"display-4\">Monto total a pagar: " << monto_total << "</h1>";
         cout << " <br/>";
-        cout << "<button type='button' class='btn btn-info ml-4' data-toggle='modal' data-target='#exampleModal'>Realizar compra <i class='bi bi-cart-check-fill'></i></button>";
-
-        cout << "    <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>";
-        cout << "<div class='modal-dialog'> ";
-        cout << "<div class='modal-content'>";
-        cout << "  <div class='modal-header'>";
-        cout << "    <h5 class='modal-title' id='exampleModalLabel'>Agregue información de pago</h5>";
-        cout << "    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
-        cout << "      <span aria-hidden='true'>&times;</span>";
-        cout << "    </button>";
-        cout << "  </div>";
-        cout << "  <div class='modal-body'>";
-        cout << "    <form method='POST' action='/buy_car.cgi' autocomplete='off'>";
-        cout << "        <div class='form-group'>";
-        cout << "            <input type='hidden' class='form-control' id='price' name='price' value='" << monto_total << "'>";
-        cout << "          </div>";
-        cout << "      <div class='form-group'>";
-        cout << "        <label for='card_number' class='col-form-label'>Número de tarjeta</label>";
-        cout << "        <input type='text' class='form-control' id='card_number' name='card_number' maxlength='17' placeholder='xxxxxxxxxxxxxxx' required autocomplete='off' >";
-        cout << "      </div>";
-        cout << "      <div class='form-group'>";
-        cout << "        <label for='card_expiry' class='col-form-label'>Fecha de vencimiento de la tarjeta</label>";
-        cout << "        <input type='text' class='form-control' id='card_expiry' name='card_expiry' maxlength='5' placeholder='mm/yy' required>";
-        cout << "      </div>";
-        cout << "      <div class='form-group'>";
-        cout << "        <label for='card_cvv' class='col-form-label'>Código de seguridad de la tarjeta</label>";
-        cout << "        <input type='password' class='form-control' id='card_cvv' name='card_cvv' maxlength='4' placeholder='xxx' required autocomplete='off' >";
-        cout << "      </div>";
-
-        cout << "      <div class='form-group'>";
-        cout << "        <label for='card_owner' class='col-form-label'>Dueño de la tarjeta</label>";
-        cout << "        <input type='text' class='form-control' id='card_owner' name='card_owner' maxlength='30' placeholder='Pepe Perez' required>";
-        cout << "      </div>";
-
-        cout << "      <div class='form-group'>";
-        cout << "        <label for='card_type'>Eije un tipo de tarjeta</label>";
-        cout << "        <select class='form-control' id='card_type' name='card_type' required>";
-        cout << "          <option value='Visa'>Visa</option>";
-        cout << "          <option value='Mastercard'>Mastercard</option>";
-        cout << "          <option value='AmericanExpress'>American Express</option>";
-        cout << "        </select>";
-        cout << "      </div>";
-        cout << "  </div>";
-        cout << "  <div class='modal-footer'>";
-        cout << "    <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar <i class='bi bi-x-square-fill'></i></button>";
-        cout << "    <button type='submit' class='btn btn-info'>Comprar <i class='bi bi-credit-card-fill' style='font-size: 1rem;'></i></button>";
-        cout << "  </div>";
-        cout << "</form>";
-        cout << "</div>";
-        cout << "</div>";
-        cout << "</div>";
+        cout << "<button class=\"btn btn-info\" onclick=\"buy_cart_ajax('"<<codigo_producto <<"')\">Realizar compra</button> "; 
     }
     else
     {

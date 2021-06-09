@@ -247,22 +247,6 @@ void Utils::log_app_action(string action, string result, string user, string des
     myfile.close();
 }
 
-string Utils::mask_card_number(string card_number)
-{
-    string masked_number = "";
-    int card_size = card_number.size();
-    for (int i = 0; i < card_size; i++)
-    {
-        if ( i == card_size - 1 || i == card_size - 2 || i == card_size - 3 || i == card_size - 4 ){
-            masked_number += card_number[i];
-        }
-        else{
-            masked_number += "x";
-        }
-    }
-    return masked_number;
-}
-
 // int main(int argc, char const *argv[])
 // {
 //     Utils u = Utils();
@@ -275,7 +259,6 @@ string Utils::mask_card_number(string card_number)
 //     // string hash = u.create_hash_sha2("pass", salt);
 //     // cout << hash << endl;
 
-//     cout << u.mask_card_number("1234567890");
 //     // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
 
 //     // free(content);

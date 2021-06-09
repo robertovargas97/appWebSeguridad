@@ -11,7 +11,7 @@
 //             // console.log(form.name.value)
 //             data = $('#comments_form').serialize();
 //             $.ajax({
-//                 url: '/add_comment.cgi',
+//                 url: '/appWebSeguridad/add_comment.cgi',
 //                 type: 'POST',
 //                 data: data,
 //                 success: function (data) {
@@ -72,7 +72,10 @@ function delete_from_cart_ajax(producto, u_correo) {
 
 
 
-function buy_cart_ajax() {
+function buy_cart_ajax(u_correo) {
+    $("#id_correo").val(u_correo);
+    form_data = $('#jaja_form').serialize();
+    console.log(form_data);
     $.ajax({
         url: '/buy_car.cgi',
         data: form_data,
@@ -91,7 +94,7 @@ function empty_cart_ajax(producto, u_correo) {
     form_data = $('#jaja_form').serialize();
     console.log(form_data);
     $.ajax({
-        url: '/empty_car.cgi',
+        url: '/appWebSeguridad/empty_car.cgi',
         data: form_data,
         type: 'POST',
         success: function (data) {

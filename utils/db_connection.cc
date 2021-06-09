@@ -292,6 +292,7 @@ bool DBConnection::add_to_cart(string email, string code_product)
     //int code_product_int = stoi(code_product);
     bool response = false; //no ha sido agregado
     string query = "call add_to_cart('" + email + "', '" + code_product + "');";
+    cout << query << endl;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true; //fue agregado al carrito
@@ -358,6 +359,7 @@ bool DBConnection::empty_cart(string email, string code_product)
 bool DBConnection::erase_product(string codigoProducto){
     bool response = false; //aun no vaciado
     string query = "call erase_product('"+codigoProducto+ "');";
+    cout << query << endl;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true; //vacio el carryto correctamente
@@ -369,6 +371,7 @@ bool DBConnection::erase_product(string codigoProducto){
         //utils.log_app_action("db connection", "error", "-", error);
         utils.log_app_action("db connection (erase_product)", "error", codigoProducto, "Failure erasing product");
     }
+    cout << response <<  endl;
     return response;
 }
 
@@ -378,10 +381,11 @@ bool DBConnection::erase_products(string correo, vector<vector<string> > cart_li
     
      if (cart_list.size() != 0)
     {       
+        printf("La lista tiene algo");
         for (int i = 0; i < cart_list.size(); i++)
         {           
             codigo_producto = cart_list[i][3];
-            erased_product = erase_product(codigo_producto);             
+            erased_product = erase_product(codigo_producto);   
         }
     }     else{
             utils.log_app_action("db connection (erase_product)", "error", correo, "Failure erasing product is empty"); 
