@@ -29,6 +29,8 @@ int main(int argc, char const *argv[])
     char *header = "/templates/header.html";
     char *list_products = "/templates/list_products.html";
     char *footer = "/templates/footer.html";
+    char *transaction_modal = "/templates/transaction_modal.html";
+    char *transaction_modal_content = utils.read_file(transaction_modal, transaction_modal_content);
     char *header_content = utils.read_file(header, header_content);
     char *list_products_content = utils.read_file(list_products, list_products_content);
     char *footer_content = utils.read_file(footer, footer_content);
@@ -71,20 +73,21 @@ int main(int argc, char const *argv[])
             cout << " <hr/>";
             cout << "	  	<div class=\"card-body\" style=\" width: 286; height: 166\">";
             cout << "		    <h5 class=\"card-title\">" << nombre << "</h5>";
-            cout << "		    <h7 lass=\"card-sub title\" style=\"color:blue\"> Precio: ₡" << precio << "</h7>";
+            cout << "		    <h5 class=\"card-sub title\"> Precio: ₡" << precio << "</h5>";
             cout << "		    <p class=\"card-text\"> " << descripcion << "</p>";
             cout << "		</div>";
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
-            cout << "<a href=\"\"> <button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"> Remover del carrito</button></a>";
+            cout << "<a href=\"\"> <button class=\"btn btn-info\" onclick=\"delete_from_cart_ajax('" << codigo_producto << "','" << correo << "')\"><i class='bi bi-cart-dash-fill' style='font-size: 1rem;'></i> Remover del carrito </button></a>";
             cout << "	  	</div>";
             cout << "	</div>";
             cout << "</div>";
         }
         cout << "</div>";
         cout << " <br/>";
-        cout << "<h1 class=\"display-4\">Monto total a pagar: " << monto_total << "</h1>";
+        cout << " <hr/>";
+        cout << "<h4 class=\"ml-4\">Monto total a pagar: ₡" << monto_total << "</h4>";
         cout << " <br/>";
-        cout << "<button class=\"btn btn-info\">Realizar compra</button>"; // conn.empty_cart(correoUser,product); -> buy_car.cgi
+        cout << "<button class=\"btn btn-info ml-4\">Realizar compra</button>"; // conn.empty_cart(correoUser,product); -> buy_car.cgi
     }
     else
     {
@@ -95,10 +98,12 @@ int main(int argc, char const *argv[])
         cout << "</div>";
     }
     cout << "</div>";
+    printf(transaction_modal_content);
     printf(footer_content);
 
     free(header_content);
     free(list_products_content);
+    free(transaction_modal_content);
     free(footer_content);
     return 0;
 }
