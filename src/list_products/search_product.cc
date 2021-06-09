@@ -50,21 +50,22 @@ int main(int argc, char const *argv[])
     string precio = "";
     string descripcion = "";
     string esta_en_carrito = "false";
-    string codigo_producto = "5";
+    string codigo_producto = "";
 
     vector<vector<string>> lista_productos;
 
     DBConnection conn = DBConnection();
     DBConnection conn_3 = DBConnection();
+    DBConnection conn_4 = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    //cout<<"form_data["search_product_form"]";
-    lista_productos = conn.search_product(form_data["product_to_search"]);
-    //lista_productos = conn.search_product("agua");
+    lista_productos = conn.search_product(form_data["product_to_search"]);;
 
     if (lista_productos.size() != 0)
     {
-
-        //int num=0;
+        vector<vector<string>> my_cart;
+        if(is_signed){
+            my_cart = conn_4.get_my_cart(correo);
+        }
         for (int i = 0; i < lista_productos.size(); i++)
         {
             categoria = lista_productos[i][4];
@@ -85,8 +86,13 @@ int main(int argc, char const *argv[])
             cout << "		<div class = \"card-footer\"style=\"width: 18rem;\">";
             if (is_signed)
             {
-                esta_en_carrito = conn_3.exist_in_cart(cookies["Email"], codigo_producto);
-                cout << esta_en_carrito << endl;
+                esta_en_carrito = "false";
+                for(int j =0; j < my_cart.size(); j ++){
+                        if(my_cart[j][3]==codigo_producto){
+                                esta_en_carrito = "true";
+                        }
+
+                }
                 if (esta_en_carrito == "true")
                 { // existe
                     cout << "<button class=\"btn btn-secondary\" disabled=\"true\" > Ya en carrito</button>";

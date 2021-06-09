@@ -215,4 +215,18 @@ END$$
 DELIMITER ;
 
 
+USE `MarketPlaceDB`;
+DROP procedure IF EXISTS `get_all_products`;
+
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `erase_product`(
+in u_codigo_producto varchar(4))
+BEGIN
+DELETE FROM Producto WHERE codigoProducto=CONVERT(u_codigo_producto, SIGNED); 
+END$$
+
+DELIMITER ;
+
+
 

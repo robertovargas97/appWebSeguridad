@@ -248,10 +248,10 @@ string DBConnection::exist_in_cart(string email, string code_product)
     return response;
 }
 
-vector<vector<string>> DBConnection::get_my_cart(string email)
+vector<vector<string> > DBConnection::get_my_cart(string email)
 {
     string query = "call get_my_cart('" + email + "');";
-    vector<vector<string>> product_list;
+    vector<vector<string>   > product_list;
     if (mysql_query(mysql, query.c_str()))
     {
         string error = mysql_error(mysql);
@@ -292,7 +292,6 @@ bool DBConnection::add_to_cart(string email, string code_product)
     //int code_product_int = stoi(code_product);
     bool response = false; //no ha sido agregado
     string query = "call add_to_cart('" + email + "', '" + code_product + "');";
-    cout << query << endl;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true; //fue agregado al carrito
@@ -321,6 +320,22 @@ bool DBConnection::delete_from_cart(string email, string code_product)
         utils.log_app_action("db connection", "error", "-", error);
     }
     return response;
+
+}bool DBConnection::buy_cart(string email)
+{
+    bool response = false; //no ha sido boraado
+    string query = "call buy_cart('" + email + "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true; //fue borrado
+        utils.log_app_action("db connection (delete from cart)", "success", email, "Product deleted from cart");
+    }
+    else
+    {
+        string error = mysql_error(mysql);
+        utils.log_app_action("db connection", "error", "-", error);
+    }
+    return response;
 }
 
 bool DBConnection::empty_cart(string email, string code_product)
@@ -338,6 +353,43 @@ bool DBConnection::empty_cart(string email, string code_product)
         utils.log_app_action("db connection", "error", "-", error);
     }
     return response;
+}
+
+bool DBConnection::erase_product(string codigoProducto){
+    bool response = false; //aun no vaciado
+    string query = "call erase_product('"+codigoProducto+ "');";
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true; //vacio el carryto correctamente
+        utils.log_app_action("db connection (erase_product)", "success", codigoProducto, "Erased product");
+    }
+    else
+    {
+        string error = mysql_error(mysql);
+        //utils.log_app_action("db connection", "error", "-", error);
+        utils.log_app_action("db connection (erase_product)", "error", codigoProducto, "Failure erasing product");
+    }
+    return response;
+}
+
+bool DBConnection::erase_products(string correo, vector<vector<string> > cart_list){
+    bool erased_product = false;
+    string codigo_producto = "";  
+    
+     if (cart_list.size() != 0)
+    {       
+        for (int i = 0; i < cart_list.size(); i++)
+        {           
+            codigo_producto = cart_list[i][3];
+            erased_product = erase_product(codigo_producto);           
+        }
+    }     else{
+            utils.log_app_action("db connection (erase_product)", "error", correo, "Failure erasing product is empty"); 
+    }    
+    if(erased_product){
+        utils.log_app_action("db connection (erase_product)", "success", correo, "Products deleted from the lists of products");
+    } 
+    return erased_product;
 }
 
 vector<vector<string>> DBConnection::get_all_products()
@@ -432,15 +484,22 @@ vector<vector<string>> DBConnection::search_product(string product)
     }
     return product_list;
 }
-//  int main()
-//   {
-//      DBConnection conn = DBConnection();
-//      bool exito = conn.exist_in_cart("hellen@gmail.com", "7");
-//      if(exito){
-//          printf("Exito");
-//      }
-//      else{
-//          printf("No sirvio");
-//      }
-//      return 1;
-//   }
+
+/*
+  int main()
+   {
+
+      DBConnection conn = DBConnection();
+      DBConnection conn2 = DBConnection();
+      vector<vector<string> > cart_list = conn2.get_my_cart("maggie@gmail.com");
+      bool exito = conn.erase_products("maggie@gmail.com", cart_list);
+      //bool exito = conn.erase_product("7");
+      if(exito){
+          printf("Exito");
+      }
+      else{
+          printf("No sirvio");
+      }
+      return 1;
+   }
+*/
