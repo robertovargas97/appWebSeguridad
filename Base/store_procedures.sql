@@ -6,7 +6,6 @@ DROP procedure IF EXISTS `add_comment`;
 
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `MarketPlaceDB`.`add_comment`;
-;
 
 DELIMITER $$
 USE `MarketPlaceDB`$$
@@ -51,16 +50,13 @@ BEGIN
 END$$
 
 
-DELIMITER ;
-;
-
+DELIMITER$$
 -- Add User Procedure --
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `add_user`;
 
 USE `MarketPlaceDB`;
 DROP procedure IF EXISTS `MarketPlaceDB`.`add_user`;
-;
 
 DELIMITER $$
 USE `MarketPlaceDB`$$
@@ -93,8 +89,6 @@ BEGIN
 
 END$$
 
-DELIMITER ;
-;
 
 -- Procedura to get the user salt
 USE `MarketPlaceDB`$$
@@ -111,7 +105,6 @@ WHERE correo = u_email;
 
 END$$
 
-DELIMITER ;
 
 -- Procedure to verify login
 
@@ -128,8 +121,6 @@ FROM Tabla
 WHERE correo = u_email AND pass = u_pass;
 
 END$$
-
-DELIMITER ;
 
 
 DELIMITER $$
@@ -168,7 +159,7 @@ IN codigoProductoFK varchar(4)
 )
 BEGIN
 SELECT  * 
-	FROM	Persona p JOIN ProductoEnCarrito pc ON p.correo =pc.correoFK
+	FROM Persona p JOIN ProductoEnCarrito pc ON p.correo =pc.correoFK
 	WHERE	p.correo  =  correoFK AND pc.codigoProductoFK = CONVERT(codigoProductoFK, SIGNED);
 END$$
 

@@ -39,10 +39,10 @@ int main(int argc, char const *argv[])
     std::map<string, string> cookies = utils.get_cookies();
     bool is_signed = conn_2.verify_session(cookies["Email"], cookies["Password"]);
     utils.get_navbar(is_signed);
-
+    printf(list_products_content);
     cout << "<div class=\"container register mt-4\">";
     cout << "<br/>";
-   
+
     cout << "<div class=\"row\">";
     string correo = cookies["Email"];
     string categoria = "";
@@ -58,12 +58,13 @@ int main(int argc, char const *argv[])
     DBConnection conn_3 = DBConnection();
     DBConnection conn_4 = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    lista_productos = conn.search_product(form_data["product_to_search"]);;
+    lista_productos = conn.search_product(form_data["product_to_search"]);
 
     if (lista_productos.size() != 0)
     {
         vector<vector<string>> my_cart;
-        if(is_signed){
+        if (is_signed)
+        {
             my_cart = conn_4.get_my_cart(correo);
         }
         for (int i = 0; i < lista_productos.size(); i++)
@@ -74,7 +75,7 @@ int main(int argc, char const *argv[])
             precio = lista_productos[i][2];
             descripcion = lista_productos[i][3];
 
-            cout << "<div class=\"col-lg-3\">";
+            cout << "<div class=\"col-lg-3 mt-3 ml-3\">";
             cout << "	<div class=\"card\" style=\"width: 18rem;\">";
             cout << "	  <i class=\"" << categoria << "\" style=\"font-size: 10rem; margin: 20px; align-self: center; height:160;\"></i>";
             cout << " <hr/>";
@@ -87,11 +88,12 @@ int main(int argc, char const *argv[])
             if (is_signed)
             {
                 esta_en_carrito = "false";
-                for(int j =0; j < my_cart.size(); j ++){
-                        if(my_cart[j][3]==codigo_producto){
-                                esta_en_carrito = "true";
-                        }
-
+                for (int j = 0; j < my_cart.size(); j++)
+                {
+                    if (my_cart[j][3] == codigo_producto)
+                    {
+                        esta_en_carrito = "true";
+                    }
                 }
                 if (esta_en_carrito == "true")
                 { // existe
@@ -121,7 +123,6 @@ int main(int argc, char const *argv[])
     cout << "</div>";
     cout << "</div>";
 
-    printf(list_products_content);
     printf(footer_content);
 
     free(header_content);

@@ -61,7 +61,7 @@ int main(int argc, const char *argv[], const char *env[])
         cout << "<a class=\"btn btn-info btn-login mt-4\" href=\"/login.cgi\">Ir a Login</a>";
         cout << "</div>";
         cout << "</div>";
-         utils.log_app_action("add user", "success", cookies["email"]);
+        utils.log_app_action("add user", "success", cookies["email"]);
     }
     else
     {
