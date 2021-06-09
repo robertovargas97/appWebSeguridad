@@ -29,8 +29,6 @@ int main(int argc, char const *argv[])
     char *header = "/templates/header.html";
     char *list_products = "/templates/list_products.html";
     char *footer = "/templates/footer.html";
-    // char *transaction_modal = "/templates/transaction_modal.html";
-    // char *transaction_modal_content = utils.read_file(transaction_modal, transaction_modal_content);
     char *header_content = utils.read_file(header, header_content);
     char *list_products_content = utils.read_file(list_products, list_products_content);
     char *footer_content = utils.read_file(footer, footer_content);
@@ -54,7 +52,6 @@ int main(int argc, char const *argv[])
     vector<vector<string>> list_cart = conn.get_my_cart(correo);
 
     cout << "<div class=\"container register mt-4\">";
-    //cout << "<p align=\"right\"> <a href= \"\" class=\"btn btn-primary\" align=\"right\" id=\"/\">Vaciar carrito<span class=\"sr-only\"></span></a></p>";
 
     if (list_cart.size() != 0)
     {
@@ -99,7 +96,7 @@ int main(int argc, char const *argv[])
         cout << "    </button>";
         cout << "  </div>";
         cout << "  <div class='modal-body'>";
-        cout << "    <form method='POST' action='/appWebSeguridad/buy_car.cgi' autocomplete='off'>";
+        cout << "    <form method='POST' action='/buy_car.cgi' autocomplete='off'>";
         cout << "        <div class='form-group'>";
         cout << "            <input type='hidden' class='form-control' id='price' name='price' value='" << monto_total << "'>";
         cout << "          </div>";
@@ -148,12 +145,10 @@ int main(int argc, char const *argv[])
         cout << "</div>";
     }
     cout << "</div>";
-    // printf(transaction_modal_content);
     printf(footer_content);
 
     free(header_content);
     free(list_products_content);
-    // free(transaction_modal_content);
     free(footer_content);
     return 0;
 }
