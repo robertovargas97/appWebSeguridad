@@ -299,7 +299,7 @@ bool Utils::is_valid_visa_card_no(string card_number)
     bool valid = false;
     // Regex to check valid Visa Card number
     const regex pattern("^4[0-9]{12}(?:[0-9]{3})?$");
-
+    cout << "<h1>   SIII </h1>";
     // If the Visa Card number
     // is empty return false
     if (card_number.empty())
@@ -312,6 +312,7 @@ bool Utils::is_valid_visa_card_no(string card_number)
     {
         valid = true;
     }
+    cout << "<h1>   SIII 2 </h1>";
     return valid;
 }
 
@@ -368,6 +369,7 @@ bool Utils::verify_card_no_type(string card_number, string type)
         if (type == "Visa")
         {
             valid = is_valid_visa_card_no(card_number);
+            cout << "<h1>"<< valid << "</h1>";
         }
         else
         {

@@ -52,7 +52,7 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    // bool is_valid_card = utils.verify_card_no_type(form_data["card_number"], form_data["card_type"]);
+    bool is_valid_card = utils.verify_card_no_type(form_data["card_number"], form_data["card_type"]);
     bool buy_car_result = false;
     cout << "<h1> LLEGUE </h2>";
     // cout << "<h1>" << is_valid_card << "</h2>";
