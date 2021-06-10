@@ -54,7 +54,7 @@ int main(int argc, const char *argv[], const char *env[])
     std::map<string, string> form_data = utils.get_post_data();
     bool is_valid_card = utils.verify_card_no_type(form_data["card_number"], form_data["card_type"]);
     bool buy_car_result = false;
-
+    cout << is_valid_card;
     if (is_signed)
     {
         // Here we should send the payment to some processor to verify the purchase

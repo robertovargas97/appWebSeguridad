@@ -362,7 +362,6 @@ bool Utils::is_valid_amex_card_no(string card_number)
 bool Utils::verify_card_no_type(string card_number, string type)
 {
     bool valid = false;
-    cout << card_number << "   :   " << type;
 
     if (verify_card(card_number))
     {
