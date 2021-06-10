@@ -87,6 +87,16 @@ int main(int argc, const char *argv[], const char *env[])
             cout << "       </div>";
             cout << "     </div>";
 
+            cout << "    <div class='col-12'>";
+            cout << "       <label class='login-label' for='email'>Fecha de Compra</label>";
+            cout << "       <div class='input-group mb-2'>";
+            cout << "         <div class='input-group-prepend'>";
+            cout << "           <div class='input-group-text'> <i class='bi bi-calendar-check-fill'></i> </div>";
+            cout << "         </div>";
+            cout << "         <input type='email' class='form-control' id='id_email' name='email' required placeholder='example@mail.com' required maxlength='50' value = '" << utils.get_date() << "' disabled > ";
+            cout << "       </div>";
+            cout << "     </div>";
+
             cout << "       <div class='col-12'>";
             cout << "        <label class='login-label' for='email'>Nombre del comprador</label>";
             cout << "        <div class='input-group mb-2'>";
