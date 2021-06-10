@@ -363,11 +363,12 @@ bool Utils::is_valid_amex_card_no(string card_number)
 bool Utils::verify_card_no_type(string card_number, string type)
 {
     bool valid = false;
-
+    cout << "<h1> " << card_number << " - " << type <<  "</h1>";
     if (verify_card(card_number))
     {
         if (type == "Visa")
         {
+            cout << "<h1>  Ahhh </h1>";
             valid = is_valid_visa_card_no(card_number);
             cout << "<h1>"<< valid << "</h1>";
         }
