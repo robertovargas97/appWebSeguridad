@@ -221,6 +221,7 @@ DELIMITER ;
 
 DELIMITER $$
 USE `MarketPlaceDB`$$
+DROP procedure IF EXISTS `add_receipt`;
 CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_receipt`(
 	IN u_numeroFactura VARCHAR(10),
     IN u_nombreComprador VARCHAR(50),
@@ -232,7 +233,7 @@ BEGIN
 	DECLARE creation_date datetime DEFAULT now();
 	   
     INSERT INTO
-    Comentarios (`numeroFactura`, `nombreComprador`, `correoComprador`, `numeroTarjeta`, `productosComprados`, `totalCompra`, `fechaDeCompra`)
+    Factura (`numeroFactura`, `nombreComprador`, `correoComprador`, `numeroTarjeta`, `productosComprados`, `totalCompra`, `fechaDeCompra`)
 	VALUES
     (
         u_numeroFactura,
