@@ -485,6 +485,24 @@ vector<vector<string>> DBConnection::search_product(string product)
     return product_list;
 }
 
+bool DBConnection::add_receipt(string receipt_no, string user_name, string user_email, string card_no, string products_list, string total)
+{
+    bool response = false;
+
+    string query = "call add_receipt('" + receipt_no + "'," + "'" + user_name + "'," + "'" + user_email + "'," + "'" + card_no + "'," + "'" + products_list + "'," + "'" + total + "'" + ");";
+    cout << query;
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    else
+    {
+        string error = mysql_error(mysql);
+        utils.log_app_action("db connection (add user)", "error", "-", error);
+    }
+    return response;
+}     
+
 /*
   int main()
    {
