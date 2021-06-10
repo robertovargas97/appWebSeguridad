@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
         cout << "      </div>";
         cout << "      <div class='form-group'>";
         cout << "        <label for='card_expiry' class='col-form-label'>Fecha de vencimiento de la tarjeta</label>";
-        cout << "        <input type='text' class='form-control' id='card_expiry' name='card_expiry' maxlength='5' placeholder='mm/yy' required>";
+        cout << "        <input pattern='(((0[123456789]|10|11|12)\/(([0-9][0-9]))))' type='text' class='form-control' id='card_expiry' name='card_expiry' maxlength='5' placeholder='mm/yy' required>";
         cout << "      </div>";
         cout << "      <div class='form-group'>";
         cout << "        <label for='card_cvv' class='col-form-label'>Código de seguridad de la tarjeta</label>";
