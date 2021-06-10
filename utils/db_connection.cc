@@ -498,7 +498,7 @@ bool DBConnection::add_receipt(string receipt_no, string user_name, string user_
     else
     {
         string error = mysql_error(mysql);
-        utils.log_app_action("db connection (add user)", "error", "-", error);
+        utils.log_app_action("db connection (add receipt)", "error", "-", error);
     }
     return response;
 }     
