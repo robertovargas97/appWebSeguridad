@@ -52,7 +52,8 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
-    bool is_valid_card = utils.verify_card_no_type(form_data["card_number"], form_data["card_type"]);
+    // bool is_valid_card = utils.verify_card_no_type(form_data["card_number"], form_data["card_type"]);
+    bool is_valid_card = utils.verify_card(form_data["card_number"]);
     bool buy_car_result = false;
 
     if (is_signed)
@@ -194,6 +195,6 @@ int main(int argc, const char *argv[], const char *env[])
     printf(footer_content);
     free(header_content);
     free(footer_content);
-   
+
     return 1;
 }
