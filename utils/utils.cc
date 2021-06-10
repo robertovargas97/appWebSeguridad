@@ -368,6 +368,7 @@ bool Utils::verify_card_no_type(string card_number, string type)
         if (type == "Visa")
         {
             valid = is_valid_visa_card_no(card_number);
+            cout
         }
         else
         {
