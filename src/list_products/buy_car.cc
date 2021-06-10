@@ -51,6 +51,8 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
+    bool is_valid_card = utils.verify_card_no_type(form_data["card_number"], form_data["card_type"]);
+    cout << is_valid_card;
     bool buy_car_result = false;
 
     if (is_signed)
