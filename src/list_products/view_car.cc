@@ -113,7 +113,7 @@ int main(int argc, char const *argv[])
         cout << "      </div>";
         cout << "      <div class='form-group'>";
         cout << "        <label for='card_cvv' class='col-form-label'>Código de seguridad de la tarjeta</label>";
-        cout << "        <input type='password' class='form-control' id='card_cvv' name='card_cvv' maxlength='4' placeholder='xxx' required autocomplete='off' >";
+        cout << "        <input type='number' class='form-control' id='card_cvv' name='card_cvv' maxlength='4' placeholder='xxx' required autocomplete='off' >";
         cout << "      </div>";
 
         cout << "      <div class='form-group'>";
