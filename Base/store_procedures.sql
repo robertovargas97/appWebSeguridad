@@ -219,5 +219,29 @@ END$$
 
 DELIMITER ;
 
-
+DELIMITER $$
+USE `MarketPlaceDB`$$
+CREATE DEFINER=`seguridad`@`localhost` PROCEDURE `add_receipt`(
+	IN u_numeroFactura VARCHAR(10),
+    IN u_nombreComprador VARCHAR(50),
+    IN u_correoComprador VARCHAR(60),
+    IN u_numeroTarjeta VARCHAR(17),
+    IN u_productosComprados VARCHAR(500),
+    IN u_totalCompra VARCHAR(20))
+BEGIN
+	DECLARE creation_date datetime DEFAULT now();
+	   
+    INSERT INTO
+    Comentarios (`numeroFactura`, `nombreComprador`, `correoComprador`, `numeroTarjeta`, `productosComprados`, `totalCompra`, `fechaDeCompra`)
+	VALUES
+    (
+        u_numeroFactura,
+        u_nombreComprador,
+        u_correoComprador,
+        u_numeroTarjeta, 
+        u_productosComprados,
+        u_totalCompra,
+        creation_date
+    );
+END$$
 

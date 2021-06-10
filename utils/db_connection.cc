@@ -248,10 +248,10 @@ string DBConnection::exist_in_cart(string email, string code_product)
     return response;
 }
 
-vector<vector<string> > DBConnection::get_my_cart(string email)
+vector<vector<string>> DBConnection::get_my_cart(string email)
 {
     string query = "call get_my_cart('" + email + "');";
-    vector<vector<string>   > product_list;
+    vector<vector<string>> product_list;
     if (mysql_query(mysql, query.c_str()))
     {
         string error = mysql_error(mysql);
@@ -320,8 +320,8 @@ bool DBConnection::delete_from_cart(string email, string code_product)
         utils.log_app_action("db connection", "error", "-", error);
     }
     return response;
-
-}bool DBConnection::buy_cart(string email)
+}
+bool DBConnection::buy_cart(string email)
 {
     bool response = false; //no ha sido boraado
     string query = "call buy_cart('" + email + "');";
@@ -355,9 +355,10 @@ bool DBConnection::empty_cart(string email, string code_product)
     return response;
 }
 
-bool DBConnection::erase_product(string codigoProducto){
+bool DBConnection::erase_product(string codigoProducto)
+{
     bool response = false; //aun no vaciado
-    string query = "call erase_product('"+codigoProducto+ "');";
+    string query = "call erase_product('" + codigoProducto + "');";
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true; //vacio el carryto correctamente
@@ -372,23 +373,27 @@ bool DBConnection::erase_product(string codigoProducto){
     return response;
 }
 
-bool DBConnection::erase_products(string correo, vector<vector<string> > cart_list){
+bool DBConnection::erase_products(string correo, vector<vector<string>> cart_list)
+{
     bool erased_product = false;
-    string codigo_producto = "";  
-    
-     if (cart_list.size() != 0)
-    {       
+    string codigo_producto = "";
+
+    if (cart_list.size() != 0)
+    {
         for (int i = 0; i < cart_list.size(); i++)
-        {           
+        {
             codigo_producto = cart_list[i][3];
-            erased_product = erase_product(codigo_producto);   
+            erased_product = erase_product(codigo_producto);
         }
-    }     else{
-            utils.log_app_action("db connection (erase_product)", "error", correo, "Failure erasing product is empty"); 
-    }    
-    if(erased_product){
+    }
+    else
+    {
+        utils.log_app_action("db connection (erase_product)", "error", correo, "Failure erasing product is empty");
+    }
+    if (erased_product)
+    {
         utils.log_app_action("db connection (erase_product)", "success", correo, "Products deleted from the lists of products");
-    } 
+    }
     return erased_product;
 }
 
@@ -485,21 +490,38 @@ vector<vector<string>> DBConnection::search_product(string product)
     return product_list;
 }
 
-/*
-  int main()
-   {
+bool DBConnection::add_receipt(string receipt_no, string user_name, string user_email, string card_no, string products_list, string total)
+{
+    bool response = false;
 
-      DBConnection conn = DBConnection();
-      DBConnection conn2 = DBConnection();
-      vector<vector<string> > cart_list = conn2.get_my_cart("maggie@gmail.com");
-      bool exito = conn.erase_products("maggie@gmail.com", cart_list);
-      //bool exito = conn.erase_product("7");
-      if(exito){
-          printf("Exito");
-      }
-      else{
-          printf("No sirvio");
-      }
-      return 1;
-   }
-*/
+    string query = "call add_receipt('" + receipt_no + "'," + "'" + user_name + "'," + "'" + user_email + "'," + "'" + card_no + "'," + "'" + products_list + "'," + "'" + total + "'" + ");";
+    cout << query;
+    if (mysql_query(mysql, query.c_str()) == 0)
+    {
+        response = true;
+    }
+    else
+    {
+        string error = mysql_error(mysql);
+        utils.log_app_action("db connection (add user)", "error", "-", error);
+    }
+    return response;
+}
+
+// int main()
+// {
+
+//     DBConnection conn = DBConnection();
+//     DBConnection conn2 = DBConnection();
+//     conn.add_receipt("1234", "Rob", "mail", "098765", "string products_list", "1000");
+//     //   vector<vector<string> > cart_list = conn2.get_my_cart("maggie@gmail.com");
+//     //   bool exito = conn.erase_products("maggie@gmail.com", cart_list);
+//     //   //bool exito = conn.erase_product("7");
+//     //   if(exito){
+//     //       printf("Exito");
+//     //   }
+//     //   else{
+//     //       printf("No sirvio");
+//     //   }
+//     return 1;
+// }

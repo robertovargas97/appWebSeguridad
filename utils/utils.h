@@ -52,6 +52,7 @@ public:
     bool is_valid_masterCard_no(string card_number);
     bool is_valid_amex_card_no(string card_number);
     bool verify_card_no_type(string card_number, string type);
+    char* get_date();
 };
 
 #endif

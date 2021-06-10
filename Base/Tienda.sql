@@ -55,6 +55,20 @@ CONSTRAINT Correo_Comentarios_PK PRIMARY KEY(correoFK, fechaDeCreacion) /*Para q
 );
 
 
+CREATE TABLE Factura(
+
+idFactura INT NOT NULL  AUTO_INCREMENT,
+numeroFactura VARCHAR(10) NOT NULL,
+nombreComprador VARCHAR(50) NOT NULL,
+correoComprador VARCHAR(60) NOT NULL,
+numeroTarjeta VARCHAR(17) NOT NULL,
+productosComprados VARCHAR(500) NOT NULL,
+totalCompra VARCHAR(20) NOT NULL,
+fechaDeCompra DATETIME NOT NULL,
+CONSTRAINT Factura_PK PRIMARY KEY(idFactura)
+);
+
+
 -- INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('hellen@gmail.com', 'Hellen', 'Fernandez', 88888888, 'Alajuela, San Ramon, San Isidro');
 -- INSERT INTO Persona(correo, nombre, apellido, telefono, direccion) VALUES('tefi@gmail.com', 'Stephanie', 'Leiton', 88988888, 'Alajuela, San Ramon, San Ramon');
 
