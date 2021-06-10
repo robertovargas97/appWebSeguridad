@@ -263,6 +263,13 @@ string Utils::mask_card_number(string card_number)
     return masked_number;
 }
 
+char *Utils::get_date()
+{
+    auto end = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+    return std::ctime(&end_time);
+}
+
 // int main(int argc, char const *argv[])
 // {
 //     Utils u = Utils();

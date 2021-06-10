@@ -46,6 +46,8 @@ public:
     void get_navbar(bool is_signed);
     void log_app_action(string action, string result, string user, string description="");
     string mask_card_number(string card_number);
+    char* get_date();
+
 };
 
 #endif
