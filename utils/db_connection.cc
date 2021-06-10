@@ -495,7 +495,6 @@ bool DBConnection::add_receipt(string receipt_no, string user_name, string user_
     bool response = false;
 
     string query = "call add_receipt('" + receipt_no + "'," + "'" + user_name + "'," + "'" + user_email + "'," + "'" + card_no + "'," + "'" + products_list + "'," + "'" + total + "'" + ");";
-    cout << query;
     if (mysql_query(mysql, query.c_str()) == 0)
     {
         response = true;
@@ -503,7 +502,7 @@ bool DBConnection::add_receipt(string receipt_no, string user_name, string user_
     else
     {
         string error = mysql_error(mysql);
-        utils.log_app_action("db connection (add user)", "error", "-", error);
+        utils.log_app_action("db connection (add receipt)", "error", "-", error);
     }
     return response;
 }
