@@ -297,10 +297,9 @@ bool Utils::verify_card(string numeroTarjeta)
 bool Utils::is_valid_visa_card_no(string card_number)
 {
     bool valid = false;
-    cout << "<h1>   SIII VISA </h1>";
     // Regex to check valid Visa Card number
     const regex pattern("^4[0-9]{12}(?:[0-9]{3})?$");
-    cout << "<h1>   SIII </h1>";
+
     // If the Visa Card number
     // is empty return false
     if (card_number.empty())
@@ -313,7 +312,6 @@ bool Utils::is_valid_visa_card_no(string card_number)
     {
         valid = true;
     }
-    cout << "<h1>   SIII 2 </h1>";
     return valid;
 }
 
@@ -364,14 +362,12 @@ bool Utils::is_valid_amex_card_no(string card_number)
 bool Utils::verify_card_no_type(string card_number, string type)
 {
     bool valid = false;
-    cout << "<h1> " << card_number << " - " << type << type.size() << "</h1>";
+
     if (verify_card(card_number))
     {
         if (type == "Visa")
         {
-            cout << "<h1>  Ahhh VISA </h1>";
             valid = is_valid_visa_card_no(card_number);
-            cout << "<h1>" << valid << "</h1>";
         }
         else
         {
@@ -396,31 +392,6 @@ char *Utils::get_date()
     auto end = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
     return std::ctime(&end_time);
-}
-
-int main(int argc, char const *argv[])
-{
-    Utils u = Utils();
-    cout << u.get_date();
-    cout << "======VISA=====" << endl;
-    string numeroTarjetaVisa = "4242424242424242"; //si
-    string visa = "Visa";
-    bool visa_valida = u.verify_card_no_type(numeroTarjetaVisa, visa);
-    // std::map<string, string> cookies = u.get_cookies();
-    // cout << cookies["Email"];
-    // cout << cookies["Password"];
-
-    // string salt = u.create_salt();
-    // cout << salt << endl;
-    // string hash = u.create_hash_sha2("pass", salt);
-    // cout << hash << endl;
-
-    // cout << u.mask_card_number("1234567890");
-    // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
-
-    // free(content);
-
-    return 0;
 }
 
 // int main()
@@ -503,6 +474,27 @@ int main(int argc, char const *argv[])
 
 // string str26 = "371449635398431"; //si es valida
 // cout << u.is_valid_amex_card_no(str26) << endl;
+
+//     return 0;
+// }
+
+// int main(int argc, char const *argv[])
+// {
+//     Utils u = Utils();
+//     cout << u.get_date();
+//     // std::map<string, string> cookies = u.get_cookies();
+//     // cout << cookies["Email"];
+//     // cout << cookies["Password"];
+
+//     // string salt = u.create_salt();
+//     // cout << salt << endl;
+//     // string hash = u.create_hash_sha2("pass", salt);
+//     // cout << hash << endl;
+
+//     // cout << u.mask_card_number("1234567890");
+//     // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
+
+//     // free(content);
 
 //     return 0;
 // }
