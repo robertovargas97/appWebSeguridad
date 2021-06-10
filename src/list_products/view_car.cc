@@ -105,7 +105,7 @@ int main(int argc, char const *argv[])
         cout << "          </div>";
         cout << "      <div class='form-group'>";
         cout << "        <label for='card_number' class='col-form-label'>Número de tarjeta</label>";
-        cout << "        <input type='number' class='form-control' id='card_number' name='card_number' minlength='13' maxlength='17' placeholder='xxxxxxxxxxxxxxx' required autocomplete='off' >";
+        cout << "        <input type='number' class='form-control' id='card_number' name='card_number' min='1000000000000' max='99999999999999999' minlength='13' maxlength='17' placeholder='xxxxxxxxxxxxxxx' required autocomplete='off' >";
         cout << "      </div>";
         cout << "      <div class='form-group'>";
         cout << "        <label for='card_expiry' class='col-form-label'>Fecha de vencimiento de la tarjeta</label>";
