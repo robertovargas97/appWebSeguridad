@@ -253,245 +253,29 @@ string Utils::mask_card_number(string card_number)
     int card_size = card_number.size();
     for (int i = 0; i < card_size; i++)
     {
-        if (i == card_size - 1 || i == card_size - 2 || i == card_size - 3 || i == card_size - 4)
-        {
+        if ( i == card_size - 1 || i == card_size - 2 || i == card_size - 3 || i == card_size - 4 ){
             masked_number += card_number[i];
         }
-        else
-        {
+        else{
             masked_number += "x";
         }
     }
     return masked_number;
 }
 
-bool Utils::verify_card(string numeroTarjeta)
-{
-    const char *numero = numeroTarjeta.c_str();
-
-    char *n;
-    int digito;
-    bool par = false;
-    int res = 0;
-
-    n = new char[strlen(numero) + 1];
-    strcpy(n, numero);
-    do
-    {
-        digito = n[strlen(n) - 1] - '0';
-        n[strlen(n) - 1] = 0;
-        res += digito;
-        if (par)
-        {
-            res += digito;
-            if (digito > 4)
-                res -= 9;
-        }
-        par = !par;
-
-    } while (strlen(n));
-    delete[] n;
-    return !(res % 10);
-}
-
-bool Utils::is_valid_visa_card_no(string card_number)
-{
-    bool valid = false;
-    // Regex to check valid Visa Card number
-    const regex pattern("^4[0-9]{12}(?:[0-9]{3})?$");
-
-    // If the Visa Card number
-    // is empty return false
-    if (card_number.empty())
-    {
-        valid = false;
-    }
-    // Return true if the Visa Card number
-    // matched the ReGex
-    if (regex_match(card_number, pattern))
-    {
-        valid = true;
-    }
-    return valid;
-}
-
-bool Utils::is_valid_masterCard_no(string card_number)
-{
-    bool valid = false;
-
-    // Regex to check valid Master Card number
-    const regex pattern("^5[1-5][0-9]{14}|^(222[1-9]|22[3-9]\\d|2[3-6]\\d{2}|27[0-1]\\d|2720)[0-9]{12}$");
-
-    // If the Master Card number
-    // is empty return false
-    if (card_number.empty())
-    {
-        valid = false;
-    }
-    // Return true if the Master Card number
-    // matched the ReGex
-    if (regex_match(card_number, pattern))
-    {
-        valid = true;
-    }
-    return valid;
-}
-
-bool Utils::is_valid_amex_card_no(string card_number)
-{
-    bool valid = false;
-
-    // Regex to check valid Master Card number
-    const regex pattern("^3[47][0-9]{13}$");
-
-    // If the Master Card number
-    // is empty return false
-    if (card_number.empty())
-    {
-        valid = false;
-    }
-    // Return true if the Master Card number
-    // matched the ReGex
-    if (regex_match(card_number, pattern))
-    {
-        valid = true;
-    }
-    return valid;
-}
-
-bool Utils::verify_card_no_type(string card_number, string type)
-{
-    bool valid = false;
-
-    if (verify_card(card_number))
-    {
-        if (type == "Visa")
-        {
-            valid = is_valid_visa_card_no(card_number);
-        }
-        else
-        {
-            if (type == "Mastercard")
-            {
-                valid = is_valid_masterCard_no(card_number);
-            }
-            else
-            {
-                if ((type == "AmericanExpress"))
-                {
-                    valid = is_valid_amex_card_no(card_number);
-                }
-            }
-        }
-    }
-    return valid;
-}
-
-char *Utils::get_date()
-{
-    auto end = std::chrono::system_clock::now();
-    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-    return std::ctime(&end_time);
-}
-
-// int main()
-// {
-
-// //Se compila asi: g++ utils/utils.cc -o u -std=c++11 -w -lcryptopp -l:libcgicc.a `mysql_config --cflags --libs`
-
-// Utils u = Utils();
-// cout<<"======VISA====="<<endl;
-// string numeroTarjetaVisa= "4012888888881881"; //si
-// //string numeroTarjetaVisa= "6155279860457"; //no
-// string visa = "Visa";
-// bool visa_valida = u.verify_card_no_type(numeroTarjetaVisa, visa);
-// cout<<"La tarjeta "<<visa<< " es valida? "<<visa_valida<<endl;
-
-// cout<<"======MASTERCARD====="<<endl;
-// string numeroTarjetaMasterCard= "5200828282828210"; //si
-// //string numeroTarjetaMasterCard= "6082822463100051"; //no
-// string mastercard = "Mastercard";
-// bool mc_valida = u.verify_card_no_type(numeroTarjetaMasterCard, mastercard);
-// cout<<"La tarjeta "<<mastercard<< " es valida? "<<mc_valida<<endl;
-
-// cout<<"======AMEX====="<<endl;
-// string numeroTarjetaAmex= "371449635398431";//si
-// //string numeroTarjetaAmex= "5200828282828210";//no
-// string amex = "AmericanExpress";
-// bool amex_valida = u.verify_card_no_type(numeroTarjetaAmex, amex);
-// cout<<"La tarjeta "<<amex<< " es valida? "<<amex_valida<<endl;
-
-// cout<<"======VISA====="<<endl;
-
-// string str1 = "4155279860457";
-// cout << u.is_valid_visa_card_no(str1) << endl;
-
-// // Test Case 2:
-// string str2 = "4155279860457201";
-// cout << u.is_valid_visa_card_no(str2) << endl;
-
-// // Test Case 3:
-// string str3 = "4155279";
-// cout << u.is_valid_visa_card_no(str3) << endl;
-
-// // Test Case 4:
-// string str4 = "6155279860457";
-// cout << u.is_valid_visa_card_no(str4) << endl;
-
-// // Test Case 5:
-// string str5 = "415a27##60457";
-// cout << u.is_valid_visa_card_no(str5) << endl;
-
-// cout<<"======MASTERCARD====="<<endl;
-// // Test Case 1:
-// string str11 = "5114496353984312";
-// cout << u.is_valid_masterCard_no(str11) << endl;
-
-// // Test Case 2:
-// string str12 = "2720822463109651";
-// cout << u.is_valid_masterCard_no(str12) << endl;
-
-// // Test Case 3:
-// string str13 = "5582822410";
-// cout << u.is_valid_masterCard_no(str13) << endl;
-
-// // Test Case 4:
-// string str14 = "6082822463100051";
-// cout << u.is_valid_masterCard_no(str14) << endl;
-
-// // Test Case 5:
-// string str15 = "2221149a635##843";
-// cout << u.is_valid_masterCard_no(str15) << endl;
-
-// cout<<"======AMERICAN EXPRESS====="<<endl;
-
-//  string str24 = "378282246310005"; //si es valida
-// cout << u.is_valid_amex_card_no(str24) << endl;
-
-// // Test Case 5:
-// string str25 = "2221149a635##843";
-// cout << u.is_valid_amex_card_no(str25) << endl;
-
-// string str26 = "371449635398431"; //si es valida
-// cout << u.is_valid_amex_card_no(str26) << endl;
-
-//     return 0;
-// }
-
 // int main(int argc, char const *argv[])
 // {
 //     Utils u = Utils();
-//     cout << u.get_date();
-//     // std::map<string, string> cookies = u.get_cookies();
-//     // cout << cookies["Email"];
-//     // cout << cookies["Password"];
+//     std::map<string, string> cookies = u.get_cookies();
+//     cout << cookies["Email"];
+//     cout << cookies["Password"];
 
 //     // string salt = u.create_salt();
 //     // cout << salt << endl;
 //     // string hash = u.create_hash_sha2("pass", salt);
 //     // cout << hash << endl;
 
-//     // cout << u.mask_card_number("1234567890");
+//     cout << u.mask_card_number("1234567890");
 //     // u.log_app_action("login", "error", "form_data", "Email or password incorrect");
 
 //     // free(content);

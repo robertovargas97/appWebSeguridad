@@ -41,8 +41,7 @@ public:
     bool buy_cart(string email);
     bool empty_cart(string email, string code_product);
     bool erase_product(string codigoProducto);
-    bool erase_products(string correo, vector<vector<string> > cart_list);  
-    bool add_receipt(string receipt_no, string user_name, string user_email, string card_no, string products_list, string total);                                           
+    bool erase_products(string correo, vector<vector<string> > cart_list);                                             
 
 private:
     MYSQL *mysql = NULL;

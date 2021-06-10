@@ -22,7 +22,6 @@
 #include <cgicc/Cgicc.h>
 #include <cgicc/HTTPHTMLHeader.h>
 #include <cgicc/HTMLClasses.h>
-#include <regex>
 
 #define PATH_MAX 4096
 #define LOGS_PATH "app_logs.txt"
@@ -47,12 +46,6 @@ public:
     void get_navbar(bool is_signed);
     void log_app_action(string action, string result, string user, string description="");
     string mask_card_number(string card_number);
-    bool verify_card(string card_number);
-    bool is_valid_visa_card_no(string card_number);
-    bool is_valid_masterCard_no(string card_number);
-    bool is_valid_amex_card_no(string card_number);
-    bool verify_card_no_type(string card_number, string type);
-    char* get_date();
 };
 
 #endif
