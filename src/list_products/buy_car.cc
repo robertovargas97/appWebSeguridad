@@ -51,12 +51,15 @@ int main(int argc, const char *argv[], const char *env[])
 
     DBConnection conn = DBConnection();
     std::map<string, string> form_data = utils.get_post_data();
+    bool is_valid_card = utils.verify_card(form_data["card_number"]);
     bool buy_car_result = false;
 
     if (is_signed)
     {
 
-        if (form_data["card_number"] == "4242424242424242" && form_data["card_expiry"] == "01/22" && form_data["card_type"] == "Visa" && form_data["card_cvv"] == "123")
+        // if (form_data["card_number"] == "4242424242424242" && form_data["card_expiry"] == "01/22" && form_data["card_type"] == "Visa" && form_data["card_cvv"] == "123")
+        // {
+        if (is_valid_card)
         {
             DBConnection conn4 = DBConnection();
             vector<vector<string>> cart_list = conn4.get_my_cart(cookies["Email"]);
@@ -136,7 +139,7 @@ int main(int argc, const char *argv[], const char *env[])
                 cout << "             <div class='input-group-prepend'>";
                 cout << "               <div class='input-group-text'><i class='bi bi-arrow-right-short'></i></div>";
                 cout << "             </div>";
-                cout << "             <input type='email' class='form-control' id='id_email' name='email' required placeholder='example@mail.com' required maxlength='50' value='" <<  cart_list[i][4] << "'disabled>";
+                cout << "             <input type='email' class='form-control' id='id_email' name='email' required placeholder='example@mail.com' required maxlength='50' value='" << cart_list[i][4] << "'disabled>";
                 cout << "           </div>";
                 cout << "         </div>";
             }
@@ -147,7 +150,7 @@ int main(int argc, const char *argv[], const char *env[])
             cout << "             <div class='input-group-prepend'>";
             cout << "               <div class='input-group-text'><i class='bi bi-cash-coin'></i></div>";
             cout << "             </div>";
-            cout << "             <input type='email' class='form-control' id='id_email' name='email' required placeholder='example@mail.com' required maxlength='50' value='" << form_data["price"]<< "' disabled>";
+            cout << "             <input type='email' class='form-control' id='id_email' name='email' required placeholder='example@mail.com' required maxlength='50' value='" << form_data["price"] << "' disabled>";
             cout << "           </div>";
             cout << "         </div>";
             cout << "     </form>";

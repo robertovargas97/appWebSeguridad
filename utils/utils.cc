@@ -263,6 +263,35 @@ string Utils::mask_card_number(string card_number)
     return masked_number;
 }
 
+bool Utils::verify_card(string numeroTarjeta)
+{
+    const char *numero = numeroTarjeta.c_str();
+
+    char *n;
+    int digito;
+    bool par = false;
+    int res = 0;
+
+    n = new char[strlen(numero) + 1];
+    strcpy(n, numero);
+    do
+    {
+        digito = n[strlen(n) - 1] - '0';
+        n[strlen(n) - 1] = 0;
+        res += digito;
+        if (par)
+        {
+            res += digito;
+            if (digito > 4)
+                res -= 9;
+        }
+        par = !par;
+
+    } while (strlen(n));
+    delete[] n;
+    return !(res % 10);
+}
+
 char *Utils::get_date()
 {
     auto end = std::chrono::system_clock::now();
